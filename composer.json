@@ -1,0 +1,23 @@
+{
+    "name": "hullmano/alfa",
+    "description": "Primeiros Testes!",
+    "license": "help",
+    "authors": [
+        {
+            "name": "Hullmano",
+            "email": "hullmano@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim":"2.0",
+        "rain/raintpl":"3.0.0"        
+    },
+    "autoload": {
+        "psr-4": {
+            "abcb\\": "vendor\\abcb"  
+        }
+    }
+}
+
+
