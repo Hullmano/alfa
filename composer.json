@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "abcb\\": "vendor\\abcb"  
+            "Abcb\\": "vendor\\abcb"  
         }
     }
 }
