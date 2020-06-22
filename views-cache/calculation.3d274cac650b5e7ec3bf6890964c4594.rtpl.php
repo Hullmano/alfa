@@ -4,11 +4,19 @@
 	<title>Project 01</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<link rel="stylesheet" href="1.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="hullmano.github.io/css/style.css"> -->
-	<spring:url value="alfa/resource/css/1.css" type="text/css"></spring:url>	
+	<!--<link rel="stylesheet" type="text/css" href="resource/css/style.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" url="hullmano.github.io/css/style.css"> -->
+	<!--<spring:url value="alfa/resource/css/1.css" type="text/css"></spring:url>-->
 </head>
 <body onload="dateToday()">
+ 	<div>
+ 		<a href="/alfa/calculation/logout" class="right">Logout</a> 		
+ 		<ul>
+ 			 <!-- <li><a href="">Cálculo</a></li> -->
+ 			<li><a href="/alfa/bank_check">Cadastro</a></li>
+ 		</ul>
+ 	</div>	
+
 	<div class="wrap">
 		<div class="linha">
 			<label for="valChq">Informe o Valor do Cheque:</label>
@@ -21,6 +29,8 @@
 			<input type="tel" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"> <br>			
 			<input type="submit" value="Calcular" onclick="calcular()"></input>
 			<input type="submit" value="Limpar" onclick="limpar()"></input> <br>
+
+
 		</div>
 
 		<div class="linha">
@@ -301,4 +311,75 @@
 		}
 	} */
 </script>
+
+<style type="text/css">
+	@media screen and (min-width: 330px) and (max-width: 568px)
+{
+     .wrap{width:100%;}
+     .wrap{margin:0;}
+     .wrap{padding:0;}
+     .wrap input[type=tel]{width: 100%;}
+     .wrap input[type=tel]{font-size: 16px;}
+     .wrap input[type=tel]{width: 100%;}
+     .wrap input[type=tel]{font-size: 16px;}
+     .wrap{font-size:19px;}
+
+
+     .linha label{font-size: 16px;}
+}
+
+	.wrap{
+		width: 320px;
+		height: 100%;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	.wrap input[type=tel]{
+		width: 98%;
+		font-size: 16px;
+	}
+
+	.linha{
+		width: 320px;
+	}
+
+	.col{
+		float: left;
+	}
+
+
+	.col1{
+		width: 28%;
+	}
+	.col2{
+		width: 16%;
+	}
+	.col3{
+		width: 28%;
+	}
+	.col4{
+		width: 28%;
+	}
+	.cRed{
+		color: red;
+	}	
+
+	.right{
+		float: right;
+	}
+
+	ul {
+		list-style: none;
+		font-size: 18px;
+	}
+	li {
+		display: inline;
+		padding-right: 10px;
+	}
+	a {
+		text-decoration: none;	
+	}	
+
+</style>
 </html>

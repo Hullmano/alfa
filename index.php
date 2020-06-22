@@ -18,24 +18,61 @@ $app->get('/', function() {   //aqui são definidas as rotas. Neste caso "/" é 
 	//$page->__construct("views/");
 
 });
-
 $app->post('/', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
-	User::login($_POST["login"], $_POST["senha"]);
+	User::login($_POST["login"], $_POST["password"]);
 
+	header("Location: /alfa/calculation");
 	exit;
 });
 
-$app->get('/register', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+$app->get('/new_user', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
-	$page = new Page("views/register/", "register"); 
+	$page = new Page("views/new_user/", "new_user"); 
 
 });
+$app->post('/new_user', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	if ($_POST["newUser"] === '' || $_POST["newPsw"] === '' || $_POST["confPsw"] === '')
+	{
+		throw new \Exception("Os Campos Não Podem Estar Vazios");
+		exit;
+		
+	} else {
+		
+		User::newUser($_POST["newUser"], $_POST["newPsw"], $_POST["confPsw"]);	
+	
+		header("Location: /alfa/");
+		exit;
+	}
+});
+
 
 $app->get('/calculation', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
+	User::verifyLogin();
+
 	$page = new Page("views/calculation/", "calculation"); 
 
+});
+
+$app->get('/calculation/logout', function() {
+
+	User::logout();
+
+	header("Location: /alfa/");
+	exit;
+});
+
+$app->get('/bank_check', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	$page = new Page("views/bank_check/", "bank_check"); 
+
+});
+$app->post('/bank_check', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+	
+	header("Location: /alfa/");
+	exit;
 });
 
 $app->run();                  //aqui chama as rotas.

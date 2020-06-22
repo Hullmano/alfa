@@ -7,7 +7,7 @@ use \Abcb\Sql;
 class User extends Sql
 {
 
-	public static function login($login, $senha)
+	public static function login($login, $password)
 	{
 		
 		$sql = new Sql();
@@ -31,9 +31,11 @@ class User extends Sql
 
 		$data = $results[0];                             //recebe a 1º posição do array $results.
 
-		if ($senha === $data["userPassword"]) 
+		if ($password === $data["userPassword"]) 
 		{
-			echo "Ok";
+			//echo "Ok";
+
+			$_SESSION["User"] = $results;
 		} else {
 			throw new \Exception("Usuário ou Senha Inválido..");
 			
@@ -45,6 +47,46 @@ class User extends Sql
 		} else {
 			throw new Exception("Senha Inválida.");	
 		} */
+	}#fim function login
+
+	public static function verifyLogin()
+	{
+
+		if(
+			!isset($_SESSION["User"]) 
+			||
+			!$_SESSION["User"]
+			||
+			!(int)$_SESSION["User"][0] > 0 
+		){
+			header("Location: /alfa/");
+			exit;
+		}
+
+	}
+
+	public static function logout()
+	{
+		$_SESSION["User"] = NULL;
+
+	}
+
+	public static function newUser($newUser, $newPsw, $confUser)
+	{
+		if ($newPsw !== $confUser) {
+			throw new \Exception("As Senhas não Conferem!");
+
+		} else {
+			//print_r($_POST["newUser"]);
+
+			$sql = new Sql();
+
+			$results = $sql->query("INSERT INTO tb_users VALUES (default, :LOGIN, :PSW, default)", array(
+				":LOGIN"=>$newUser,
+				":PSW"  =>$newPsw
+			));
+
+		}
 	}
 	
 }

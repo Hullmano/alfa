@@ -7,7 +7,7 @@
  </head>
  <body>
  	<div class="wrap">
-	 	<form action="/alfa/register" method="post">
+	 	<form action="/alfa/new_user" method="post">
 		 	<label for="login">Novo Usuário</label>
 		 	<input type="text" name="newUser" id="login"><br>
 		 	
