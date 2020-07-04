@@ -4,18 +4,39 @@
 	<title>Alfa</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<h1>Cadastro de Cheques</h1>
 </head>
 <body onload="Today()">
-	 <div>
+	<div id="header">
+		<a href="/alfa/logout" id="right">Logout</a>
 		<ul>
+			 <li><a href="/alfa/client">Clientes</a></li>
 			 <li><a href="/alfa/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
+		<!--<tbody>
+			{loop="$Usuario"}
+		 	<tr>
+		 		<td>{$value.clientName}</td>
+		 	</tr>
+		 	{/loop}
+		</tbody> -->
+		<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()">
+			<option value="">Selecione o Cliente</option>
+			{loop="$Usuario"}
+			<option id="options" value="{$value.clientName}">{$value.clientName}</option>
+			{/loop}
+		</select>
 	</div>
+
 	<div class="wrap">
  		<form action="" method="post">
-		 	<label for="login">Banco</label>
-		 	<input type="text" name="login" id="login">
+			
+			<label>Cliente:</label>
+			<input type="text" name="client" id="client"><br>	
+
+		 	<label for="bank">Banco</label>
+		 	<input type="text" name="bank" id="bank">
 		 	
 		 	<label for="agency">Agência</label>
 		 	<input type="tel" name="agency" id="agency">
@@ -36,36 +57,29 @@
 		 	<input type="text" name="issuer" id="issuer">	
 
 		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue">		 		 	
+		 	<input type="date" name="dtDue" id="dtDue">
+
+		 	<label for="cod">Cód.Cheque</label>
+		 	<input type="text" name="cod" id="cod">
+
+		 	<label for="days">Tot.Dias</label>
+		 	<input type="text" name="days" id="days">
+
+		 	<label for="tax">Taxa</label>
+		 	<input type="text" name="tax" id="tax">
+
+		 	<label for="interest">Juros</label>
+		 	<input type="text" name="interest" id="interest">
+
+		 	<label for="liquid">Líquido</label>
+		 	<input type="text" name="liquid" id="liquid">		 			 			 			 	 		 	
 
 		 	<input type="submit" value="Login">
 		
-		 	<a href="/alfa/new_user" id="right">New User</a>
+		 	<!--<a href="/alfa/new_user" id="right">New User</a>-->
 		</form>
 	</div>
 </body>
-
-<script type="text/javascript">
-	
-	function Today(dBase = new Date()){
-		var dia = dBase.getDate();
-		var mes = dBase.getMonth()+1;
-		var ano = dBase.getFullYear();
-
-		if (dia.toString().length == 1){
-			dia = '0' + dia;
-		}
-		if (mes.toString().length == 1){
-			mes = '0' + mes;
-		}		
-
-		//return ano + '-' + mes + '-' + ano;
-		var diaAtual = ano + '-' + mes + '-' + dia;
-
-		document.getElementById('dtToday').value = diaAtual;
-		document.getElementById('dtDue').value = diaAtual;
-	}
-</script>
 
 <style type="text/css">
 	.wrap {
@@ -73,25 +87,31 @@
 		height: 100%;
 		margin: 100px auto;
 		padding: 0;
+		line-height: 30px;
 	}
 
-	#right {
-		padding-left: 115px;
+	#right{
+		float: right;
 	}
-
-	#login {
+	#client {
+		width: 653px;
+	}
+	#bank, #tax, #days {
 		width: 40px;
 	}
-	#agency {
+	#agency, #cod{
 		width: 60px;
 	}
 
 	#account, #numchk {
 		width: 90px;
 	}
-	#value {
+	#value, #interest{
 		width: 125px;
 	}
+	#liquid{
+		width: 127px;
+	} 
 	#issuer {
 		width: 304px;
 		text-transform: uppercase;
@@ -108,9 +128,42 @@
 	a {
 		text-decoration: none;	
 	}
+	input, option {
+		text-transform: uppercase;		
+	}
 	input[type=date] {
 		width: 125px;
 	}
+</style>
 
- </style>
- </html>
+<script type="text/javascript">
+	
+	function Today(dBase = new Date()){
+		var dia = dBase.getDate();
+		var mes = dBase.getMonth()+1;
+		var ano = dBase.getFullYear();
+
+		if (dia.toString().length == 1){
+			dia = '0' + dia;
+		}
+		if (mes.toString().length == 1){
+			mes = '0' + mes;
+		}		
+		//return ano + '-' + mes + '-' + ano;
+		var diaAtual = ano + '-' + mes + '-' + dia;
+
+		document.getElementById('dtToday').value = diaAtual;
+		document.getElementById('dtDue').value = diaAtual;
+	}
+
+	function selectClient($value){
+  		document.getElementById('client').value = $value;
+  		//alert($value);
+	}
+
+	function setIndex(){
+		var opt = document.getElementById('selectBox').value = "";
+
+	}
+</script>
+</html>

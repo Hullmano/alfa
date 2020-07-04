@@ -7,13 +7,15 @@
 	<!--<link rel="stylesheet" type="text/css" href="resource/css/style.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" url="hullmano.github.io/css/style.css"> -->
 	<!--<spring:url value="alfa/resource/css/1.css" type="text/css"></spring:url>-->
+	<h1>Cálculo</h1>
 </head>
 <body onload="dateToday()">
  	<div>
- 		<a href="/alfa/calculation/logout" class="right">Logout</a> 		
+ 		<a href="/alfa/logout" id="right">Logout</a> 		
  		<ul>
  			 <!-- <li><a href="">Cálculo</a></li> -->
- 			<li><a href="/alfa/bank_check">Cadastro</a></li>
+ 			<li><a href="/alfa/client">Clientes</a></li>
+ 			<li><a href="/alfa/bank_check">Cheques </a></li>
  		</ul>
  	</div>	
 
@@ -97,6 +99,78 @@
 		</div>
 	</div>
 </body>
+
+
+
+<style type="text/css">
+	@media screen and (min-width: 330px) and (max-width: 568px)
+{
+     .wrap{width:100%;}
+     .wrap{margin:0;}
+     .wrap{padding:0;}
+     .wrap input[type=tel]{width: 100%;}
+     .wrap input[type=tel]{font-size: 16px;}
+     .wrap input[type=tel]{width: 100%;}
+     .wrap input[type=tel]{font-size: 16px;}
+     .wrap{font-size:19px;}
+
+
+     .linha label{font-size: 16px;}
+}
+
+	.wrap{
+		width: 320px;
+		height: 100%;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	.wrap input[type=tel]{
+		width: 98%;
+		font-size: 16px;
+	}
+
+	.linha{
+		width: 320px;
+	}
+
+	.col{
+		float: left;
+	}
+
+
+	.col1{
+		width: 28%;
+	}
+	.col2{
+		width: 16%;
+	}
+	.col3{
+		width: 28%;
+	}
+	.col4{
+		width: 28%;
+	}
+	.cRed{
+		color: red;
+	}	
+
+	#right{
+		float: right;
+	}
+
+	ul {
+		list-style: none;
+		font-size: 18px;
+	}
+	li {
+		display: inline;
+		padding-right: 10px;
+	}
+	a {
+		text-decoration: none;	
+	}	
+</style>
 
 <script type="text/javascript">
 	function formatMoeda(btn){                  //Formata o valor para Moeda.
@@ -311,75 +385,4 @@
 		}
 	} */
 </script>
-
-<style type="text/css">
-	@media screen and (min-width: 330px) and (max-width: 568px)
-{
-     .wrap{width:100%;}
-     .wrap{margin:0;}
-     .wrap{padding:0;}
-     .wrap input[type=tel]{width: 100%;}
-     .wrap input[type=tel]{font-size: 16px;}
-     .wrap input[type=tel]{width: 100%;}
-     .wrap input[type=tel]{font-size: 16px;}
-     .wrap{font-size:19px;}
-
-
-     .linha label{font-size: 16px;}
-}
-
-	.wrap{
-		width: 320px;
-		height: 100%;
-		margin: 0 auto;
-		padding: 0;
-	}
-
-	.wrap input[type=tel]{
-		width: 98%;
-		font-size: 16px;
-	}
-
-	.linha{
-		width: 320px;
-	}
-
-	.col{
-		float: left;
-	}
-
-
-	.col1{
-		width: 28%;
-	}
-	.col2{
-		width: 16%;
-	}
-	.col3{
-		width: 28%;
-	}
-	.col4{
-		width: 28%;
-	}
-	.cRed{
-		color: red;
-	}	
-
-	.right{
-		float: right;
-	}
-
-	ul {
-		list-style: none;
-		font-size: 18px;
-	}
-	li {
-		display: inline;
-		padding-right: 10px;
-	}
-	a {
-		text-decoration: none;	
-	}	
-
-</style>
 </html>

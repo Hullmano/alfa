@@ -88,6 +88,14 @@ class User extends Sql
 
 		}
 	}
+
+	public static function listUsers()
+	{
+		$sql = new Sql();
+
+		return $results = $sql->select("SELECT * FROM tb_clients"); 
+
+	}
 	
 }
 
