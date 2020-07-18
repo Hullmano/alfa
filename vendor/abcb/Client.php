@@ -12,7 +12,7 @@ class Client extends Sql
 		
 		$sql = new Sql();
 
-		return $results = $sql->select("SELECT clientName FROM tb_clients"); 
+		return $results = $sql->select("SELECT * FROM tb_clients"); 
 		
 		//return "Adriano";
 

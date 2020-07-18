@@ -21,63 +21,141 @@
 		 	</tr>
 		 	{/loop}
 		</tbody> -->
-		<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()">
-			<option value="">Selecione o Cliente</option>
-			{loop="$Usuario"}
-			<option id="options" value="{$value.clientName}">{$value.clientName}</option>
-			{/loop}
-		</select>
 	</div>
-
+	
 	<div class="wrap">
  		<form action="" method="post">
-			
-			<label>Cliente:</label>
-			<input type="text" name="client" id="client"><br>	
+
+			<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()">
+				<option value="">Cliente</option>
+				{loop="$Users"}
+				<option id="options" value="{$value.clientName}">{$value.clientName}</option>
+				{/loop}
+			</select>
+
+			<!--<label>Cliente</label>-->
+			<input type="text" name="client" id="client" onkeypress="return false" required><br>
 
 		 	<label for="bank">Banco</label>
-		 	<input type="text" name="bank" id="bank">
+		 	<input type="text" name="bank" id="bank" required>
 		 	
 		 	<label for="agency">Agência</label>
-		 	<input type="tel" name="agency" id="agency">
+		 	<input type="tel" name="agency" id="agency" required>
 		 	
 		 	<label for="account">Conta</label>
-		 	<input type="tel" name="account" id="account">	 	
+		 	<input type="tel" name="account" id="account" required=>	 	
 		 			 	
 		 	<label for="numchk">Nº Cheque</label>
-		 	<input type="tel" name="numchk" id="numchk">
+		 	<input type="tel" name="numchk" id="numchk" required>
 		 	
 		 	<label for="value">Valor</label>
-		 	<input type="tel" name="value" id="value"><br>
+		 	<input type="number" step="0.01" name="value" id="value" onblur="formatMoeda(this)" required maxlength="15"><br>
 
 		 	<label for="dtToday">Data</label>
-		 	<input type="date" name="dtToday" id="dtToday">
+		 	<input type="date" name="dtToday" id="dtToday" required>
 
 		 	<label for="issuer">Emitente</label>
-		 	<input type="text" name="issuer" id="issuer">	
+		 	<input type="text" name="issuer" id="issuer" required>	
 
 		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue">
+		 	<input type="date" name="dtDue" id="dtDue" required onblur="difDates()">
 
 		 	<label for="cod">Cód.Cheque</label>
-		 	<input type="text" name="cod" id="cod">
-
-		 	<label for="days">Tot.Dias</label>
-		 	<input type="text" name="days" id="days">
+		 	<input type="text" name="cod" id="cod" tabindex="-1" readonly>
 
 		 	<label for="tax">Taxa</label>
-		 	<input type="text" name="tax" id="tax">
+		 	<input type="number" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
+
+		 	<label for="days">Tot.Dias</label>
+		 	<input type="text" name="days" id="days" onblur="calcJuros()" required readonly>
 
 		 	<label for="interest">Juros</label>
-		 	<input type="text" name="interest" id="interest">
+		 	<input type="text" name="interest" id="interest" onblur="formatMoeda(this)" required readonly>
 
 		 	<label for="liquid">Líquido</label>
-		 	<input type="text" name="liquid" id="liquid">		 			 			 			 	 		 	
+		 	<input type="text" name="liquid" id="liquid" onblur="formatMoeda(this)" required readonly>		 			 			 	 		 	
 
-		 	<input type="submit" value="Login">
-		
-		 	<!--<a href="/alfa/new_user" id="right">New User</a>-->
+		 	<input type="submit" value="Salvar">
 		</form>
+	</div>
+
+	<div class="data">
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<td>|</td>
+					<th>Id</th>
+					<td>|</td>
+					<th>Banco</th>
+					<td>|</td>
+					<th>Agência</th>
+					<td>|</td>
+					<th>C/Corrente</th>
+					<td>|</td>
+					<th>NºCheque</th>
+					<td>|</td>
+					<th>Valor</th>
+					<td>|</td>
+					<th>Dt.Base</th>
+					<td>|</td>
+					<th>Emitente</th>
+					<td>|</td>
+					<th>Vencimento</th>
+					<td>|</td>
+					<th>Dias</th>
+					<td>|</td>
+					<th>Taxa</th>
+					<td>|</td>
+					<th>Juros</th>
+					<td>|</td>
+					<th>Líquido</th>
+					<td>|</td>
+				</tr>	
+			</thead>
+			<tbody>
+				{loop="$Data"}
+				<tr>
+					<td style="text-transform: capitalize" id="tdClient">{$value.checkClient}</td>
+					<td>|</td>
+					<td id="tdId">{$value.checkId}</td>
+					<td>|</td>
+					<td id="tdBank">{$value.checkBank}</td>
+					<td>|</td>
+					<td id="tdAgency">{$value.checkAgency}</td>
+					<td>|</td>
+					<td id="tdAccount">{$value.checkAccount}</td>
+					<td>|</td>
+					<td id="tdNumChk">{$value.checkNumChk}</td>
+					<td>|</td>
+					<td id="tdValue">{$value.checkValue}</td>
+					<td>|</td>
+					<td id="tdToday">{$value.checkToday}</td>
+					<!--{loop="$Dates"}
+						<td>{$value.dt1}</td>
+					{/loop}-->
+					<td>|</td>
+					<td style="text-transform: capitalize">{$value.checkIssuer}</td>
+					<td>|</td>
+					<td>{$value.checkDue}</td>
+					<td>|</td>
+					<td>{$value.checkDays}</td>
+					<td>|</td>
+					<td>{$value.checkTax}</td>
+					<td>|</td>
+					<td>{$value.checkIntrst}</td>
+					<td>|</td>
+					<td>{$value.checkLiquid}</td>
+					<td>|</td>
+					<td>
+						<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
+						<a href="bank_check/{$value.checkId}/update">Editar</a>
+						<a href="bank_check/{$value.checkId}/delete">Excluir</a>
+					</td>
+				</tr>
+				{/loop}
+			</tbody>
+		</table>
 	</div>
 </body>
 
@@ -94,27 +172,39 @@
 		float: right;
 	}
 	#client {
-		width: 653px;
+		width: 604px;
 	}
-	#bank, #tax, #days {
+	#bank, #days {
 		width: 40px;
+	}
+	#tax {
+		width: 48px;
 	}
 	#agency, #cod{
 		width: 60px;
 	}
-
 	#account, #numchk {
 		width: 90px;
 	}
-	#value, #interest{
+	#value{
 		width: 125px;
 	}
+	#interest{
+		width: 120px;
+	}
 	#liquid{
-		width: 127px;
+		width: 124px;
 	} 
 	#issuer {
 		width: 304px;
-		text-transform: uppercase;
+		text-transform: capitalize;
+	}
+	#selectBox {
+		width: 100px;
+		font-size: 14px;
+	}
+	#tdClient {
+		max-width: 180px;
 	}
 	
 	ul {
@@ -128,8 +218,8 @@
 	a {
 		text-decoration: none;	
 	}
-	input, option {
-		text-transform: uppercase;		
+	input[type=text],[type=tel], option {
+		text-transform: capitalize;		
 	}
 	input[type=date] {
 		width: 125px;
@@ -137,6 +227,14 @@
 </style>
 
 <script type="text/javascript">
+	function formatMoeda(btn){                  //Formata o valor para Moeda.
+		if (!btn.value){						//Verifica se value está vazio.
+		} else {
+			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
+			var novoValor = parseFloat(valor).toFixed(2);
+			btn.value = novoValor; 
+		}	
+	}
 	
 	function Today(dBase = new Date()){
 		var dia = dBase.getDate();
@@ -162,8 +260,44 @@
 	}
 
 	function setIndex(){
-		var opt = document.getElementById('selectBox').value = "";
-
+		document.getElementById('selectBox').value = "";
 	}
+	
+	function difDates(){
+		var base = document.getElementById('dtToday').value;
+		var venc = document.getElementById('dtDue').value;
+		base = new Date(base);
+		venc = new Date(venc);
+		var dif = Math.abs(base.getTime() - venc.getTime());
+		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
+
+		document.getElementById('days').value = totDias;
+	}
+
+	function calcJuros(){
+		var valChq   = document.getElementById('value').value;
+		var valPrazo = document.getElementById('days').value;
+		var valTx    = document.getElementById('tax').value;
+		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
+		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
+
+		if (document.getElementById('value').value == ''  || document.getElementById('tax').value == '') {
+			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
+
+		} else {
+			document.getElementById('interest').value = valJuros;
+			document.getElementById('liquid').value = liquid;
+		}
+	}
+	
+	function formatMoeda(btn){                  //Formata o valor para Moeda.
+		if (!btn.value){						//Verifica se value está vazio.
+		} else {
+			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
+			var novoValor = parseFloat(valor).toFixed(2);
+			btn.value = novoValor; 
+		}	
+	}
+
 </script>
 </html>

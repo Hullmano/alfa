@@ -8,6 +8,7 @@ use \Slim\Slim;               //- para definir rotas.
 use \Abcb\Page;
 use \Abcb\User;
 use \Abcb\Client;
+use \Abcb\Bank_Check;
 
 $app = new Slim();
 
@@ -72,20 +73,49 @@ $app->get('/bank_check', function() {   //aqui são definidas as rotas. Neste ca
 	User::verifyLogin();
 
 	$clients = Client::listClients();
-	
-	//print_r($clients[0]);
+	$data    = Bank_Check::listChecks();
+	//print_r($data);
 	
 	//$page = new Page("views/bank_check/", "bank_check"); 
 	$page = new Page("views/bank_check/");
 	$page->setDraw("bank_check", array(
-		"Usuario"=>$clients
+		"Users"=>$clients,
+		"Data"=>$data
 	));
-
-
 });
 $app->post('/bank_check', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	
-	header("Location: /alfa/");
+	Bank_Check::newCheck($_POST["bank"], $_POST["agency"], $_POST["account"], $_POST["numchk"], $_POST["value"], $_POST["dtToday"], $_POST["issuer"], $_POST["dtDue"], $_POST["days"], $_POST["tax"], $_POST["interest"], $_POST["liquid"], $_POST["client"]);
+
+	header("Location: /alfa/bank_check");
+	exit;
+});
+$app->get('/bank_check/:checkId/update', function($checkId) {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	User::verifyLogin();
+
+	$clients = Client::listClients();
+	$data = bank_check::listById($checkId);
+
+	$page = new Page("views/bank_check/");
+	$page->setDraw("bank_check_updt", array(
+		"Users"=>$clients,
+		"Update"=>$data
+	));
+});
+$app->post('/bank_check/:checkId/update', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	Bank_Check::updateCheck($_POST["cod"] ,$_POST["bank"], $_POST["agency"], $_POST["account"], $_POST["numchk"], $_POST["value"], $_POST["dtToday"], $_POST["issuer"], $_POST["dtDue"], $_POST["days"], $_POST["tax"], $_POST["interest"], $_POST["liquid"], $_POST["client"]);
+
+	header("Location: /alfa/bank_check");
+	exit;
+});
+$app->get('/bank_check/:checkId/delete', function($checkId) {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	Bank_Check::deleteCheck($checkId);
+
+	//sleep(1);
+	header("Location: /alfa/bank_check");
 	exit;
 });
 /*------------------------------------------------------------------------------------------*/

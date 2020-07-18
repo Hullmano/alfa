@@ -25,28 +25,32 @@
 	 	<form action="" method="post">
 
 		 	<label for="name">Nome</label>
-		 	<input type="text" name="name" id="name">
+		 	<input type="text" name="name" id="name" required>
 
 		 	<label for="fantasy">Fantasia</label>
 		 	<input type="text" name="fantasy" id="fantasy">
 
 		 	<label for="address">Endereço</label>
-		 	<input type="text" name="address" id="address">
+		 	<input type="text" name="address" id="address" required>
 
 		 	<label for="district">Bairro</label>
-		 	<input type="text" name="district" id="district">
+		 	<input type="text" name="district" id="district" required >
 
-		 	<label for="cpf">Cpf/Cnpj</label>
-		 	<input type="text" name="cpf" id="cpf"> 		 	
+		 	<!--<label for="cpf">Cpf/Cnpj</label>-->
+		 	<select id="selct" onchange="clearCpf()">
+		 		<option>Cpf</option>
+		 		<option>Cnpj</option>
+		 	</select>
+		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" required>
 
 		 	<label for="complement">Complem</label>
 		 	<input type="text" name="complement" id="complement">	
 
 		 	<label for="city">Cidade</label>
-		 	<input type="text" name="city" id="city">
+		 	<input type="text" name="city" id="city" required>
 
 		 	<label for="state">UF</label>
-			<select name="state" id="state">
+			<select name="state" id="state" required>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>
@@ -77,22 +81,19 @@
 			</select>	 
 
 		 	<label for="zipcode">Cep</label>
-		 	<input type="text" name="zipcode" id="zipcode">	
+		 	<input type="text" name="zipcode" id="zipcode" maxlength="8" pattern="({1,3})" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="cep(this)" required>
 
 		 	<label for="phone1">Fone</label>
-		 	<input type="tel" name="phone1" id="phone1">
+		 	<input type="tel" name="phone1" id="phone1" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>
 
 		 	<label for="phone2">Fone</label>
-		 	<input type="tel" name="phone2" id="phone2">
+		 	<input type="tel" name="phone2" id="phone2" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)">
 
 		 	<label for="email">E-mail</label>
 		 	<input type="email" name="email" id="email"><br>
 
-		 	<label for="register">Data do Cadastro</label>
-		 	<input type="date" name="register" id="register">
-
 		 	<label for="limit">Limite Crédito</label>
-		 	<input type="tel" name="limit" id="limit">
+		 	<input type="number" step="0.01" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="15" required>
 
 		 	<label for="others" id="labOthers">Outras Informações</label>
 		 	<textarea name="others" id="others"></textarea><br>
@@ -117,7 +118,7 @@
 		 	<label for="profit" id="labProfit">Lucro</label>
 		 	<input type="text" name="profit" id="profit">	 			 		 	
 <!------------------------------------------------------------------->
-		 	<input type="submit" value="Ok">
+		 	<input type="submit" value="Salvar">
 
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
 		</form>
@@ -141,8 +142,11 @@
 	#fantasy {
 		width: 309px;
 	}
-	#cpf, #zipcode {
+	#zipcode {
 		width: 120px;
+	}
+	#cpfnj {
+		width: 127px;
 	}
 	#city {
 		width: 163px;
@@ -187,11 +191,11 @@
 	}
 
 	input[type=text],[type=tel] {
-		text-transform: uppercase;		
+		text-transform: capitalize;		
 	}
 	textarea {
 		vertical-align: top;
-		text-transform: uppercase;
+		text-transform: capitalize;
 		font-size: 14px;		
 	}
 	ul {
@@ -208,6 +212,14 @@
 </style>
 
 <script type="text/javascript">
+	function formatMoeda(btn){                  //Formata o valor para Moeda.
+		if (!btn.value){						//Verifica se value está vazio.
+		} else {
+			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
+			var novoValor = parseFloat(valor).toFixed(2);
+			btn.value = novoValor; 
+		}	
+	}
 	
 	function Today(dBase = new Date()){
 		var dia = dBase.getDate();
@@ -226,6 +238,44 @@
 
 		document.getElementById('register').value = diaAtual;
 	}
+
+	function cpfCnpj(i){
+
+		if (document.getElementById('selct').value == 'Cpf') {
+			
+			//if(cnpj.value) cnpj.value = cnpj.value.match(/.{1,3}/g).join(".").replace(/\.(?=[^.]*$)/,"-");
+			if(cpfnj.value) cpfnj.value = cpfnj.value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/,"$1.$2.$3-$4");
+		}
+
+		if (document.getElementById('selct').value == 'Cnpj'){
+
+			if(cpfnj.value) cpfnj.value = cpfnj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,"$1.$2.$3/$4-$5");
+
+		/*var v = i.value;
+		if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+		  i.value = v.substring(0, v.length-1);
+		  return;
+		}
+		i.setAttribute("maxlength", "14");
+		if (v.length == 3 || v.length == 7) i.value += ".";
+		if (v.length == 11) i.value += "-"; */
+		}
+	}
+
+	function phone(i) {
+
+		if(phone1.value) phone1.value = phone1.value.replace(/^(\d{0})(\d{2})/,"$1($2)");
+		if(phone2.value) phone2.value = phone2.value.replace(/^(\d{0})(\d{2})/,"$1($2)");
+	}
+
+	function cep(i) {
+		if(zipcode.value) zipcode.value = zipcode.value.replace(/^(\d{2})(\d{3})/,"$1.$2-");
+	}
+
+	function clearCpf() {
+		document.getElementById('cpfnj').value = "";
+	}
+	
 </script>
 
 </html>
