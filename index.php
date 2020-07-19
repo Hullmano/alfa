@@ -123,17 +123,20 @@ $app->get('/client', function() {   //aqui são definidas as rotas. Neste caso "
 
 	User::verifyLogin();
 
+	$Data = Client::listClients();
+
 	//$page = new Page("views/client/", "client"); 
 	$page = new Page("views/client/"); 
-	$page->setDraw("client");
+	$page->setDraw("client", array(
+		"Data"=>$Data
+	));
 
 });
 $app->post('/client', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	
 	Client::newClient($_POST["name"], $_POST["fantasy"], $_POST["address"], $_POST["district"], $_POST["cpf"], $_POST["complement"], $_POST["city"], $_POST["state"], $_POST["zipcode"], $_POST["phone1"], $_POST["phone2"], $_POST["email"], $_POST["limit"], $_POST["others"]);
 
-	//header("Location: /alfa/");
-	echo "Ok";
+	header("Location: /alfa/client");
 	exit;
 });
 $app->get('/client/search', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.

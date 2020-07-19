@@ -80,73 +80,42 @@
 	</div>
 
 	<div class="data">
-		<table>
+		<table border="1px" cellpadding="5px" cellspacing="0">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<td>|</td>
 					<th>Id</th>
-					<td>|</td>
 					<th>Banco</th>
-					<td>|</td>
 					<th>Agência</th>
-					<td>|</td>
 					<th>C/Corrente</th>
-					<td>|</td>
 					<th>NºCheque</th>
-					<td>|</td>
 					<th>Valor</th>
-					<td>|</td>
 					<th>Dt.Base</th>
-					<td>|</td>
 					<th>Emitente</th>
-					<td>|</td>
-					<th>Vencimento</th>
-					<td>|</td>
+					<th>Vencim.</th>
 					<th>Dias</th>
-					<td>|</td>
 					<th>Taxa</th>
-					<td>|</td>
 					<th>Juros</th>
-					<td>|</td>
 					<th>Líquido</th>
-					<td>|</td>
 				</tr>	
 			</thead>
 			<tbody>
 				{loop="$Data"}
 				<tr>
 					<td style="text-transform: capitalize" id="tdClient">{$value.checkClient}</td>
-					<td>|</td>
 					<td id="tdId">{$value.checkId}</td>
-					<td>|</td>
 					<td id="tdBank">{$value.checkBank}</td>
-					<td>|</td>
 					<td id="tdAgency">{$value.checkAgency}</td>
-					<td>|</td>
 					<td id="tdAccount">{$value.checkAccount}</td>
-					<td>|</td>
 					<td id="tdNumChk">{$value.checkNumChk}</td>
-					<td>|</td>
 					<td id="tdValue">{$value.checkValue}</td>
-					<td>|</td>
 					<td id="tdToday">{$value.checkToday}</td>
-					<!--{loop="$Dates"}
-						<td>{$value.dt1}</td>
-					{/loop}-->
-					<td>|</td>
-					<td style="text-transform: capitalize">{$value.checkIssuer}</td>
-					<td>|</td>
+					<td id="tdIssuer" style="text-transform: capitalize">{$value.checkIssuer}</td>
 					<td>{$value.checkDue}</td>
-					<td>|</td>
 					<td>{$value.checkDays}</td>
-					<td>|</td>
 					<td>{$value.checkTax}</td>
-					<td>|</td>
 					<td>{$value.checkIntrst}</td>
-					<td>|</td>
 					<td>{$value.checkLiquid}</td>
-					<td>|</td>
 					<td>
 						<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/{$value.checkId}/update">Editar</a>
@@ -203,8 +172,8 @@
 		width: 100px;
 		font-size: 14px;
 	}
-	#tdClient {
-		max-width: 180px;
+	#tdClient, #tdIssuer {
+		max-width: 200px;
 	}
 	
 	ul {

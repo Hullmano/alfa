@@ -80,73 +80,42 @@
 	</div>
 
 	<div class="data">
-		<table>
+		<table border="1px" cellpadding="5px" cellspacing="0">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<td>|</td>
 					<th>Id</th>
-					<td>|</td>
 					<th>Banco</th>
-					<td>|</td>
 					<th>Agência</th>
-					<td>|</td>
 					<th>C/Corrente</th>
-					<td>|</td>
 					<th>NºCheque</th>
-					<td>|</td>
 					<th>Valor</th>
-					<td>|</td>
 					<th>Dt.Base</th>
-					<td>|</td>
 					<th>Emitente</th>
-					<td>|</td>
-					<th>Vencimento</th>
-					<td>|</td>
+					<th>Vencim.</th>
 					<th>Dias</th>
-					<td>|</td>
 					<th>Taxa</th>
-					<td>|</td>
 					<th>Juros</th>
-					<td>|</td>
 					<th>Líquido</th>
-					<td>|</td>
 				</tr>	
 			</thead>
 			<tbody>
 				<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
 				<tr>
 					<td style="text-transform: capitalize" id="tdClient"><?php echo htmlspecialchars( $value1["checkClient"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdId"><?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdBank"><?php echo htmlspecialchars( $value1["checkBank"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdAgency"><?php echo htmlspecialchars( $value1["checkAgency"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdAccount"><?php echo htmlspecialchars( $value1["checkAccount"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdNumChk"><?php echo htmlspecialchars( $value1["checkNumChk"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdValue"><?php echo htmlspecialchars( $value1["checkValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td id="tdToday"><?php echo htmlspecialchars( $value1["checkToday"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<!--<?php $counter2=-1;  if( isset($Dates) && ( is_array($Dates) || $Dates instanceof Traversable ) && sizeof($Dates) ) foreach( $Dates as $key2 => $value2 ){ $counter2++; ?>
-						<td><?php echo htmlspecialchars( $value2["dt1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<?php } ?>-->
-					<td>|</td>
-					<td style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["checkIssuer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
+					<td id="tdIssuer" style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["checkIssuer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td><?php echo htmlspecialchars( $value1["checkDue"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td><?php echo htmlspecialchars( $value1["checkDays"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td><?php echo htmlspecialchars( $value1["checkTax"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td><?php echo htmlspecialchars( $value1["checkIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td><?php echo htmlspecialchars( $value1["checkLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>|</td>
 					<td>
 						<!--<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
@@ -203,8 +172,8 @@
 		width: 100px;
 		font-size: 14px;
 	}
-	#tdClient {
-		max-width: 180px;
+	#tdClient, #tdIssuer {
+		max-width: 200px;
 	}
 	
 	ul {

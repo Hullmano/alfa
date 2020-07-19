@@ -17,37 +17,37 @@
 		</ul>
 	</div>
 
-	<div>
+	<!--<div>
 		<a href="/alfa/client/search">Listar</a>
-	</div>
+	</div>-->
 
  	<div class="wrap">
 	 	<form action="" method="post">
 
 		 	<label for="name">Nome</label>
-		 	<input type="text" name="name" id="name" required>
+		 	<input type="text" name="name" id="name" maxlength="60" required>
 
 		 	<label for="fantasy">Fantasia</label>
-		 	<input type="text" name="fantasy" id="fantasy">
+		 	<input type="text" name="fantasy" id="fantasy" maxlength="60">
 
 		 	<label for="address">Endereço</label>
-		 	<input type="text" name="address" id="address" required>
+		 	<input type="text" name="address" id="address" maxlength="60" required>
 
 		 	<label for="district">Bairro</label>
-		 	<input type="text" name="district" id="district" required >
+		 	<input type="text" name="district" id="district" maxlength="30" required >
 
 		 	<!--<label for="cpf">Cpf/Cnpj</label>-->
 		 	<select id="selct" onchange="clearCpf()">
 		 		<option>Cpf</option>
 		 		<option>Cnpj</option>
 		 	</select>
-		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" required>
+		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" required>
 
 		 	<label for="complement">Complem</label>
-		 	<input type="text" name="complement" id="complement">	
+		 	<input type="text" name="complement" id="complement" maxlength="30">	
 
 		 	<label for="city">Cidade</label>
-		 	<input type="text" name="city" id="city" required>
+		 	<input type="text" name="city" id="city" maxlength="30" required>
 
 		 	<label for="state">UF</label>
 			<select name="state" id="state" required>
@@ -81,22 +81,22 @@
 			</select>	 
 
 		 	<label for="zipcode">Cep</label>
-		 	<input type="text" name="zipcode" id="zipcode" maxlength="8" pattern="({1,3})" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="cep(this)" required>
+		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" required>
 
 		 	<label for="phone1">Fone</label>
-		 	<input type="tel" name="phone1" id="phone1" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>
+		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>
 
 		 	<label for="phone2">Fone</label>
-		 	<input type="tel" name="phone2" id="phone2" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)">
+		 	<input type="tel" name="phone2" id="phone2" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)">
 
 		 	<label for="email">E-mail</label>
-		 	<input type="email" name="email" id="email"><br>
+		 	<input type="email" name="email" id="email" maxlength="60"><br>
 
 		 	<label for="limit">Limite Crédito</label>
-		 	<input type="number" step="0.01" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="15" required>
+		 	<input type="text" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="12" onkeypress="return event.charCode>=46 && event.charCode<=57" required>
 
 		 	<label for="others" id="labOthers">Outras Informações</label>
-		 	<textarea name="others" id="others"></textarea><br>
+		 	<textarea name="others" id="others" maxlength="250"></textarea><br>
 
 		 	<div id="bar">Informações Financeiras</div>
 
@@ -117,11 +117,53 @@
 
 		 	<label for="profit" id="labProfit">Lucro</label>
 		 	<input type="text" name="profit" id="profit">	 			 		 	
-<!------------------------------------------------------------------->
+
+
 		 	<input type="submit" value="Salvar">
 
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
 		</form>
+	</div>
+
+	<div class="data">
+		<table border="1px" cellpadding="5px" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Cpf/Cnpj</th>
+					<th>Fone 1</th>
+					<th>Limite</th>	
+					<th>Cheques à Vencer</th>
+					<th>Cheques à Vencer</th>
+					<th>Cheques à Vencer</th>
+					<th>Cheques à Vencer</th>
+					<th>Cheques à Vencer</th>
+					<th>Cheques à Vencer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
+				<tr>
+					<td><?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td id="tdName" style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td id="tdCpf" style="font-size: 15px"><?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td><?php echo htmlspecialchars( $value1["clientPhone1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td><?php echo htmlspecialchars( $value1["clientLimit"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td>1000.00</td>
+					<td>1000.00</td>
+					<td>1000.00</td>
+					<td>1000.00</td>
+					<td>1000.00</td>
+					<td>1000.00</td>
+					<td id="tdLinks">
+						<a href=#>Editar</a>
+						<a href=#>Excluir</a>
+					</td>
+				</tr>
+				<?php } ?>
+			</tbody>
+		</table>
 	</div>
 </body>
 	
@@ -189,6 +231,15 @@
 		padding: 0 15px;
 		margin: 5px 0;
 	}
+	#tdName {
+		max-width: 180px;
+	}
+	#tdCpf {
+		width: 122px;
+	}
+	#tdLinks {
+		width: 95px;
+	}
 
 	input[type=text],[type=tel] {
 		text-transform: capitalize;		
@@ -215,7 +266,7 @@
 	function formatMoeda(btn){                  //Formata o valor para Moeda.
 		if (!btn.value){						//Verifica se value está vazio.
 		} else {
-			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
+			var valor = btn.value.replace('/','.'); //o parseFloat só considera decimal com ponto e nao com virgula
 			var novoValor = parseFloat(valor).toFixed(2);
 			btn.value = novoValor; 
 		}	
