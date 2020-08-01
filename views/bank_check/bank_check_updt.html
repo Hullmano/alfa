@@ -14,69 +14,70 @@
 			 <li><a href="/alfa/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
-		<!--<tbody>
-			{loop="$Usuario"}
-		 	<tr>
-		 		<td>{$value.clientName}</td>
-		 	</tr>
-		 	{/loop}
-		</tbody> -->
-		<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()">
-			<option value="">Selecione o Cliente</option>
-			{loop="$Users"}
-			<option id="options" value="{$value.clientName}">{$value.clientName}</option>
-			{/loop}
-		</select>
 	</div>
 	
 	<div class="wrap">
  		<form action="" method="post">
+
+			<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
+				<option value="">Selecione o Cliente</option>
+				{loop="$Users"}
+				<option id="options" value="{$value.clientId}">{$value.clientName}</option>
+				{/loop}
+			</select>
+
 			{loop="$Update"}
-			<label>Cliente</label>
-			<input type="text" name="client" id="client" value="{$value.checkClient}" readonly><br>	
+			<input type="hidden" id="idClient" name="idClient" value="{$value.clientId}">	
+
+			<input type="text" name="client" id="client" value="{$value.clientName}" onkeypress="return false" required>	
+
+			<input type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}>Devolvido</input>
+			<!--<label for="returned">Devolvido</label>-->
 
 		 	<label for="bank">Banco</label>
-		 	<input type="text" name="bank" id="bank" value="{$value.checkBank}">
+		 	<input type="text" name="bank" id="bank" value="{$value.checkBank}" required>
 		 	
 		 	<label for="agency">Agência</label>
-		 	<input type="tel" name="agency" id="agency" value="{$value.checkAgency}">
+		 	<input type="tel" name="agency" id="agency" value="{$value.checkAgency}" required>
 		 	
 		 	<label for="account">Conta</label>
-		 	<input type="tel" name="account" id="account" value="{$value.checkAccount}">	 	
+		 	<input type="tel" name="account" id="account" value="{$value.checkAccount}" required>	 	
 		 			 	
 		 	<label for="numchk">Nº Cheque</label>
-		 	<input type="tel" name="numchk" id="numchk" value="{$value.checkNumChk}">
+		 	<input type="tel" name="numchk" id="numchk" value="{$value.checkNumChk}" required>
 		 	
 		 	<label for="value">Valor</label>
-		 	<input type="number" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" required="required" maxlength="15"><br>
+		 	<input type="number" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" maxlength="15" required><br>
 
 		 	<label for="dtToday">Data</label>
-		 	<input type="date" name="dtToday" id="dtToday" value="{$value.checkToday}">
+		 	<input type="date" name="dtToday" id="dtToday" value="{$value.checkToday}" required>
 
 		 	<label for="issuer">Emitente</label>
-		 	<input type="text" name="issuer" id="issuer" value="{$value.checkIssuer}">	
+		 	<input type="text" name="issuer" id="issuer" value="{$value.checkIssuer}" required>	
 
 		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue" value="{$value.checkDue}">
+		 	<input type="date" name="dtDue" id="dtDue" value="{$value.checkDue}" onblur="difDates()" required>
 
 		 	<label for="cod">Cód.Cheque</label>
 		 	<input type="text" name="cod" id="cod" value="{$value.checkId}" readonly>
 
 		 	<label for="tax">Taxa</label>
-		 	<input type="number" step="0.01" name="tax" id="tax" value="{$value.checkTax}">
+		 	<input type="number" step="0.01" name="tax" id="tax" value="{$value.checkTax}" onblur="formatMoeda(this)" required>
 
 		 	<label for="days">Tot.Dias</label>
-		 	<input type="text" name="days" id="days" value="{$value.checkDays}">
+		 	<input type="text" name="days" id="days" value="{$value.checkDays}" onblur="calcJuros()" readonly required>
 
 		 	<label for="interest">Juros</label>
-		 	<input type="text" name="interest" id="interest" value="{$value.checkIntrst}">
+		 	<input type="text" name="interest" id="interest" value="{$value.checkIntrst}" onblur="formatMoeda(this)" readonly required>
 
 		 	<label for="liquid">Líquido</label>
-		 	<input type="text" name="liquid" id="liquid" value="{$value.checkLiquid}">
+		 	<input type="text" name="liquid" id="liquid" value="{$value.checkLiquid}" onblur="formatMoeda(this)" readonly required>
 		 	{/loop}
 
-		 	<input type="submit" value="Alterar">
+		 	<input type="submit" value="Alterar" onclick="return calc()">
 		 	<a href="/alfa/bank_check">Cancelar</a>
+
+
 		</form>
 	</div>
 
@@ -96,7 +97,7 @@
 		float: right;
 	}
 	#client {
-		width: 658px;
+		width: 508px;
 	}
 	#bank, #days {
 		width: 40px;
@@ -119,6 +120,10 @@
 	#liquid{
 		width: 124px;
 	} 
+	#selectBox {
+		width: 100px;
+		font-size: 14px;
+	}
 	#issuer {
 		width: 304px;
 		text-transform: capitalize;
@@ -154,12 +159,76 @@
 	}
 
 	function selectClient($value){
-  		document.getElementById('client').value = $value;
-  		//alert($value);
+  		//document.getElementById('client').value = $value;
+  		var select = document.getElementById('selectBox');
+  		document.getElementById('idClient').value = select.options[select.selectedIndex].value;
+		document.getElementById('client').value = select.options[select.selectedIndex].text;
 	}
 
 	function setIndex(){
 		document.getElementById('selectBox').value = "";
 	}
+
+	function difDates(){
+		var base = document.getElementById('dtToday').value;
+		var venc = document.getElementById('dtDue').value;
+		base = new Date(base);
+		venc = new Date(venc);
+		var dif = Math.abs(base.getTime() - venc.getTime());
+		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
+
+		document.getElementById('days').value = totDias;
+	}
+
+	function calcJuros(){
+		var valChq   = document.getElementById('value').value;
+		var valPrazo = document.getElementById('days').value;
+		var valTx    = document.getElementById('tax').value;
+		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
+		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
+
+		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
+			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
+
+		} else {
+			document.getElementById('interest').value = valJuros;
+			document.getElementById('liquid').value = liquid;
+		}
+	}
+	
+	function calc(){
+		var base = document.getElementById('dtToday').value;
+		var venc = document.getElementById('dtDue').value;
+		base = new Date(base);
+		venc = new Date(venc);
+		var dif = Math.abs(base.getTime() - venc.getTime());
+		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
+
+		document.getElementById('days').value = totDias;
+
+
+		var valChq   = document.getElementById('value').value;
+		var valPrazo = document.getElementById('days').value;
+		var valTx    = document.getElementById('tax').value;
+		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
+		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
+
+		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
+			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
+
+		} else {
+			document.getElementById('interest').value = valJuros;
+			document.getElementById('liquid').value = liquid;
+		} 
+	}
+
+	function formatMoeda(btn){                  //Formata o valor para Moeda.
+		if (!btn.value){						//Verifica se value está vazio.
+		} else {
+			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
+			var novoValor = parseFloat(valor).toFixed(2);
+			btn.value = novoValor; 
+		}	
+	}	
 </script>
 </html>

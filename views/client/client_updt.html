@@ -7,7 +7,7 @@
  	<!--<link rel="stylesheet" href="\resource\login\css\style.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
- <body onload="Today()">
+ <body onload="limit()">
  	<div>
 		<a href="/alfa/logout" id="right">Logout</a>
 		<ul>
@@ -24,33 +24,34 @@
  	<div class="wrap">
 	 	<form action="" method="post">
 
+	 		{loop="$Update"}
 		 	<label for="name">Nome</label>
-		 	<input type="text" name="name" id="name" maxlength="60" required>
+		 	<input type="text" name="name" id="name" maxlength="60" value="{$value.clientName}" required>
 
 		 	<label for="fantasy">Fantasia</label>
-		 	<input type="text" name="fantasy" id="fantasy" maxlength="60">
+		 	<input type="text" name="fantasy" id="fantasy" maxlength="60" value="{$value.clientFantasy}">
 
 		 	<label for="address">Endereço</label>
-		 	<input type="text" name="address" id="address" maxlength="60" required>
+		 	<input type="text" name="address" id="address" maxlength="60" value="{$value.clientAddress}" required>
 
 		 	<label for="district">Bairro</label>
-		 	<input type="text" name="district" id="district" maxlength="30" required >
+		 	<input type="text" name="district" id="district" maxlength="30" value="{$value.clientDistrict}" required >
 
 		 	<!--<label for="cpf">Cpf/Cnpj</label>-->
 		 	<select id="selct" onchange="clearCpf()">
 		 		<option>Cpf</option>
 		 		<option>Cnpj</option>
 		 	</select>
-		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" required>
+		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" value="{$value.clientCpf}" required>
 
 		 	<label for="complement">Complem</label>
-		 	<input type="text" name="complement" id="complement" maxlength="30">	
+		 	<input type="text" name="complement" id="complement" maxlength="30" value="{$value.clientComplem}">	
 
 		 	<label for="city">Cidade</label>
-		 	<input type="text" name="city" id="city" maxlength="30" required>
+		 	<input type="text" name="city" id="city" maxlength="30" value="{$value.clientCity}" required>
 
 		 	<label for="state">UF</label>
-			<select name="state" id="state" required>
+			<select name="state" id="state" value="{$value.clientState}" required>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>
@@ -81,90 +82,52 @@
 			</select>	 
 
 		 	<label for="zipcode">Cep</label>
-		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" required>
+		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" value="{$value.clientZipecode}" required>
 
 		 	<label for="phone1">Fone</label>
-		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>
+		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" value="{$value.clientPhone1}" required>
 
 		 	<label for="phone2">Fone</label>
-		 	<input type="tel" name="phone2" id="phone2" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)">
+		 	<input type="tel" name="phone2" id="phone2" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" value="{$value.clientPhone2}">
 
 		 	<label for="email">E-mail</label>
-		 	<input type="email" name="email" id="email" maxlength="60"><br>
+		 	<input type="email" name="email" id="email" maxlength="60" value="{$value.clientEmail}"><br>
 
 		 	<label for="limit">Limite Crédito</label>
-		 	<input type="text" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="12" onkeypress="return event.charCode>=46 && event.charCode<=57" required>
+		 	<input type="text" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="12" onkeypress="return event.charCode>=46 && event.charCode<=57" value="{$value.clientLimit}" required>
 
 		 	<label for="others" id="labOthers">Outras Informações</label>
-		 	<textarea name="others" id="others" maxlength="250"></textarea><br>
+		 	<textarea name="others" id="others" maxlength="250">{$value.clientOthers}</textarea><br>
+		 	{/loop}
+		 	<div id="bar" onload="limit()">Informações Financeiras</div>
 
-		 	<div id="bar">Informações Financeiras</div>
-
+		 	{loop="$ChkDues"}
 		 	<label for="chkdue">Cheques à Vencer</label>
-		 	<input type="text" name="chkdue" id="chkdue">	
-		 	
+		 	<input type="text" name="chkdue" id="chkdue" value="{$value.vals}" readonly>	
+		 	{/loop}
 		 	<label for="chkreturned">Cheques Devolvidos</label>
-		 	<input type="text" name="chkreturned" id="chkreturned">
+		 	<input type="text" name="chkreturned" id="chkreturned" value="" readonly>
 
 		 	<label for="credit">Créd. Atual</label>
-		 	<input type="text" name="credit" id="credit">	 
+		 	<input type="text" name="credit" id="credit" readonly>	 
 
-			<label for="chkvalues">Valor em Cheques</label>
-		 	<input type="text" name="chkvalues" id="chkvalues">
+		 	{loop="$ChkTots"}
+			<label for="chkvalues">Total de Cheques </label>
+		 	<input type="text" name="chkvalues" id="chkvalues" value="{$value.totVals}" readonly>
 
-		 	<label for="chkreceived" id="labChkreceived">Valor Recebido</label>
-		 	<input type="text" name="chkreceived" id="chkreceived">
+		 	<label for="chkreceived" id="labChkreceived">Total Líquido</label>
+		 	<input type="text" name="chkreceived" id="chkreceived" value="{$value.totLiquid}" readonly>
 
 		 	<label for="profit" id="labProfit">Lucro</label>
-		 	<input type="text" name="profit" id="profit">	 			 		 	
-
+		 	<input type="text" name="profit" id="profit" value="{$value.totIntrst}" readonly>	 			 		 	
+		 	{/loop}
 
 		 	<input type="submit" value="Salvar">
-
+			<a href="/alfa/client">Cancelar</a>
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
 		</form>
 	</div>
 
-	<div class="data">
-		<table border="1px" cellpadding="5px" cellspacing="0">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nome</th>
-					<th>Cpf/Cnpj</th>
-					<th>Fone 1</th>
-					<th>Limite</th>	
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-				</tr>
-			</thead>
-			<tbody>
-				{loop="$Data"}
-				<tr>
-					<td>{$value.clientId}</td>
-					<td id="tdName" style="text-transform: capitalize">{$value.clientName}</td>
-					<td id="tdCpf" style="font-size: 15px">{$value.clientCpf}</td>
-					<td>{$value.clientPhone1}</td>
-					<td>{$value.clientLimit}</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td id="tdLinks">
-						<a href=#>Editar</a>
-						<a href=#>Excluir</a>
-					</td>
-				</tr>
-				{/loop}
-			</tbody>
-		</table>
-	</div>
 </body>
 	
 <style type="text/css">
@@ -213,10 +176,16 @@
 		margin-left: 65px;
 	}
 	#chkvalues {
-		margin-left: -3px;
+		margin-left: 3px;
+	}
+	#chkreceived {
+		margin-left: 2px;
+	}
+	#profit {
+		margin-left: 0.5px;
 	}
 	#labChkreceived {
-		margin-left: 34px;
+		margin-left: 44px;
 	}
 	#labProfit {
 		margin-left: 35px;
@@ -272,24 +241,6 @@
 		}	
 	}
 	
-	function Today(dBase = new Date()){
-		var dia = dBase.getDate();
-		var mes = dBase.getMonth()+1;
-		var ano = dBase.getFullYear();
-
-		if (dia.toString().length == 1){
-			dia = '0' + dia;
-		}
-		if (mes.toString().length == 1){
-			mes = '0' + mes;
-		}		
-
-		//return ano + '-' + mes + '-' + ano;
-		var diaAtual = ano + '-' + mes + '-' + dia;
-
-		document.getElementById('register').value = diaAtual;
-	}
-
 	function cpfCnpj(i){
 
 		if (document.getElementById('selct').value == 'Cpf') {
@@ -327,6 +278,12 @@
 		document.getElementById('cpfnj').value = "";
 	}
 	
+	function limit() {
+		//document.getElementById('credit').value = document.getElementById('limit').value - document.getElementById('chkdue').value;
+		var x = document.getElementById('limit').value - document.getElementById('chkdue').value;
+		var y = parseFloat(x).toFixed(2);
+		document.getElementById('credit').value = y;
+	}
 </script>
 
 </html>

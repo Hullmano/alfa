@@ -7,7 +7,7 @@
  	<!--<link rel="stylesheet" href="\resource\login\css\style.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
- <body onload="Today()">
+ <body>
  	<div>
 		<a href="/alfa/logout" id="right">Logout</a>
 		<ul>
@@ -98,27 +98,6 @@
 		 	<label for="others" id="labOthers">Outras Informações</label>
 		 	<textarea name="others" id="others" maxlength="250"></textarea><br>
 
-		 	<div id="bar">Informações Financeiras</div>
-
-		 	<label for="chkdue">Cheques à Vencer</label>
-		 	<input type="text" name="chkdue" id="chkdue">	
-		 	
-		 	<label for="chkreturned">Cheques Devolvidos</label>
-		 	<input type="text" name="chkreturned" id="chkreturned">
-
-		 	<label for="credit">Créd. Atual</label>
-		 	<input type="text" name="credit" id="credit">	 
-
-			<label for="chkvalues">Valor em Cheques</label>
-		 	<input type="text" name="chkvalues" id="chkvalues">
-
-		 	<label for="chkreceived" id="labChkreceived">Valor Recebido</label>
-		 	<input type="text" name="chkreceived" id="chkreceived">
-
-		 	<label for="profit" id="labProfit">Lucro</label>
-		 	<input type="text" name="profit" id="profit">	 			 		 	
-
-
 		 	<input type="submit" value="Salvar">
 
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
@@ -157,8 +136,9 @@
 					<td>1000.00</td>
 					<td>1000.00</td>
 					<td id="tdLinks">
-						<a href=#>Editar</a>
-						<a href=#>Excluir</a>
+						<a href=client/{$value.clientId}/update>Editar</a>
+						<a href=client/{$value.clientId}/delete>Excluir</a>
+					</td>
 					</td>
 				</tr>
 				{/loop}
@@ -272,24 +252,6 @@
 		}	
 	}
 	
-	function Today(dBase = new Date()){
-		var dia = dBase.getDate();
-		var mes = dBase.getMonth()+1;
-		var ano = dBase.getFullYear();
-
-		if (dia.toString().length == 1){
-			dia = '0' + dia;
-		}
-		if (mes.toString().length == 1){
-			mes = '0' + mes;
-		}		
-
-		//return ano + '-' + mes + '-' + ano;
-		var diaAtual = ano + '-' + mes + '-' + dia;
-
-		document.getElementById('register').value = diaAtual;
-	}
-
 	function cpfCnpj(i){
 
 		if (document.getElementById('selct').value == 'Cpf') {

@@ -7,7 +7,7 @@
  	<!--<link rel="stylesheet" href="\resource\login\css\style.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
- <body>
+ <body onload="limit()">
  	<div>
 		<a href="/alfa/logout" id="right">Logout</a>
 		<ul>
@@ -24,33 +24,34 @@
  	<div class="wrap">
 	 	<form action="" method="post">
 
+	 		<?php $counter1=-1;  if( isset($Update) && ( is_array($Update) || $Update instanceof Traversable ) && sizeof($Update) ) foreach( $Update as $key1 => $value1 ){ $counter1++; ?>
 		 	<label for="name">Nome</label>
-		 	<input type="text" name="name" id="name" maxlength="60" required>
+		 	<input type="text" name="name" id="name" maxlength="60" value="<?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="fantasy">Fantasia</label>
-		 	<input type="text" name="fantasy" id="fantasy" maxlength="60">
+		 	<input type="text" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["clientFantasy"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 		 	<label for="address">Endereço</label>
-		 	<input type="text" name="address" id="address" maxlength="60" required>
+		 	<input type="text" name="address" id="address" maxlength="60" value="<?php echo htmlspecialchars( $value1["clientAddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="district">Bairro</label>
-		 	<input type="text" name="district" id="district" maxlength="30" required >
+		 	<input type="text" name="district" id="district" maxlength="30" value="<?php echo htmlspecialchars( $value1["clientDistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required >
 
 		 	<!--<label for="cpf">Cpf/Cnpj</label>-->
 		 	<select id="selct" onchange="clearCpf()">
 		 		<option>Cpf</option>
 		 		<option>Cnpj</option>
 		 	</select>
-		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" required>
+		 	<input type="text" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" value="<?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="complement">Complem</label>
-		 	<input type="text" name="complement" id="complement" maxlength="30">	
+		 	<input type="text" name="complement" id="complement" maxlength="30" value="<?php echo htmlspecialchars( $value1["clientComplem"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">	
 
 		 	<label for="city">Cidade</label>
-		 	<input type="text" name="city" id="city" maxlength="30" required>
+		 	<input type="text" name="city" id="city" maxlength="30" value="<?php echo htmlspecialchars( $value1["clientCity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="state">UF</label>
-			<select name="state" id="state" required>
+			<select name="state" id="state" value="<?php echo htmlspecialchars( $value1["clientState"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>
@@ -81,70 +82,52 @@
 			</select>	 
 
 		 	<label for="zipcode">Cep</label>
-		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" required>
+		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" value="<?php echo htmlspecialchars( $value1["clientZipecode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="phone1">Fone</label>
-		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>
+		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" value="<?php echo htmlspecialchars( $value1["clientPhone1"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="phone2">Fone</label>
-		 	<input type="tel" name="phone2" id="phone2" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)">
+		 	<input type="tel" name="phone2" id="phone2" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" value="<?php echo htmlspecialchars( $value1["clientPhone2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 		 	<label for="email">E-mail</label>
-		 	<input type="email" name="email" id="email" maxlength="60"><br>
+		 	<input type="email" name="email" id="email" maxlength="60" value="<?php echo htmlspecialchars( $value1["clientEmail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><br>
 
 		 	<label for="limit">Limite Crédito</label>
-		 	<input type="text" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="12" onkeypress="return event.charCode>=46 && event.charCode<=57" required>
+		 	<input type="text" name="limit" id="limit" onblur="formatMoeda(this)" maxlength="12" onkeypress="return event.charCode>=46 && event.charCode<=57" value="<?php echo htmlspecialchars( $value1["clientLimit"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="others" id="labOthers">Outras Informações</label>
-		 	<textarea name="others" id="others" maxlength="250"></textarea><br>
+		 	<textarea name="others" id="others" maxlength="250"><?php echo htmlspecialchars( $value1["clientOthers"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea><br>
+		 	<?php } ?>
+		 	<div id="bar" onload="limit()">Informações Financeiras</div>
+
+		 	<?php $counter1=-1;  if( isset($ChkDues) && ( is_array($ChkDues) || $ChkDues instanceof Traversable ) && sizeof($ChkDues) ) foreach( $ChkDues as $key1 => $value1 ){ $counter1++; ?>
+		 	<label for="chkdue">Cheques à Vencer</label>
+		 	<input type="text" name="chkdue" id="chkdue" value="<?php echo htmlspecialchars( $value1["vals"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>	
+		 	<?php } ?>
+		 	<label for="chkreturned">Cheques Devolvidos</label>
+		 	<input type="text" name="chkreturned" id="chkreturned" value="" readonly>
+
+		 	<label for="credit">Créd. Atual</label>
+		 	<input type="text" name="credit" id="credit" readonly>	 
+
+		 	<?php $counter1=-1;  if( isset($ChkTots) && ( is_array($ChkTots) || $ChkTots instanceof Traversable ) && sizeof($ChkTots) ) foreach( $ChkTots as $key1 => $value1 ){ $counter1++; ?>
+			<label for="chkvalues">Total de Cheques </label>
+		 	<input type="text" name="chkvalues" id="chkvalues" value="<?php echo htmlspecialchars( $value1["totVals"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+
+		 	<label for="chkreceived" id="labChkreceived">Total Líquido</label>
+		 	<input type="text" name="chkreceived" id="chkreceived" value="<?php echo htmlspecialchars( $value1["totLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+
+		 	<label for="profit" id="labProfit">Lucro</label>
+		 	<input type="text" name="profit" id="profit" value="<?php echo htmlspecialchars( $value1["totIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>	 			 		 	
+		 	<?php } ?>
 
 		 	<input type="submit" value="Salvar">
-
+			<a href="/alfa/client">Cancelar</a>
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
 		</form>
 	</div>
 
-	<div class="data">
-		<table border="1px" cellpadding="5px" cellspacing="0">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Nome</th>
-					<th>Cpf/Cnpj</th>
-					<th>Fone 1</th>
-					<th>Limite</th>	
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-					<th>Cheques à Vencer</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
-				<tr>
-					<td><?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td id="tdName" style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td id="tdCpf" style="font-size: 15px"><?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td><?php echo htmlspecialchars( $value1["clientPhone1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td><?php echo htmlspecialchars( $value1["clientLimit"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td>1000.00</td>
-					<td id="tdLinks">
-						<a href=client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update>Editar</a>
-						<a href=client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete>Excluir</a>
-					</td>
-					</td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	</div>
 </body>
 	
 <style type="text/css">
@@ -193,10 +176,16 @@
 		margin-left: 65px;
 	}
 	#chkvalues {
-		margin-left: -3px;
+		margin-left: 3px;
+	}
+	#chkreceived {
+		margin-left: 2px;
+	}
+	#profit {
+		margin-left: 0.5px;
 	}
 	#labChkreceived {
-		margin-left: 34px;
+		margin-left: 44px;
 	}
 	#labProfit {
 		margin-left: 35px;
@@ -289,6 +278,12 @@
 		document.getElementById('cpfnj').value = "";
 	}
 	
+	function limit() {
+		//document.getElementById('credit').value = document.getElementById('limit').value - document.getElementById('chkdue').value;
+		var x = document.getElementById('limit').value - document.getElementById('chkdue').value;
+		var y = parseFloat(x).toFixed(2);
+		document.getElementById('credit').value = y;
+	}
 </script>
 
 </html>

@@ -14,26 +14,20 @@
 			 <li><a href="/alfa/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
-		<!--<tbody>
-			<?php $counter1=-1;  if( isset($Usuario) && ( is_array($Usuario) || $Usuario instanceof Traversable ) && sizeof($Usuario) ) foreach( $Usuario as $key1 => $value1 ){ $counter1++; ?>
-		 	<tr>
-		 		<td><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-		 	</tr>
-		 	<?php } ?>
-		</tbody> -->
 	</div>
 	
 	<div class="wrap">
  		<form action="" method="post">
 
-			<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()">
+			<select id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
 				<option value="">Cliente</option>
 				<?php $counter1=-1;  if( isset($Users) && ( is_array($Users) || $Users instanceof Traversable ) && sizeof($Users) ) foreach( $Users as $key1 => $value1 ){ $counter1++; ?>
-				<option id="options" value="<?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+				<option id="options" value="<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
 				<?php } ?>
 			</select>
 
-			<!--<label>Cliente</label>-->
+		 	<input type="hidden" id="idClient" name="idClient">	
+
 			<input type="text" name="client" id="client" onkeypress="return false" required><br>
 
 		 	<label for="bank">Banco</label>
@@ -49,7 +43,7 @@
 		 	<input type="tel" name="numchk" id="numchk" required>
 		 	
 		 	<label for="value">Valor</label>
-		 	<input type="number" step="0.01" name="value" id="value" onblur="formatMoeda(this)" required maxlength="15"><br>
+		 	<input type="number" step="0.01" name="value" id="value" onblur="formatMoeda(this)" maxlength="15" required><br>
 
 		 	<label for="dtToday">Data</label>
 		 	<input type="date" name="dtToday" id="dtToday" required>
@@ -58,7 +52,7 @@
 		 	<input type="text" name="issuer" id="issuer" required>	
 
 		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue" required onblur="difDates()">
+		 	<input type="date" name="dtDue" id="dtDue" onblur="difDates()" required>
 
 		 	<label for="cod">Cód.Cheque</label>
 		 	<input type="text" name="cod" id="cod" tabindex="-1" readonly>
@@ -67,15 +61,15 @@
 		 	<input type="number" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
 
 		 	<label for="days">Tot.Dias</label>
-		 	<input type="text" name="days" id="days" onblur="calcJuros()" required readonly>
+		 	<input type="text" name="days" id="days" onblur="calcJuros()" readonly required>
 
 		 	<label for="interest">Juros</label>
-		 	<input type="text" name="interest" id="interest" onblur="formatMoeda(this)" required readonly>
+		 	<input type="text" name="interest" id="interest" onblur="formatMoeda(this)" readonly required>
 
 		 	<label for="liquid">Líquido</label>
-		 	<input type="text" name="liquid" id="liquid" onblur="formatMoeda(this)" required readonly>		 			 			 	 		 	
+		 	<input type="text" name="liquid" id="liquid" onblur="formatMoeda(this)" readonly required>		 	
 
-		 	<input type="submit" value="Salvar">
+		 	<input type="submit" onclick="return calc()" value="Salvar">
 		</form>
 	</div>
 
@@ -83,8 +77,8 @@
 		<table border="1px" cellpadding="5px" cellspacing="0">
 			<thead>
 				<tr>
-					<th>Nome</th>
-					<th>Id</th>
+					<th>Cód.</th>
+					<th>Cliente</th>
 					<th>Banco</th>
 					<th>Agência</th>
 					<th>C/Corrente</th>
@@ -97,13 +91,14 @@
 					<th>Taxa</th>
 					<th>Juros</th>
 					<th>Líquido</th>
+					<th>Devol</th>
 				</tr>	
 			</thead>
 			<tbody>
 				<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
 				<tr>
-					<td style="text-transform: capitalize" id="tdClient"><?php echo htmlspecialchars( $value1["checkClient"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td id="tdId"><?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td style="text-transform: capitalize" id="tdClient"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td id="tdBank"><?php echo htmlspecialchars( $value1["checkBank"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td id="tdAgency"><?php echo htmlspecialchars( $value1["checkAgency"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td id="tdAccount"><?php echo htmlspecialchars( $value1["checkAccount"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
@@ -116,6 +111,7 @@
 					<td><?php echo htmlspecialchars( $value1["checkTax"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td><?php echo htmlspecialchars( $value1["checkIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 					<td><?php echo htmlspecialchars( $value1["checkLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					<td><?php if( $value1["checkReturned"] == 1 ){ ?>Sim<?php }else{ ?>Não<?php } ?></td>
 					<td>
 						<!--<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
@@ -224,8 +220,12 @@
 	}
 
 	function selectClient($value){
-  		document.getElementById('client').value = $value;
+  		//document.getElementById('client').value = $value.value;
+  		//document.getElementById('client').value = document.getElementById('options').innerHTML;
   		//alert($value);
+  		var select = document.getElementById('selectBox');
+  		document.getElementById('idClient').value = select.options[select.selectedIndex].value;
+		document.getElementById('client').value = select.options[select.selectedIndex].text;
 	}
 
 	function setIndex(){
@@ -250,7 +250,7 @@
 		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
 		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
 
-		if (document.getElementById('value').value == ''  || document.getElementById('tax').value == '') {
+		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
 			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
 
 		} else {
@@ -259,6 +259,32 @@
 		}
 	}
 	
+	function calc(){
+		var base = document.getElementById('dtToday').value;
+		var venc = document.getElementById('dtDue').value;
+		base = new Date(base);
+		venc = new Date(venc);
+		var dif = Math.abs(base.getTime() - venc.getTime());
+		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
+
+		document.getElementById('days').value = totDias;
+
+
+		var valChq   = document.getElementById('value').value;
+		var valPrazo = document.getElementById('days').value;
+		var valTx    = document.getElementById('tax').value;
+		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
+		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
+
+		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
+			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
+
+		} else {
+			document.getElementById('interest').value = valJuros;
+			document.getElementById('liquid').value = liquid;
+		} 
+	}
+
 	function formatMoeda(btn){                  //Formata o valor para Moeda.
 		if (!btn.value){						//Verifica se value está vazio.
 		} else {

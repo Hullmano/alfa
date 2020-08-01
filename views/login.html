@@ -11,7 +11,7 @@
  	<div class="wrap">
 	 	<form action="/alfa/" method="post">
 		 	<label for="login">Usuário</label>
-		 	<input type="text" name="login" id="login"><br>
+		 	<input type="text" name="login" id="login" autofocus><br>
 		 	
 		 	<label for="psw">Senha</label>
 		 	<input type="password" name="password" id="psw"><br>
