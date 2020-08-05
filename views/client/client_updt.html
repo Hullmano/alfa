@@ -25,6 +25,8 @@
 	 	<form action="" method="post">
 
 	 		{loop="$Update"}
+		 	<input type="hidden" id="id" name="id" value="{$value.clientId}">
+
 		 	<label for="name">Nome</label>
 		 	<input type="text" name="name" id="name" maxlength="60" value="{$value.clientName}" required>
 
@@ -105,9 +107,11 @@
 		 	<label for="chkdue">Cheques à Vencer</label>
 		 	<input type="text" name="chkdue" id="chkdue" value="{$value.vals}" readonly>	
 		 	{/loop}
-		 	<label for="chkreturned">Cheques Devolvidos</label>
-		 	<input type="text" name="chkreturned" id="chkreturned" value="" readonly>
 
+		 	{loop="$ChkRetrnds"}
+		 	<label for="chkreturned">Cheques Devolvidos</label>
+		 	<input type="text" name="chkreturned" id="chkreturned" value="{$value.retrnVals}" readonly>
+		 	{/loop}
 		 	<label for="credit">Créd. Atual</label>
 		 	<input type="text" name="credit" id="credit" readonly>	 
 

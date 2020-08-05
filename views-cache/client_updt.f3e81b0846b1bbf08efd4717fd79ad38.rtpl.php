@@ -25,6 +25,8 @@
 	 	<form action="" method="post">
 
 	 		<?php $counter1=-1;  if( isset($Update) && ( is_array($Update) || $Update instanceof Traversable ) && sizeof($Update) ) foreach( $Update as $key1 => $value1 ){ $counter1++; ?>
+		 	<input type="hidden" id="id" name="id" value="<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
 		 	<label for="name">Nome</label>
 		 	<input type="text" name="name" id="name" maxlength="60" value="<?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
@@ -105,9 +107,11 @@
 		 	<label for="chkdue">Cheques à Vencer</label>
 		 	<input type="text" name="chkdue" id="chkdue" value="<?php echo htmlspecialchars( $value1["vals"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>	
 		 	<?php } ?>
-		 	<label for="chkreturned">Cheques Devolvidos</label>
-		 	<input type="text" name="chkreturned" id="chkreturned" value="" readonly>
 
+		 	<?php $counter1=-1;  if( isset($ChkRetrnds) && ( is_array($ChkRetrnds) || $ChkRetrnds instanceof Traversable ) && sizeof($ChkRetrnds) ) foreach( $ChkRetrnds as $key1 => $value1 ){ $counter1++; ?>
+		 	<label for="chkreturned">Cheques Devolvidos</label>
+		 	<input type="text" name="chkreturned" id="chkreturned" value="<?php echo htmlspecialchars( $value1["retrnVals"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+		 	<?php } ?>
 		 	<label for="credit">Créd. Atual</label>
 		 	<input type="text" name="credit" id="credit" readonly>	 
 

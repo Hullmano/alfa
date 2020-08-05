@@ -144,16 +144,25 @@ $app->get('/client/:clientId/update', function($clientId) { //aqui são definida
 
 	User::verifyLogin();
 
-	$client = Client::clientById($clientId);
-	$chkDues = Client::checksDue($clientId);
-	$chkTot  = Client::checksTotal($clientId);
+	$client    = Client::clientById($clientId);
+	$chkDues   = Client::checksDue($clientId);
+	$chkTot    = Client::checksTotal($clientId);
+	$chkRetrnd = Client::checksReturned($clientId);
 
 	$page = new Page("views/client/");
 	$page->setDraw("client_updt", array(
-		"Update" =>$client,
-		"ChkDues"=>$chkDues,
-		"ChkTots" =>$chkTot
+		"Update"   =>$client,
+		"ChkDues"  =>$chkDues,
+		"ChkTots"  =>$chkTot,
+		"ChkRetrnds"=>$chkRetrnd
 	));
+});
+$app->post('/client/:clientId/update', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+	
+	Client::updateClient($_POST["id"], $_POST["name"], $_POST["fantasy"], $_POST["address"], $_POST["district"], $_POST["cpf"], $_POST["complement"], $_POST["city"], $_POST["state"], $_POST["zipcode"], $_POST["phone1"], $_POST["phone2"], $_POST["email"], $_POST["limit"], $_POST["others"]);
+
+	header("Location: /alfa/client");
+	exit;
 });
 $app->get('/client/:clientId/delete', function($clientId) { //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
