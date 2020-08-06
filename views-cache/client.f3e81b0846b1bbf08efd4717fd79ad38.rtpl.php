@@ -81,7 +81,7 @@
 			</select>	 
 
 		 	<label for="zipcode">Cep</label>
-		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" required>
+		 	<input type="text" name="zipcode" id="zipcode" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" required>
 
 		 	<label for="phone1">Fone</label>
 		 	<input type="tel" name="phone1" id="phone1" placeholder="Somente Números" maxlength="11" onkeypress="return event.charCode>=48 && event.charCode<=57" onblur="phone(this)" required>

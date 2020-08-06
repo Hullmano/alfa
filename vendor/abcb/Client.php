@@ -44,7 +44,7 @@ class Client extends Sql
 		try {
 
 		$sql = new Sql();
-		$results = $sql->query('UPDATE tb_clients SET clientName = :NAME, clientFantasy = :FANTASY, clientAddress = :ADDRESS, clientDistrict = :DISTRICT, clientCpf = :CPF, clientComplem = :COMPLEM, clientCity = :CITY, clientState = :STATE, clientZipecode = :ZIPCODE, clientPhone1 = :PHONE1, clientPhone2 = :PHONE2, clientEmail = :EMAIL, clientLimit = :VLIMIT, clientOthers = :OTHERS WHERE clientId = :ID)', array(
+		$results = $sql->query('UPDATE tb_clients SET clientName = :NAME, clientFantasy = :FANTASY, clientAddress = :ADDRESS, clientDistrict = :DISTRICT, clientCpf = :CPF, clientComplem = :COMPLEM, clientCity = :CITY, clientState = :STATE, clientZipecode = :ZIPCODE, clientPhone1 = :PHONE1, clientPhone2 = :PHONE2, clientEmail = :EMAIL, clientLimit = :VLIMIT, clientOthers = :OTHERS WHERE clientId = :ID', array(
 			":ID"=>$id,
 			":NAME"=>$name,
 			":FANTASY"=>$fantasy,
@@ -66,7 +66,7 @@ class Client extends Sql
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
-	}
+	}			
 
 	public static function deleteClient($id)
 	{

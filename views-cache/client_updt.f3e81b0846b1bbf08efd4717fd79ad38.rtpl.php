@@ -53,7 +53,8 @@
 		 	<input type="text" name="city" id="city" maxlength="30" value="<?php echo htmlspecialchars( $value1["clientCity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 
 		 	<label for="state">UF</label>
-			<select name="state" id="state" value="<?php echo htmlspecialchars( $value1["clientState"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
+		 	<input type="text" name="state" id="state" maxlength="2" value="<?php echo htmlspecialchars( $value1["clientState"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+			<!--<select name="state" id="state" value="<?php echo htmlspecialchars( $value1["clientState"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				<option value="AC">AC</option>
 				<option value="AL">AL</option>
 				<option value="AP">AP</option>
@@ -81,7 +82,7 @@
 				<option value="SP">SP</option>
 				<option value="SE">SE</option>
 				<option value="TO">TO</option>
-			</select>	 
+			</select>-->
 
 		 	<label for="zipcode">Cep</label>
 		 	<input type="text" name="zipcode" id="zipcode" placeholder="Somente Números" maxlength="8" c onblur="cep(this)" value="<?php echo htmlspecialchars( $value1["clientZipecode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
@@ -162,6 +163,10 @@
 	}
 	#address {
 		width: 440px;
+	}
+	#state {
+		width: 38px;
+		text-transform: uppercase;
 	}
 	#phone1, #phone2 {
 		width: 110px;

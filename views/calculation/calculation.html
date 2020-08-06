@@ -22,7 +22,7 @@
 	<div class="wrap">
 		<div class="linha">
 			<label for="valChq">Informe o Valor do Cheque:</label>
-			<input type="tel" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" tabindex="-1"> <br>
+			<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required="required" maxlength="15"> <br>
 			<label>Informe a Data Base e o Vencimento:</label> <br>
 			<input type="date" id="dtBase"></input>
 			<input type="date" id="dtVenc"></input> <br>

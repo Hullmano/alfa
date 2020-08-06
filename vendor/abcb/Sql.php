@@ -8,7 +8,8 @@ class Sql
 
 	public function __construct()
 	{
-		$this->conn = new \PDO("mysql:dbname=cheques;hostname=localhost", "root", "Strong...999");
+		$errors = array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION);
+		$this->conn = new \PDO("mysql:dbname=cheques;hostname=localhost", "root", "Strong...999", $errors);
 	}	
 
 	public function query($rowQuery, $parameters = array())
