@@ -21,17 +21,17 @@
 
 	<div class="wrap">
 		<div class="linha">
+			<input type="text" name="">
 			<label for="valChq">Informe o Valor do Cheque:</label>
-			<input type="tel" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" tabindex="-1"> <br>
+			<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>
 			<label>Informe a Data Base e o Vencimento:</label> <br>
 			<input type="date" id="dtBase"></input>
 			<input type="date" id="dtVenc"></input> <br>
 			<!-- <input type="tel" id="valPrazo" placeholder="Prazo do Cheque. Somente Números" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" onblur="checkNumber(this.value)"> <br>	 -->
-			<label>Informe o Valor da Taxa:</label>     <!--Para add espaços: &nbsp; &ensp; &emsp-->
-			<input type="tel" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"> <br>			
+			<label>Informe o Valor da Taxa:</label>  <!--Para add espaços: &nbsp; &ensp; &emsp-->
+			<input type="number" step="0.01" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>		
 			<input type="submit" value="Calcular" onclick="calcular()"></input>
 			<input type="submit" value="Limpar" onclick="limpar()"></input> <br>
-
 
 		</div>
 
@@ -117,28 +117,22 @@
 
      .linha label{font-size: 16px;}
 }
-
 	.wrap{
 		width: 320px;
 		height: 100%;
 		margin: 0 auto;
 		padding: 0;
 	}
-
 	.wrap input[type=tel]{
 		width: 98%;
 		font-size: 16px;
 	}
-
 	.linha{
 		width: 320px;
 	}
-
 	.col{
 		float: left;
 	}
-
-
 	.col1{
 		width: 28%;
 	}
@@ -154,11 +148,13 @@
 	.cRed{
 		color: red;
 	}	
-
 	#right{
 		float: right;
 	}
-
+	#valChq, #valTx {
+		width: 320px;
+		font-size: 16px;
+	}
 	ul {
 		list-style: none;
 		font-size: 18px;
