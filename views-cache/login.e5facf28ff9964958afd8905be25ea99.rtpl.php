@@ -1,11 +1,10 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?> <!DOCTYPE html>
- <html>
+ <html lang="pt-br">
  <head>
  	<title>Alfa</title>
- 	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<!--<link rel="stylesheet" href="\resource\login\css\style.css">-->
-
+ 	<meta charset="utf-8" />
+ 	<link rel="stylesheet" type="text/css" href="resource/login.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">--> 	
  </head>
   <body>
  	<div class="wrap">
@@ -22,21 +21,4 @@
 		</form>
 	</div>
  </body>
- <style type="text/css">
-
-	.wrap {
-		width: 320px;
-		height: 100%;
-		margin: 100px auto;
-		padding: 0;
-	}
-
-	#right {
-		padding-left: 90px;
-	}
-	#psw {
-		margin-left: 12px;
-	}
-
- </style>
  </html>

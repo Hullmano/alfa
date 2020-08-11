@@ -1,0 +1,64 @@
+.wrap {
+	width: 720px;
+	height: 100%;
+	margin: 100px auto;
+	padding: 0;
+	line-height: 30px;
+}
+
+#right{
+	float: right;
+}
+#client {
+	width: 604px;
+}
+#bank, #days {
+	width: 40px;
+}
+#tax {
+	width: 48px;
+}
+#agency, #cod{
+	width: 60px;
+}
+#account, #numchk {
+	width: 90px;
+}
+#value{
+	width: 125px;
+}
+#interest{
+	width: 120px;
+}
+#liquid{
+	width: 124px;
+} 
+#issuer {
+	width: 304px;
+	text-transform: capitalize;
+}
+#selectBox {
+	width: 100px;
+	font-size: 14px;
+}
+#tdClient, #tdIssuer {
+	max-width: 200px;
+}
+
+ul {
+	list-style: none;
+	font-size: 18px;
+}
+li {
+	display: inline;
+	padding-right: 10px;
+}	
+a {
+	text-decoration: none;	
+}
+input[type=text],[type=tel], option {
+	text-transform: capitalize;		
+}
+input[type=date] {
+	width: 125px;
+}

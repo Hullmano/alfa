@@ -3,7 +3,8 @@
  <head>
  	<title>Alfa</title>
  	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" type="text/css" href="resource/new_user.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
  </head>
  <body>
  	<div class="wrap">
@@ -23,27 +24,5 @@
 		</form>
 	</div>
  </body>
- <style type="text/css">
 
-	.wrap {
-		width: 320px;
-		height: 100%;
-		margin: 100px auto;
-		padding: 0;
-	}
-
-	#login {
-		margin-left: 0px;
-	}
-	#psw {
-		margin-left: 12px;
-	}
-	#cpsw {
-		margin-left: 11px;
-	}
-	#right {
-		padding-left: 195px;
-	}
-
- </style>
  </html>

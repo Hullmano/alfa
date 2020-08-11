@@ -3,8 +3,8 @@
  <head>
  	<title>Alfa</title>
  	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<!--<link rel="stylesheet" href="\resource\login\css\style.css">-->
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/cUpdate.css">-->
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
  <body onload="limit()">
@@ -134,15 +134,15 @@
 	</div>
 
 </body>
-	
+
 <style type="text/css">
 	.wrap {
-		width: 740px;
-		height: 100%;
-		margin: 100px auto;
-		padding: 0;
-		line-height: 25px;
-	}
+	width: 740px;
+	height: 100%;
+	margin: 100px auto;
+	padding: 0;
+	line-height: 25px;
+}
 	#right{
 		float: right;
 	}
@@ -239,6 +239,7 @@
 		text-decoration: none;	
 	}
 </style>
+	
 
 <script type="text/javascript">
 	function formatMoeda(btn){                  //Formata o valor para Moeda.

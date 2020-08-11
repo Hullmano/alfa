@@ -1,0 +1,102 @@
+.wrap {
+	width: 740px;
+	height: 100%;
+	margin: 100px auto;
+	padding: 0;
+	line-height: 25px;
+}
+#right{
+	float: right;
+}
+#name {
+	width: 309px;
+}
+#fantasy {
+	width: 309px;
+}
+#zipcode {
+	width: 120px;
+}
+#cpfnj {
+	width: 127px;
+}
+#city {
+	width: 163px;
+}
+#address {
+	width: 440px;
+}
+#state {
+	width: 38px;
+	text-transform: uppercase;
+}
+#phone1, #phone2 {
+	width: 110px;
+}
+#email {
+	width: 206px;
+}
+#limit, #chkdue, #chkreturned, #credit, #chkvalues, #chkreceived, #profit {
+	width: 125px;
+}
+#others {
+	width: 734px;
+	height: 50px;
+}
+#labOthers {
+	margin-left: 65px;
+}
+#chkvalues {
+	margin-left: 3px;
+}
+#chkreceived {
+	margin-left: 2px;
+}
+#profit {
+	margin-left: 0.5px;
+}
+#labChkreceived {
+	margin-left: 44px;
+}
+#labProfit {
+	margin-left: 35px;
+}
+#psw {
+	margin-left: 12px;
+}
+#bar {
+	background: #4444ff;
+	width: 710px;
+	text-align: center;
+	padding: 0 15px;
+	margin: 5px 0;
+}
+#tdName {
+	max-width: 180px;
+}
+#tdCpf {
+	width: 122px;
+}
+#tdLinks {
+	width: 95px;
+}
+
+input[type=text],[type=tel] {
+	text-transform: capitalize;		
+}
+textarea {
+	vertical-align: top;
+	text-transform: capitalize;
+	font-size: 14px;		
+}
+ul {
+	list-style: none;
+	font-size: 18px;
+}
+li {
+	display: inline;
+	padding-right: 10px;
+}
+a {
+	text-decoration: none;	
+}
