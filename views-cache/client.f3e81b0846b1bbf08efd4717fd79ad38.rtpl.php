@@ -136,7 +136,8 @@
 					<td>1000.00</td>
 					<td>1000.00</td>
 					<td id="tdLinks">
-						<a href=client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update>Editar</a>
+						<!--<a href=client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update>Editar</a>-->
+						<a href=client/update>Editar</a>
 						<a href=client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete>Excluir</a>
 					</td>
 					</td>

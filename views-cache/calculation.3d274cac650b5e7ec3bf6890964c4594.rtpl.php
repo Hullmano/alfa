@@ -23,11 +23,7 @@
 		<div class="linha">
 			<input type="text" name="">
 			<label for="valChq">Informe o Valor do Cheque:</label>
-<<<<<<< HEAD
 			<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>
-=======
-			<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required="required" maxlength="15"> <br>
->>>>>>> 556bcf357706d2294347a89ce01cfb8c1ff98fe7
 			<label>Informe a Data Base e o Vencimento:</label> <br>
 			<input type="date" id="dtBase"></input>
 			<input type="date" id="dtVenc"></input> <br>

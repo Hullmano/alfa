@@ -140,7 +140,7 @@ $app->post('/client', function() {   //aqui são definidas as rotas. Neste caso 
 	header("Location: /alfa/client");
 	exit;
 });
-$app->get('/client/:clientId/update', function($clientId) { //aqui são definidas as rotas. Neste caso "/" é a raiz.
+/*$app->get('/client/:clientId/update', function($clientId) { //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
 	User::verifyLogin();
 
@@ -156,6 +156,25 @@ $app->get('/client/:clientId/update', function($clientId) { //aqui são definida
 		"ChkTots"  =>$chkTot,
 		"ChkRetrnds"=>$chkRetrnd
 	));
+});*/
+$app->get('/client/update', function() { //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	User::verifyLogin();
+
+	/*$client    = Client::clientById($clientId);
+	$chkDues   = Client::checksDue($clientId);
+	$chkTot    = Client::checksTotal($clientId);
+	$chkRetrnd = Client::checksReturned($clientId);
+
+	$page = new Page("views/client/");
+	$page->setDraw("client_updt", array(
+		"Update"   =>$client,
+		"ChkDues"  =>$chkDues,
+		"ChkTots"  =>$chkTot,
+		"ChkRetrnds"=>$chkRetrnd
+	));*/
+	$page = new Page("views/client/");
+	$page->setDraw("client_updt");
 });
 $app->post('/client/:clientId/update', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	
