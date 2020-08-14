@@ -20,7 +20,7 @@
 		 	
 		 	<input type="submit" value="Ok">
 
-		 	<a href="/alfa/" id="right">Login</a>
+		 	<a href="/" id="right">Login</a>
 		</form>
 	</div>
  </body>

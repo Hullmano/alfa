@@ -3,16 +3,16 @@
  <head>
  	<title>Alfa</title>
  	<meta charset="utf-8">
- 	<link rel="stylesheet" type="text/css" href="resource/client.css">
+ 	<link rel="stylesheet" type="text/css" href="/resource/client.css">
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
  <body>
  	<div>
-		<a href="/alfa/logout" id="right">Logout</a>
+		<a href="/logout" id="right">Logout</a>
 		<ul>
-			 <li><a href="/alfa/bank_check">Cheques</a></li>
-			 <li><a href="/alfa/calculation">Cálculo</a></li>
+			 <li><a href="/bank_check">Cheques</a></li>
+			 <li><a href="/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
 	</div>

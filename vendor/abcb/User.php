@@ -36,6 +36,7 @@ class User extends Sql
 			//echo "Ok";
 
 			$_SESSION["User"] = $results;
+
 		} else {
 			throw new \Exception("Usuário ou Senha Inválido..");
 			
@@ -59,7 +60,7 @@ class User extends Sql
 			||
 			!(int)$_SESSION["User"][0] > 0 
 		){
-			header("Location: /alfa/");
+			header("Location: /");
 			exit;
 		}
 

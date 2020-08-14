@@ -3,15 +3,16 @@
 <head>
 	<title>Alfa</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" type="text/css" href="/resource/bank_check_updt.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<h1>Alterar Cheques</h1>
 </head>
 <body>
 	<div id="header">
-		<a href="/alfa/logout" id="right">Logout</a>
+		<a href="/logout" id="right">Logout</a>
 		<ul>
-			 <li><a href="/alfa/client">Clientes</a></li>
-			 <li><a href="/alfa/calculation">Cálculo</a></li>
+			 <li><a href="/client">Clientes</a></li>
+			 <li><a href="/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
 	</div>
@@ -75,160 +76,11 @@
 		 	<?php } ?>
 
 		 	<input type="submit" value="Alterar" onclick="return calc()">
-		 	<a href="/alfa/bank_check">Cancelar</a>
-
-
+		 	<a href="/bank_check">Cancelar</a>
 		</form>
 	</div>
-
-	
 </body>
 
-<style type="text/css">
-	.wrap {
-		width: 720px;
-		height: 100%;
-		margin: 100px auto;
-		padding: 0;
-		line-height: 30px;
-	}
 
-	#right{
-		float: right;
-	}
-	#client {
-		width: 508px;
-	}
-	#bank, #days {
-		width: 40px;
-	}
-	#tax {
-		width: 48px;
-	}
-	#agency, #cod{
-		width: 60px;
-	}
-	#account, #numchk {
-		width: 90px;
-	}
-	#value{
-		width: 125px;
-	}
-	#interest{
-		width: 120px;
-	}
-	#liquid{
-		width: 124px;
-	} 
-	#selectBox {
-		width: 100px;
-		font-size: 14px;
-	}
-	#issuer {
-		width: 304px;
-		text-transform: capitalize;
-	}
-	
-	ul {
-		list-style: none;
-		font-size: 18px;
-	}
-	li {
-		display: inline;
-		padding-right: 10px;
-	}	
-	a {
-		text-decoration: none;	
-	}
-	input[type=text],[type=tel], option {
-		text-transform: capitalize;		
-	}
-	input[type=date] {
-		width: 125px;
-	}
-</style>
-
-<script type="text/javascript">
-	function formatMoeda(btn){                  //Formata o valor para Moeda.
-		if (!btn.value){						//Verifica se value está vazio.
-		} else {
-			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
-			var novoValor = parseFloat(valor).toFixed(2);
-			btn.value = novoValor; 
-		}	
-	}
-
-	function selectClient($value){
-  		//document.getElementById('client').value = $value;
-  		var select = document.getElementById('selectBox');
-  		document.getElementById('idClient').value = select.options[select.selectedIndex].value;
-		document.getElementById('client').value = select.options[select.selectedIndex].text;
-	}
-
-	function setIndex(){
-		document.getElementById('selectBox').value = "";
-	}
-
-	function difDates(){
-		var base = document.getElementById('dtToday').value;
-		var venc = document.getElementById('dtDue').value;
-		base = new Date(base);
-		venc = new Date(venc);
-		var dif = Math.abs(base.getTime() - venc.getTime());
-		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
-
-		document.getElementById('days').value = totDias;
-	}
-
-	function calcJuros(){
-		var valChq   = document.getElementById('value').value;
-		var valPrazo = document.getElementById('days').value;
-		var valTx    = document.getElementById('tax').value;
-		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
-		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
-
-		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
-			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
-
-		} else {
-			document.getElementById('interest').value = valJuros;
-			document.getElementById('liquid').value = liquid;
-		}
-	}
-	
-	function calc(){
-		var base = document.getElementById('dtToday').value;
-		var venc = document.getElementById('dtDue').value;
-		base = new Date(base);
-		venc = new Date(venc);
-		var dif = Math.abs(base.getTime() - venc.getTime());
-		var totDias = Math.ceil(dif / (1000 * 60 * 60 * 24));
-
-		document.getElementById('days').value = totDias;
-
-
-		var valChq   = document.getElementById('value').value;
-		var valPrazo = document.getElementById('days').value;
-		var valTx    = document.getElementById('tax').value;
-		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
-		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
-
-		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
-			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
-
-		} else {
-			document.getElementById('interest').value = valJuros;
-			document.getElementById('liquid').value = liquid;
-		} 
-	}
-
-	function formatMoeda(btn){                  //Formata o valor para Moeda.
-		if (!btn.value){						//Verifica se value está vazio.
-		} else {
-			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
-			var novoValor = parseFloat(valor).toFixed(2);
-			btn.value = novoValor; 
-		}	
-	}	
-</script>
+<script type="text/javascript" src="/resource/bank_check_updt.js"></script>
 </html>

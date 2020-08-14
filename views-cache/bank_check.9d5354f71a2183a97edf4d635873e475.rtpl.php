@@ -3,16 +3,16 @@
 <head>
 	<title>Alfa</title>
 	<meta charset="utf-8">
- 	<link rel="stylesheet" type="text/css" href="resource/bank_check.css">
+ 	<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<h1>Cadastro de Cheques</h1>
 </head>
 <body onload="Today()">
 	<div id="header">
-		<a href="/alfa/logout" id="right">Logout</a>
+		<a href="/logout" id="right">Logout</a>
 		<ul>
-			 <li><a href="/alfa/client">Clientes</a></li>
-			 <li><a href="/alfa/calculation">Cálculo</a></li>
+			 <li><a href="/client">Clientes</a></li>
+			 <li><a href="/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
 	</div>
@@ -125,5 +125,5 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="resource/bank_check.js"></script>
+<script type="text/javascript" src="/resource/bank_check.js"></script>
 </html>

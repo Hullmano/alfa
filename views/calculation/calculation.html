@@ -10,18 +10,17 @@
 </head>
 <body onload="dateToday()">
  	<div>
- 		<a href="/alfa/logout" id="right">Logout</a> 		
+ 		<a href="/logout" id="right">Logout</a> 		
  		<ul>
  			 <!-- <li><a href="">Cálculo</a></li> -->
- 			<li><a href="/alfa/client">Clientes</a></li>
- 			<li><a href="/alfa/bank_check">Cheques </a></li>
+ 			<li><a href="/client">Clientes</a></li>
+ 			<li><a href="/bank_check">Cheques </a></li>
  		</ul>
  	</div>	
 
 	<div class="wrap">
 		<div class="linha">
-			<input type="text" name="">
-			<label for="valChq">Informe o Valor do Cheque:</label>
+			<label for="valChq">Informe o Valor do Cheque:</label> 
 			<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>
 			<label>Informe a Data Base e o Vencimento:</label> <br>
 			<input type="date" id="dtBase"></input>

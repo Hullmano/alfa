@@ -23,7 +23,7 @@ $app->post('/', function() {   //aqui são definidas as rotas. Neste caso "/" é
 
 	User::login($_POST["login"], $_POST["password"]);
 
-	header("Location: /alfa/calculation");
+	header("Location: /calculation");
 	exit;
 });
 /*------------------------------------------------------------------------------------------*/
@@ -45,14 +45,14 @@ $app->post('/new_user', function() {   //aqui são definidas as rotas. Neste cas
 		
 		User::newUser($_POST["newUser"], $_POST["newPsw"], $_POST["confPsw"]);	
 	
-		header("Location: /alfa/");
+		header("Location: /");
 		exit;
 	}
 });
 /*------------------------------------------------------------------------------------------*/
 $app->get('/calculation', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
-	User::verifyLogin();
+	//User::verifyLogin();
 
 	//$page = new Page("views/calculation/", "calculation"); 
 	$page = new Page("views/calculation/");
@@ -64,7 +64,7 @@ $app->get('/logout', function() {
 
 	User::logout();
 
-	header("Location: /alfa/");
+	header("Location: /");
 	exit;
 });
 /*------------------------------------------------------------------------------------------*/
@@ -87,7 +87,7 @@ $app->post('/bank_check', function() {   //aqui são definidas as rotas. Neste c
 
 	Bank_Check::newCheck($_POST["bank"], $_POST["agency"], $_POST["account"], $_POST["numchk"], $_POST["value"], $_POST["dtToday"], $_POST["issuer"], $_POST["dtDue"], $_POST["days"], $_POST["tax"], $_POST["interest"], $_POST["liquid"], $_POST["idClient"]);
 
-	header("Location: /alfa/bank_check");
+	header("Location: /bank_check");
 	exit;
 });
 $app->get('/bank_check/:checkId/update', function($checkId) {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
@@ -108,7 +108,7 @@ $app->post('/bank_check/:checkId/update', function() {   //aqui são definidas a
 	$_POST["returned"] = (isset($_POST["returned"]))?1:0; //Atribui 1 para checked ou 0 para not checked.
 	Bank_Check::updateCheck($_POST["cod"] ,$_POST["bank"], $_POST["agency"], $_POST["account"], $_POST["numchk"], $_POST["value"], $_POST["dtToday"], $_POST["issuer"], $_POST["dtDue"], $_POST["days"], $_POST["tax"], $_POST["interest"], $_POST["liquid"], $_POST["idClient"], $_POST["returned"]);
 
-	header("Location: /alfa/bank_check");
+	header("Location: /bank_check");
 	exit; 
 });
 $app->get('/bank_check/:checkId/delete', function($checkId) {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
@@ -116,7 +116,7 @@ $app->get('/bank_check/:checkId/delete', function($checkId) {   //aqui são defi
 	Bank_Check::deleteCheck($checkId);
 
 	//sleep(1);
-	header("Location: /alfa/bank_check");
+	header("Location: /bank_check");
 	exit;
 });
 /*------------------------------------------------------------------------------------------*/
@@ -137,7 +137,7 @@ $app->post('/client', function() {   //aqui são definidas as rotas. Neste caso 
 	
 	Client::newClient($_POST["name"], $_POST["fantasy"], $_POST["address"], $_POST["district"], $_POST["cpf"], $_POST["complement"], $_POST["city"], $_POST["state"], $_POST["zipcode"], $_POST["phone1"], $_POST["phone2"], $_POST["email"], $_POST["limit"], $_POST["others"]);
 
-	header("Location: /alfa/client");
+	header("Location: /client");
 	exit;
 });
 $app->get('/client/:clientId/update', function($clientId) { //aqui são definidas as rotas. Neste caso "/" é a raiz.
@@ -161,7 +161,7 @@ $app->post('/client/:clientId/update', function() {   //aqui são definidas as r
 	
 	Client::updateClient($_POST["id"], $_POST["name"], $_POST["fantasy"], $_POST["address"], $_POST["district"], $_POST["cpf"], $_POST["complement"], $_POST["city"], $_POST["state"], $_POST["zipcode"], $_POST["phone1"], $_POST["phone2"], $_POST["email"], $_POST["limit"], $_POST["others"]);
 
-	header("Location: /alfa/client");
+	header("Location: /client");
 	exit;
 });
 $app->get('/client/:clientId/delete', function($clientId) { //aqui são definidas as rotas. Neste caso "/" é a raiz.
@@ -169,7 +169,7 @@ $app->get('/client/:clientId/delete', function($clientId) { //aqui são definida
 	Client::deleteClient($clientId);
 
 	//sleep(1);
-	header("Location: /alfa/client");
+	header("Location: /client");
 	exit;
 });
 

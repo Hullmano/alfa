@@ -3,16 +3,16 @@
  <head>
  	<title>Alfa</title>
  	<meta charset="utf-8">
- 	<!--<link rel="stylesheet" type="text/css" href="resource/cUpdate.css">-->
+ 	<link rel="stylesheet" href="/resource/client_updt.css">
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
  	<h1>Cadastro de Clientes</h1>
  </head>
  <body onload="limit()">
  	<div>
-		<a href="/alfa/logout" id="right">Logout</a>
+		<a href="/logout" id="right">Logout</a>
 		<ul>
-			 <li><a href="/alfa/bank_check">Cheques</a></li>
-			 <li><a href="/alfa/calculation">Cálculo</a></li>
+			 <li><a href="/bank_check">Cheques</a></li>
+			 <li><a href="/calculation">Cálculo</a></li>
 			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
 		</ul>
 	</div>
@@ -128,172 +128,14 @@
 		 	<?php } ?>
 
 		 	<input type="submit" value="Salvar">
-			<a href="/alfa/client">Cancelar</a>
+			<a href="/client">Cancelar</a>
 		 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
 		</form>
 	</div>
 
-</body>
+</body>	
 
-<style type="text/css">
-	.wrap {
-	width: 740px;
-	height: 100%;
-	margin: 100px auto;
-	padding: 0;
-	line-height: 25px;
-}
-	#right{
-		float: right;
-	}
-	#name {
-		width: 309px;
-	}
-	#fantasy {
-		width: 309px;
-	}
-	#zipcode {
-		width: 120px;
-	}
-	#cpfnj {
-		width: 127px;
-	}
-	#city {
-		width: 163px;
-	}
-	#address {
-		width: 440px;
-	}
-	#state {
-		width: 38px;
-		text-transform: uppercase;
-	}
-	#phone1, #phone2 {
-		width: 110px;
-	}
-	#email {
-		width: 206px;
-	}
-	#limit, #chkdue, #chkreturned, #credit, #chkvalues, #chkreceived, #profit {
-		width: 125px;
-	}
-	#others {
-		width: 734px;
-		height: 50px;
-	}
-	#labOthers {
-		margin-left: 65px;
-	}
-	#chkvalues {
-		margin-left: 3px;
-	}
-	#chkreceived {
-		margin-left: 2px;
-	}
-	#profit {
-		margin-left: 0.5px;
-	}
-	#labChkreceived {
-		margin-left: 44px;
-	}
-	#labProfit {
-		margin-left: 35px;
-	}
-	#psw {
-		margin-left: 12px;
-	}
-	#bar {
-		background: #4444ff;
-		width: 710px;
-		text-align: center;
-		padding: 0 15px;
-		margin: 5px 0;
-	}
-	#tdName {
-		max-width: 180px;
-	}
-	#tdCpf {
-		width: 122px;
-	}
-	#tdLinks {
-		width: 95px;
-	}
-
-	input[type=text],[type=tel] {
-		text-transform: capitalize;		
-	}
-	textarea {
-		vertical-align: top;
-		text-transform: capitalize;
-		font-size: 14px;		
-	}
-	ul {
-		list-style: none;
-		font-size: 18px;
-	}
-	li {
-		display: inline;
-		padding-right: 10px;
-	}
-	a {
-		text-decoration: none;	
-	}
-</style>
-	
-
-<script type="text/javascript">
-	function formatMoeda(btn){                  //Formata o valor para Moeda.
-		if (!btn.value){						//Verifica se value está vazio.
-		} else {
-			var valor = btn.value.replace('/','.'); //o parseFloat só considera decimal com ponto e nao com virgula
-			var novoValor = parseFloat(valor).toFixed(2);
-			btn.value = novoValor; 
-		}	
-	}
-	
-	function cpfCnpj(i){
-
-		if (document.getElementById('selct').value == 'Cpf') {
-			
-			//if(cnpj.value) cnpj.value = cnpj.value.match(/.{1,3}/g).join(".").replace(/\.(?=[^.]*$)/,"-");
-			if(cpfnj.value) cpfnj.value = cpfnj.value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/,"$1.$2.$3-$4");
-		}
-
-		if (document.getElementById('selct').value == 'Cnpj'){
-
-			if(cpfnj.value) cpfnj.value = cpfnj.value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,"$1.$2.$3/$4-$5");
-
-		/*var v = i.value;
-		if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-		  i.value = v.substring(0, v.length-1);
-		  return;
-		}
-		i.setAttribute("maxlength", "14");
-		if (v.length == 3 || v.length == 7) i.value += ".";
-		if (v.length == 11) i.value += "-"; */
-		}
-	}
-
-	function phone(i) {
-
-		if(phone1.value) phone1.value = phone1.value.replace(/^(\d{0})(\d{2})/,"$1($2)");
-		if(phone2.value) phone2.value = phone2.value.replace(/^(\d{0})(\d{2})/,"$1($2)");
-	}
-
-	function cep(i) {
-		if(zipcode.value) zipcode.value = zipcode.value.replace(/^(\d{2})(\d{3})/,"$1.$2-");
-	}
-
-	function clearCpf() {
-		document.getElementById('cpfnj').value = "";
-	}
-	
-	function limit() {
-		//document.getElementById('credit').value = document.getElementById('limit').value - document.getElementById('chkdue').value;
-		var x = document.getElementById('limit').value - document.getElementById('chkdue').value;
-		var y = parseFloat(x).toFixed(2);
-		document.getElementById('credit').value = y;
-	}
+<script type="text/javascript" src="/resource/client_updt.js">
 </script>
 
 </html>

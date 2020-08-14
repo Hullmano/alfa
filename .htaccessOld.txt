@@ -6,8 +6,7 @@ RewriteEngine On
 #
 # RewriteBase /
 
-RewriteEngine ON
-#RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(index.php|resource)
-RewriteRule ^(.*)$ index.php [QSA,L]
+#RewriteCond $1 !^(index.php|resource)
+RewriteRule ^ index.php [QSA,L]
