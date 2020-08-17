@@ -22,7 +22,7 @@ $app->get('/', function() {   //aqui são definidas as rotas. Neste caso "/" é 
 $app->post('/', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
 	User::login($_POST["login"], $_POST["password"]);
-
+	//print_r($_SESSION);
 	header("Location: /calculation");
 	exit;
 });
@@ -52,7 +52,7 @@ $app->post('/new_user', function() {   //aqui são definidas as rotas. Neste cas
 /*------------------------------------------------------------------------------------------*/
 $app->get('/calculation', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
-	//User::verifyLogin();
+	User::verifyLogin();
 
 	//$page = new Page("views/calculation/", "calculation"); 
 	$page = new Page("views/calculation/");
@@ -74,8 +74,9 @@ $app->get('/bank_check', function() {   //aqui são definidas as rotas. Neste ca
 
 	$clients = Client::listClients();
 	$data    = Bank_Check::listChecks();
-	//print_r($data);
 	
+	//print_r($data);
+	//print_r($_SESSION["User"][0]["userId"]);
 	//$page = new Page("views/bank_check/", "bank_check"); 
 	$page = new Page("views/bank_check/");
 	$page->setDraw("bank_check", array(

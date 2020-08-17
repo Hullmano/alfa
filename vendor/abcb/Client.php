@@ -9,9 +9,12 @@ class Client extends Sql
 
 	public static function listClients()
 	{
-		
+		$sessionId = $_SESSION['User'][0]['userId'];
+
 		$sql = new Sql();
-		return $results = $sql->select('SELECT * FROM tb_clients ORDER BY clientName'); 
+		return $results = $sql->select('SELECT * FROM tb_clients WHERE cliSessionId = :SESSIONID ORDER BY clientName', array(
+			"SESSIONID"=>$sessionId
+		)); 
 		
 		//return "Adriano";
 
@@ -19,9 +22,10 @@ class Client extends Sql
 
 	public static function newClient($name, $fantasy, $address, $district, $cpf, $complem, $city, $state, $zipcode, $phone1, $phone2, $email, $limit, $others)
 	{
+		$sessionId = $_SESSION['User'][0]['userId'];
 
 		$sql = new Sql();
-		$results = $sql->query('INSERT INTO tb_clients VALUES (default, :NAME, :FANTASY, :ADDRESS, :DISTRICT, :CPF, :COMPLEM, :CITY, :STATE, :ZIPCODE, :PHONE1, :PHONE2, :EMAIL, default, :VLIMIT, :OTHERS)', array(
+		$results = $sql->query('INSERT INTO tb_clients VALUES (default, :NAME, :FANTASY, :ADDRESS, :DISTRICT, :CPF, :COMPLEM, :CITY, :STATE, :ZIPCODE, :PHONE1, :PHONE2, :EMAIL, default, :VLIMIT, :OTHERS, :SESSIONID)', array(
 			":NAME"=>$name,
 			":FANTASY"=>$fantasy,
 			":ADDRESS"=>$address,
@@ -35,7 +39,8 @@ class Client extends Sql
 			":PHONE2"=>$phone2,
 			":EMAIL"=>$email,
 			":VLIMIT"=>$limit,
-			":OTHERS"=>$others
+			":OTHERS"=>$others,
+			":SESSIONID"=>$sessionId
 		));
 	}
 	

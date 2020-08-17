@@ -12,7 +12,7 @@ class User extends Sql
 		
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users WHERE userLogin = :LOGIN", array(
+		$results = $sql->select('SELECT * FROM tb_users WHERE userLogin = :LOGIN', array(
 			":LOGIN"=>$login
 		)); 
 

@@ -147,6 +147,6 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="resource/client.js"></script>
+<script type="text/javascript" src="/resource/client.js"></script>
 
 </html>

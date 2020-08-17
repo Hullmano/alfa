@@ -16,9 +16,26 @@
 		 	<input type="password" name="password" id="psw"><br>
 		 	
 		 	<input type="submit" value="Login">
+
+		 	<a href="" onclick="mensagem()">Mensagem</a>
 		
 		 	<a href="/new_user" id="right">Novo Usuário</a>
 		</form>
 	</div>
  </body>
+ <script type="text/javascript">
+ 	function mensagem() {
+		var name = confirm("Deseja Realmente Excluir?")
+		if (name==true)
+		{
+		  //document.write("Você pressionou o botão OK!")
+		  alert('Excluído!');
+		}
+		else
+		{
+		  //document.write("Você pressionou o botão CANCELAR")
+		  alert('Cancelado!');
+		}
+	}
+ </script>
  </html>

@@ -135,7 +135,6 @@
 
 </body>	
 
-<script type="text/javascript" src="/resource/client_updt.js">
-</script>
+<script type="text/javascript" src="/resource/client_updt.js"></script>
 
 </html>
