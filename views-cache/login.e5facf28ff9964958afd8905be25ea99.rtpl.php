@@ -1,10 +1,12 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?> <!DOCTYPE html>
  <html lang="pt-br">
  <head>
- 	<title>Alfa</title>
- 	<meta charset="utf-8" />
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  	<link rel="stylesheet" type="text/css" href="/resource/login.css">
- 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">--> 	
+ 	<link rel="stylesheet" href="css/bootstrap.min.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">--> 
+ 	<title>Alfa</title>	
  </head>
   <body>
  	<div class="wrap">

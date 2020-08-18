@@ -116,7 +116,8 @@
 					<td>
 						<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/{$value.checkId}/update">Editar</a>
-						<a href="bank_check/{$value.checkId}/delete">Excluir</a>
+						<!--<a href="bank_check/{$value.checkId}/delete">Excluir</a>-->
+						<a href="" onclick="confirmBox()" id="tdDelete">Excluir</a>
 					</td>
 				</tr>
 				{/loop}
