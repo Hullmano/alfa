@@ -99,18 +99,3 @@
 			btn.value = novoValor; 
 		}	
 	}
-
-	function confirmBox(){
-		var name = confirm("Deseja Realmente Excluir?")
-		if (name==true)
-		{
-		  //document.write("Você pressionou o botão OK!")
-		  document.getElementById('tdDelete').href = "bank_check/{$value.checkId}/delete";
-		  alert('Excluído!');
-		}
-		else
-		{
-		  //document.write("Você pressionou o botão CANCELAR")
-		  alert('Cancelado!');
-		}
-	}

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-	<title>Alfa</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">
  	<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
+	<title>Alfa</title>
 	<h1>Cadastro de Cheques</h1>
 </head>
 <body onload="Today()">
@@ -116,8 +118,8 @@
 					<td>
 						<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/{$value.checkId}/update">Editar</a>
-						<!--<a href="bank_check/{$value.checkId}/delete">Excluir</a>-->
-						<a href="" onclick="confirmBox()" id="tdDelete">Excluir</a>
+						
+						<a href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
 					</td>
 				</tr>
 				{/loop}
@@ -126,5 +128,10 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="/resource/bank_check.js"></script>
+<!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/resource/bs_js/popper.min.js"></script>
+    <script src="/resource/bs_js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resource/bank_check.js"></script>
 </html>
