@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">
- 	<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<title>Alfa</title>
 	<h1>Cadastro de Cheques</h1>
@@ -20,59 +20,60 @@
 	</div>
 	
 	<div class="wrap">
- 		<form action="" method="post">
+ 		<form class="form-inline" action="" method="post">
+	 		<div class="form-group mb-2">
+				<select  class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
+					<option value="">Cliente</option>
+					{loop="$Users"}
+					<option id="options" value="{$value.clientId}">{$value.clientName}</option>
+					{/loop}
+				</select>
 
-			<select id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
-				<option value="">Cliente</option>
-				{loop="$Users"}
-				<option id="options" value="{$value.clientId}">{$value.clientName}</option>
-				{/loop}
-			</select>
+			 	<input type="hidden" id="idClient" name="idClient">	
 
-		 	<input type="hidden" id="idClient" name="idClient">	
+				<input type="text" class="form-control form-control-sm" name="client" id="client" onkeypress="return false" required><br>
 
-			<input type="text" name="client" id="client" onkeypress="return false" required><br>
+			 	<label for="bank">Banco</label>
+			 	<input type="text" class="form-control form-control-sm" name="bank" id="bank" required>
+			 	
+			 	<label for="agency">Agência</label>
+			 	<input type="tel" class="form-control form-control-sm" name="agency" id="agency" required>
+			 	
+			 	<label for="account">Conta</label>
+			 	<input type="tel" class="form-control form-control-sm" name="account" id="account" required=>	 	
+			 			 	
+			 	<label for="numchk">Nº Cheque</label>
+			 	<input type="tel" class="form-control form-control-sm" name="numchk" id="numchk" required>
+			 	
+			 	<label for="value">Valor</label>
+			 	<input type="number" class="form-control form-control-sm" step="0.01" name="value" id="value" onblur="formatMoeda(this)" maxlength="15" required><br>
 
-		 	<label for="bank">Banco</label>
-		 	<input type="text" name="bank" id="bank" required>
-		 	
-		 	<label for="agency">Agência</label>
-		 	<input type="tel" name="agency" id="agency" required>
-		 	
-		 	<label for="account">Conta</label>
-		 	<input type="tel" name="account" id="account" required=>	 	
-		 			 	
-		 	<label for="numchk">Nº Cheque</label>
-		 	<input type="tel" name="numchk" id="numchk" required>
-		 	
-		 	<label for="value">Valor</label>
-		 	<input type="number" step="0.01" name="value" id="value" onblur="formatMoeda(this)" maxlength="15" required><br>
+			 	<label for="dtToday">Data</label>
+			 	<input type="date" class="form-control form-control-sm" name="dtToday" id="dtToday" required>
 
-		 	<label for="dtToday">Data</label>
-		 	<input type="date" name="dtToday" id="dtToday" required>
+			 	<label for="issuer">Emitente</label>
+			 	<input type="text" class="form-control form-control-sm" name="issuer" id="issuer" required>	
 
-		 	<label for="issuer">Emitente</label>
-		 	<input type="text" name="issuer" id="issuer" required>	
+			 	<label for="dtDue">Venc.</label>
+			 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" onblur="difDates()" required>
 
-		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue" onblur="difDates()" required>
+			 	<label for="cod">Cód.Cheque</label>
+			 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" tabindex="-1" readonly>
 
-		 	<label for="cod">Cód.Cheque</label>
-		 	<input type="text" name="cod" id="cod" tabindex="-1" readonly>
+			 	<label for="tax">Taxa</label>
+			 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
 
-		 	<label for="tax">Taxa</label>
-		 	<input type="number" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
+			 	<label for="days">Tot.Dias</label>
+			 	<input type="text" class="fform-control form-control-sm" name="days" id="days" onblur="calcJuros()" readonly required>
 
-		 	<label for="days">Tot.Dias</label>
-		 	<input type="text" name="days" id="days" onblur="calcJuros()" readonly required>
+			 	<label for="interest">Juros</label>
+			 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" onblur="formatMoeda(this)" readonly required>
 
-		 	<label for="interest">Juros</label>
-		 	<input type="text" name="interest" id="interest" onblur="formatMoeda(this)" readonly required>
+			 	<label for="liquid">Líquido</label>
+			 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" onblur="formatMoeda(this)" readonly required>		 	
 
-		 	<label for="liquid">Líquido</label>
-		 	<input type="text" name="liquid" id="liquid" onblur="formatMoeda(this)" readonly required>		 	
-
-		 	<input type="submit" onclick="return calc()" value="Salvar">
+			 	<input type="submit" class="btn btn-success" onclick="return calc()" value="Salvar">
+			</div> <!--form-group-->
 		</form>
 	</div>
 
@@ -119,7 +120,7 @@
 						<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
 						<a href="bank_check/{$value.checkId}/update">Editar</a>
 						
-						<a href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger"><i class="fa fa-trash"></i> Excluir</a>
+						<a href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
 					</td>
 				</tr>
 				{/loop}
