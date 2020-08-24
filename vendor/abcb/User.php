@@ -69,6 +69,7 @@ class User extends Sql
 	public static function logout()
 	{
 		$_SESSION["User"] = NULL;
+		session_destroy();
 
 	}
 

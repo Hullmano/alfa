@@ -49,22 +49,17 @@
 		document.getElementById('days').value = totDias;
 	}
 
-	function calcJuros(){
+	function cJuros(){
 		var valChq   = document.getElementById('value').value;
 		var valPrazo = document.getElementById('days').value;
 		var valTx    = document.getElementById('tax').value;
 		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
 		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
 
-		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
-			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
-
-		} else {
-			document.getElementById('interest').value = valJuros;
-			document.getElementById('liquid').value = liquid;
-		}
+		document.getElementById('interest').value = valJuros;
+		document.getElementById('liquid').value = liquid;			
 	}
-	
+
 	function calc(){
 		var base = document.getElementById('dtToday').value;
 		var venc = document.getElementById('dtDue').value;
@@ -82,13 +77,8 @@
 		var valJuros = ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo);
 		var liquid   = (parseFloat(valChq) - ((parseFloat(valChq) * parseFloat(valTx/100)) /30) * parseFloat(valPrazo));
 
-		if (document.getElementById('value').value == '' || document.getElementById('tax').value == '') {
-			alert('Para o Correto Cálculo, os Campos: Valor, Vencimento e Taxa Devem Ser Preenchidos!');
-
-		} else {
-			document.getElementById('interest').value = valJuros;
-			document.getElementById('liquid').value = liquid;
-		} 
+		document.getElementById('interest').value = valJuros;
+		document.getElementById('liquid').value = liquid;
 	}
 
 	function formatMoeda(btn){                  //Formata o valor para Moeda.
