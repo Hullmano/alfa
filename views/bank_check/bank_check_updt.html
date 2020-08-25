@@ -1,86 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<title>Alfa</title>
 	<meta charset="utf-8">
- 	<link rel="stylesheet" type="text/css" href="/resource/bank_check_updt.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">	
+ 	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check_updt.css">-->
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<h1>Alterar Cheques</h1>
 </head>
 <body>
-	<div id="header">
-		<a href="/logout" id="right">Logout</a>
-		<ul>
-			 <li><a href="/client">Clientes</a></li>
-			 <li><a href="/calculation">Cálculo</a></li>
-			<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
-		</ul>
-	</div>
-	
-	<div class="wrap">
+	<div class="container">
+		<div id="header">
+			<a href="/logout" id="right">Logout</a>
+			<ul>
+				 <li><a href="/client">Clientes</a></li>
+				 <li><a href="/calculation">Cálculo</a></li>
+				<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
+			</ul>
+		</div>
+		
  		<form action="" method="post">
+ 			<div class="row"><!--row 1-->
 
-			<select id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
-				<option value="">Selecione o Cliente</option>
-				{loop="$Users"}
-				<option id="options" value="{$value.clientId}">{$value.clientName}</option>
-				{/loop}
-			</select>
+				<div class="col"><!--col select-->	
+					<label for="selectBox">Cliente</label>
+					<select class="form-control form-control-sm text-capitalize" id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
+						<option value="">Selecione o Cliente</option>
+						{loop="$Users"}
+						<option id="options" value="{$value.clientId}">{$value.clientName}</option>
+						{/loop}
+					</select>
+				</div><!--end col select-->
+				<div class="col-md-3 pl-lg-0 pt-lg-4 mt-lg-2"><!--col client-->
+					{loop="$Update"}
+					<input type="hidden" id="idClient" name="idClient" value="{$value.clientId}">	
 
-			{loop="$Update"}
-			<input type="hidden" id="idClient" name="idClient" value="{$value.clientId}">	
+					<input type="text" class="form-control form-control-sm" name="client" id="client" value="{$value.clientName}" onkeypress="return false" required>	
+				</div> <!--col client-->
+				<div class="col">
+					<input class="form-control form-control-sm" type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}>Devolvido</input>
+					<!--<label for="returned">Devolvido</label>-->
+				</div>
+				<div class="col-md-1"> <!--col bank-->
+				 	<label for="bank">Banco</label>
+				 	<input type="text" name="bank" id="bank" value="{$value.checkBank}" required>
+				</div> <!--end col bank-->  
+				<div class="col-md-1"> <!--col agency-->
+				 	<label for="agency">Agência</label>
+				 	<input type="tel" name="agency" id="agency" value="{$value.checkAgency}" required>
+				</div> <!--end col agency--> 	
+				<div class="col"> <!--col account-->	
+				 	<label for="account">Conta</label>
+				 	<input type="tel" name="account" id="account" value="{$value.checkAccount}" required>	 	
+				</div> <!--end col account-->
+				<div class="col"> <!--col numchk--> 			 	
+				 	<label for="numchk">Nº Cheque</label>
+				 	<input type="tel" name="numchk" id="numchk" value="{$value.checkNumChk}" required>
+				</div> <!--end col numchk-->
+			 	<div class="col"> <!--col value--> 	
+				 	<label for="value">Valor</label>
+				 	<input type="number" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" maxlength="15" required><br>
+				</div> <!--end col value-->
+			</div><!--end row 1-->
+				 	<label for="dtToday">Data</label>
+				 	<input type="date" name="dtToday" id="dtToday" value="{$value.checkToday}" required>
 
-			<input type="text" name="client" id="client" value="{$value.clientName}" onkeypress="return false" required>	
+				 	<label for="issuer">Emitente</label>
+				 	<input type="text" name="issuer" id="issuer" value="{$value.checkIssuer}" required>	
 
-			<input type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}>Devolvido</input>
-			<!--<label for="returned">Devolvido</label>-->
+				 	<label for="dtDue">Venc.</label>
+				 	<input type="date" name="dtDue" id="dtDue" value="{$value.checkDue}" onblur="difDates()" required>
 
-		 	<label for="bank">Banco</label>
-		 	<input type="text" name="bank" id="bank" value="{$value.checkBank}" required>
-		 	
-		 	<label for="agency">Agência</label>
-		 	<input type="tel" name="agency" id="agency" value="{$value.checkAgency}" required>
-		 	
-		 	<label for="account">Conta</label>
-		 	<input type="tel" name="account" id="account" value="{$value.checkAccount}" required>	 	
-		 			 	
-		 	<label for="numchk">Nº Cheque</label>
-		 	<input type="tel" name="numchk" id="numchk" value="{$value.checkNumChk}" required>
-		 	
-		 	<label for="value">Valor</label>
-		 	<input type="number" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" maxlength="15" required><br>
+				 	<label for="cod">Cód.Cheque</label>
+				 	<input type="text" name="cod" id="cod" value="{$value.checkId}" readonly>
 
-		 	<label for="dtToday">Data</label>
-		 	<input type="date" name="dtToday" id="dtToday" value="{$value.checkToday}" required>
+				 	<label for="tax">Taxa</label>
+				 	<input type="number" step="0.01" name="tax" id="tax" value="{$value.checkTax}" onblur="formatMoeda(this)" required>
 
-		 	<label for="issuer">Emitente</label>
-		 	<input type="text" name="issuer" id="issuer" value="{$value.checkIssuer}" required>	
+				 	<label for="days">Tot.Dias</label>
+				 	<input type="text" name="days" id="days" value="{$value.checkDays}" onblur="calcJuros()" readonly required>
 
-		 	<label for="dtDue">Venc.</label>
-		 	<input type="date" name="dtDue" id="dtDue" value="{$value.checkDue}" onblur="difDates()" required>
+				 	<label for="interest">Juros</label>
+				 	<input type="text" name="interest" id="interest" value="{$value.checkIntrst}" onblur="formatMoeda(this)" readonly required>
 
-		 	<label for="cod">Cód.Cheque</label>
-		 	<input type="text" name="cod" id="cod" value="{$value.checkId}" readonly>
+				 	<label for="liquid">Líquido</label>
+				 	<input type="text" name="liquid" id="liquid" value="{$value.checkLiquid}" onblur="formatMoeda(this)" readonly required>
+				 	{/loop}
 
-		 	<label for="tax">Taxa</label>
-		 	<input type="number" step="0.01" name="tax" id="tax" value="{$value.checkTax}" onblur="formatMoeda(this)" required>
-
-		 	<label for="days">Tot.Dias</label>
-		 	<input type="text" name="days" id="days" value="{$value.checkDays}" onblur="calcJuros()" readonly required>
-
-		 	<label for="interest">Juros</label>
-		 	<input type="text" name="interest" id="interest" value="{$value.checkIntrst}" onblur="formatMoeda(this)" readonly required>
-
-		 	<label for="liquid">Líquido</label>
-		 	<input type="text" name="liquid" id="liquid" value="{$value.checkLiquid}" onblur="formatMoeda(this)" readonly required>
-		 	{/loop}
-
-		 	<input type="submit" value="Alterar" onclick="return calc()">
-		 	<a href="/bank_check">Cancelar</a>
+				 	<input type="submit" value="Alterar" onclick="return calc()">
+				 	<a href="/bank_check">Cancelar</a>
+		 	</div>
 		</form>
-	</div>
+	</div>		
 </body>
 
-
-<script type="text/javascript" src="/resource/bank_check_updt.js"></script>
+<!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS --> 
+    <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/resource/bs_js/popper.min.js"></script>
+    <script src="/resource/bs_js/bootstrap.min.js"></script> 
+	<script src="/resource/bank_check_updt.js"></script>
 </html>
