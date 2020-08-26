@@ -23,7 +23,7 @@
  		<form action="" method="post">
 	 		<div class="row"><!--row 1-->
 	 			
-	 			<div class="col pr-lg-0">
+	 			<div class="col pr-lg-0"><!--col select-->
 					<label for="selectBox">Cliente</label>
 					<select  class="form-control form-control-sm text-capitalize" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
 						<option value="">Selecione</option>

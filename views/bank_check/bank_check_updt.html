@@ -23,73 +23,94 @@
  		<form action="" method="post">
  			<div class="row"><!--row 1-->
 
-				<div class="col"><!--col select-->	
+				<div class="col pr-lg-0"><!--col select-->	
 					<label for="selectBox">Cliente</label>
-					<select class="form-control form-control-sm text-capitalize" id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
-						<option value="">Selecione o Cliente</option>
+					<select class="form-control form-control-sm" id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
+						<option value="">Selecione</option>
 						{loop="$Users"}
 						<option id="options" value="{$value.clientId}">{$value.clientName}</option>
 						{/loop}
 					</select>
 				</div><!--end col select-->
-				<div class="col-md-3 pl-lg-0 pt-lg-4 mt-lg-2"><!--col client-->
 					{loop="$Update"}
+				<div class="col-md-3 pl-lg-0 pt-lg-4 mt-lg-2"><!--col client-->					
 					<input type="hidden" id="idClient" name="idClient" value="{$value.clientId}">	
 
-					<input type="text" class="form-control form-control-sm" name="client" id="client" value="{$value.clientName}" onkeypress="return false" required>	
+					<input type="text" class="form-control form-control-sm text-capitalize" name="client" id="client" value="{$value.clientName}" onkeypress="return false" required>	
 				</div> <!--col client-->
-				<div class="col">
-					<input class="form-control form-control-sm" type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}>Devolvido</input>
-					<!--<label for="returned">Devolvido</label>-->
-				</div>
+
 				<div class="col-md-1"> <!--col bank-->
 				 	<label for="bank">Banco</label>
-				 	<input type="text" name="bank" id="bank" value="{$value.checkBank}" required>
+				 	<input type="text" class="form-control form-control-sm" name="bank" id="bank" value="{$value.checkBank}" required>
 				</div> <!--end col bank-->  
 				<div class="col-md-1"> <!--col agency-->
 				 	<label for="agency">Agência</label>
-				 	<input type="tel" name="agency" id="agency" value="{$value.checkAgency}" required>
+				 	<input type="tel" class="form-control form-control-sm" name="agency" id="agency" value="{$value.checkAgency}" required>
 				</div> <!--end col agency--> 	
 				<div class="col"> <!--col account-->	
 				 	<label for="account">Conta</label>
-				 	<input type="tel" name="account" id="account" value="{$value.checkAccount}" required>	 	
+				 	<input type="tel" class="form-control form-control-sm" name="account" id="account" value="{$value.checkAccount}" required>	 	
 				</div> <!--end col account-->
 				<div class="col"> <!--col numchk--> 			 	
 				 	<label for="numchk">Nº Cheque</label>
-				 	<input type="tel" name="numchk" id="numchk" value="{$value.checkNumChk}" required>
+				 	<input type="tel" class="form-control form-control-sm" name="numchk" id="numchk" value="{$value.checkNumChk}" required>
 				</div> <!--end col numchk-->
 			 	<div class="col"> <!--col value--> 	
 				 	<label for="value">Valor</label>
-				 	<input type="number" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" maxlength="15" required><br>
+				 	<input type="number" class="form-control form-control-sm" step="0.01" name="value" id="value" value="{$value.checkValue}" onblur="formatMoeda(this)" maxlength="15" required><br>
 				</div> <!--end col value-->
 			</div><!--end row 1-->
+
+			<div class="row"><!--row 2-->
+				<div class="col"> <!--col dtToday-->
 				 	<label for="dtToday">Data</label>
-				 	<input type="date" name="dtToday" id="dtToday" value="{$value.checkToday}" required>
-
+				 	<input type="date" class="form-control form-control-sm" name="dtToday" id="dtToday" value="{$value.checkToday}" required>
+				</div> <!--end col dtToday-->
+				<div class="col-md-3"> <!--col issuer-->
 				 	<label for="issuer">Emitente</label>
-				 	<input type="text" name="issuer" id="issuer" value="{$value.checkIssuer}" required>	
-
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="issuer" id="issuer" value="{$value.checkIssuer}" required>	
+				</div> <!--end col issuer-->
+				<div class="col"> <!--col dtDue-->
 				 	<label for="dtDue">Venc.</label>
-				 	<input type="date" name="dtDue" id="dtDue" value="{$value.checkDue}" onblur="difDates()" required>
-
-				 	<label for="cod">Cód.Cheque</label>
-				 	<input type="text" name="cod" id="cod" value="{$value.checkId}" readonly>
-
+				 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" value="{$value.checkDue}" onblur="difDates()" required>
+				</div> <!--end col dtDue-->
+				 <div class="col"> <!--col tax-->
 				 	<label for="tax">Taxa</label>
-				 	<input type="number" step="0.01" name="tax" id="tax" value="{$value.checkTax}" onblur="formatMoeda(this)" required>
-
+				 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" value="{$value.checkTax}" onblur="formatMoeda(this)" required>
+				</div> <!--end col tax-->
+				<div class="col"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
-				 	<input type="text" name="days" id="days" value="{$value.checkDays}" onblur="calcJuros()" readonly required>
-
+				 	<input type="text" class="form-control form-control-sm" name="days" id="days" value="{$value.checkDays}" onblur="calcJuros()" readonly required>
+				</div> <!--end col days-->
+				<div class="col"> <!--col interest-->
 				 	<label for="interest">Juros</label>
-				 	<input type="text" name="interest" id="interest" value="{$value.checkIntrst}" onblur="formatMoeda(this)" readonly required>
-
+				 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" value="{$value.checkIntrst}" onblur="formatMoeda(this)" readonly required>
+				</div> <!--end col interest-->
+				<div class="col"> <!--col liquid-->
 				 	<label for="liquid">Líquido</label>
-				 	<input type="text" name="liquid" id="liquid" value="{$value.checkLiquid}" onblur="formatMoeda(this)" readonly required>
-				 	{/loop}
-
+				 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" value="{$value.checkLiquid}" onblur="formatMoeda(this)" readonly required>
+				</div> <!--end col liquid-->
+				<div class="col-md-1"> <!--col cod-->
+				 	<label for="cod">Cód.Cheque</label>
+				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" value="{$value.checkId}" readonly>
+				</div> <!--end col cod-->				 	
+				 	
+			</div><!--end row 2-->	
+			
+			<div class="row pt-lg-4"><!--row 3-->
+				<div class="col-md-2 pl-lg-4 ml-lg-3"><!--col checkbox-->
+					<input class="form-check-input" type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}></input>
+					<label class="form-check-label" for="returned">Devolvido</label>
+					<!--<label for="returned">Devolvido</label>-->
+				</div><!--end col checkbox-->
+				{/loop}
+				<div class="col-md-1"> <!--col submit-->
 				 	<input type="submit" value="Alterar" onclick="return calc()">
+				</div><!--end col submit-->
+				<div class="col"> <!--col submit--> 	
 				 	<a href="/bank_check">Cancelar</a>
+				</div><!--end col submit-->
+			</div><!--end row 3-->				 	
 		 	</div>
 		</form>
 	</div>		
