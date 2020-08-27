@@ -7,17 +7,17 @@
  	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<title>Alfa</title>
-	<h1>Cadastro de Cheques</h1>
 </head>
 <body onload="Today()">
 	<div class="container">
-		<div id="header">
-			<a href="/logout" id="right">Logout</a>
-			<ul>
-				 <li><a href="/client">Clientes</a></li>
-				 <li><a href="/calculation">Cálculo</a></li>
-				<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
-			</ul>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="/client">Clientes</a>
+			<a class="navbar-brand" href="/calculation">Cálculo</a>
+			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
+		</nav>
+		<div class="p-5 text-center">
+			<h2 class="h2">Cadastro de Cheques</h2>
 		</div>
 		
  		<form action="" method="post">
@@ -25,7 +25,7 @@
 	 			
 	 			<div class="col pr-lg-0"><!--col select-->
 					<label for="selectBox">Cliente</label>
-					<select  class="form-control form-control-sm text-capitalize" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
+					<select  class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
 						<option value="">Selecione</option>
 						{loop="$Users"}
 						<option id="options" value="{$value.clientId}">{$value.clientName}</option>
@@ -71,7 +71,6 @@
 				 	<label for="dtDue">Venc.</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" onblur="difDates()" required>
 				</div> <!--end col dtDue-->
-
 				 <div class="col"> <!--col tax-->
 				 	<label for="tax">Taxa</label>
 				 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
@@ -79,7 +78,7 @@
 				<div class="col"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
 				 	<input type="text" class="form-control form-control-sm" name="days" id="days" onblur="cJuros()" onkeypress="return false" required>
-				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	-->				 	
+				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	--> 	
 				</div> <!--end col days-->
 				<div class="col"> <!--col interest-->
 				 	<label for="interest">Juros</label>
@@ -143,9 +142,9 @@
 						<td>{if="$value.checkReturned == 1"}Sim{else}Não{/if}</td>
 						<td>
 							<!--<a href="bank_check/{$value.checkId}/edit" onclick="update()">Editar</a>-->
-							<a href="bank_check/{$value.checkId}/update">Editar</a>
+							<a class="badge badge-success badge-pill" href="bank_check/{$value.checkId}/update">Editar</a>
 							
-							<a href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+							<a href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="badge badge-danger badge-pill"><i class="fa fa-trash"></i> Excluir</a>
 						</td>
 					</tr>
 					{/loop}

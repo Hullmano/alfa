@@ -1,28 +1,42 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?> <!DOCTYPE html>
- <html>
- <head>
- 	<title>Alfa</title>
- 	<meta charset="utf-8">
- 	<link rel="stylesheet" type="text/css" href="resource/new_user.css">
- 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
- </head>
- <body>
- 	<div class="wrap">
-	 	<form action="/alfa/new_user" method="post">
-		 	<label for="login">Novo Usuário</label>
-		 	<input type="text" name="newUser" id="login"><br>
-		 	
-		 	<label for="psw">Nova Senha</label>
-		 	<input type="password" name="newPsw" id="psw"><br>
-		 	
-		 	<label for="cpsw">Conf. Senha</label>		 	
-		 	<input type="password" name="confPsw" id="cpsw"><br>
-		 	
-		 	<input type="submit" value="Ok">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
+<html>
+<head>
+	<title>Alfa</title>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css"> 	
+	<!--<link rel="stylesheet" type="text/css" href="resource/new_user.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
+</head>
+<body>
+	<div class="container">
+ 	<form action="/new_user" method="post">
+ 		<div class="row justify-content-md-center">
+ 			<div class="col-md-auto">
+			 	<label for="login">Novo Usuário</label>
+			 	<input type="text" class="form-control form-control-sm" name="newUser" id="login"><br>
+			 	
+			 	<label for="psw">Nova Senha</label>
+			 	<input type="password" class="form-control form-control-sm" name="newPsw" id="psw"><br>
+			 	
+			 	<label for="cpsw">Conf. Senha</label>		 	
+			 	<input type="password" class="form-control form-control-sm" name="confPsw" id="cpsw"><br>
+			 	
+			 	<!--<input type="submit" value="Ok">-->
+			 	<button class="btn btn-success" type="submit">Confirmar</button>
 
-		 	<a href="/" id="right">Login</a>
-		</form>
-	</div>
- </body>
+			 	<a class="btn btn-primary" href="/" id="right">Login</a>
+			</div>
+	 	</div>
+	</form>
+</div>
+</body>
 
- </html>
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS --> 
+<script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
+<script src="/resource/bs_js/popper.min.js"></script>
+<script src="/resource/bs_js/bootstrap.min.js"></script> 
+<!--<script src="/resource/bank_check.js"></script>-->
+
+</html>

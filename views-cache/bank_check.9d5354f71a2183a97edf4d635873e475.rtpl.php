@@ -7,25 +7,25 @@
  	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 	<title>Alfa</title>
-	<h1>Cadastro de Cheques</h1>
 </head>
 <body onload="Today()">
 	<div class="container">
-		<div id="header">
-			<a href="/logout" id="right">Logout</a>
-			<ul>
-				 <li><a href="/client">Clientes</a></li>
-				 <li><a href="/calculation">Cálculo</a></li>
-				<!-- <li><a href="/alfa/bank_check">Cadastro</a></li> -->
-			</ul>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="/client">Clientes</a>
+			<a class="navbar-brand" href="/calculation">Cálculo</a>
+			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
+		</nav>
+		<div class="p-5 text-center">
+			<h2 class="h2">Cadastro de Cheques</h2>
 		</div>
 		
  		<form action="" method="post">
 	 		<div class="row"><!--row 1-->
 	 			
-	 			<div class="col pr-lg-0">
+	 			<div class="col pr-lg-0"><!--col select-->
 					<label for="selectBox">Cliente</label>
-					<select  class="form-control form-control-sm text-capitalize" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
+					<select  class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
 						<option value="">Selecione</option>
 						<?php $counter1=-1;  if( isset($Users) && ( is_array($Users) || $Users instanceof Traversable ) && sizeof($Users) ) foreach( $Users as $key1 => $value1 ){ $counter1++; ?>
 						<option id="options" value="<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
@@ -71,7 +71,6 @@
 				 	<label for="dtDue">Venc.</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" onblur="difDates()" required>
 				</div> <!--end col dtDue-->
-
 				 <div class="col"> <!--col tax-->
 				 	<label for="tax">Taxa</label>
 				 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
@@ -79,7 +78,7 @@
 				<div class="col"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
 				 	<input type="text" class="form-control form-control-sm" name="days" id="days" onblur="cJuros()" onkeypress="return false" required>
-				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	-->				 	
+				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	--> 	
 				</div> <!--end col days-->
 				<div class="col"> <!--col interest-->
 				 	<label for="interest">Juros</label>
@@ -143,9 +142,9 @@
 						<td><?php if( $value1["checkReturned"] == 1 ){ ?>Sim<?php }else{ ?>Não<?php } ?></td>
 						<td>
 							<!--<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/edit" onclick="update()">Editar</a>-->
-							<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
+							<a class="badge badge-success badge-pill" href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
 							
-							<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+							<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="badge badge-danger badge-pill"><i class="fa fa-trash"></i> Excluir</a>
 						</td>
 					</tr>
 					<?php } ?>
