@@ -16,7 +16,6 @@
 			<a class="navbar-brand" href="/calculation">Cálculo</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
-
 		<div class="p-5 text-center">
 			<h2>Cadastro de Cheques - Editar</h2>
 		</div>
@@ -95,7 +94,6 @@
 				 	<label for="cod">Cód.Cheque</label>
 				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" value="<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				</div> <!--end col cod-->				 	
-				 	
 			</div><!--end row 2-->	
 			
 			<div class="row pt-lg-4"><!--row 3-->
@@ -113,7 +111,6 @@
 				 	<a class="btn btn-primary" href="/bank_check">Cancelar</a>
 				</div><!--end col submit-->
 			</div><!--end row 3-->				 	
-		 	</div>
 		</form>
 	</div>		
 </body>

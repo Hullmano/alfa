@@ -20,8 +20,7 @@
 			<h2>Cálculo</h2>
 		</div>
 	
-
-		<div class="wrap">
+		<div class="row"></div><!--end row-->
 			<div class="linha">
 				<label for="valChq">Informe o Valor do Cheque:</label> 
 				<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>
