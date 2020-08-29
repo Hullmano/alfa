@@ -20,19 +20,29 @@
 			<h2>Cálculo</h2>
 		</div>
 	
-		<div class="row"></div><!--end row-->
-			<div class="linha">
-				<label for="valChq">Informe o Valor do Cheque:</label> 
-				<input type="number" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>
-				<label>Informe a Data Base e o Vencimento:</label> <br>
-				<input type="date" id="dtBase"></input>
-				<input type="date" id="dtVenc"></input> <br>
-				<!-- <input type="tel" id="valPrazo" placeholder="Prazo do Cheque. Somente Números" required="required" maxlength="15" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" onblur="checkNumber(this.value)"> <br>	 -->
-				<label>Informe o Valor da Taxa:</label>  <!--Para add espaços: &nbsp; &ensp; &emsp-->
-				<input type="number" step="0.01" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)" required maxlength="15" autofocus> <br>		
-				<input type="submit" value="Calcular" onclick="calcular()"></input>
-				<input type="submit" value="Limpar" onclick="limpar()"></input> <br>
-
+			<div class="row justify-content-md-center">
+				<div class="col-md-4"><!--end row-->
+					<label for="valChq">Informe o Valor do Cheque:</label> 
+					<input type="number" class="form-control form-control-sm" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required autofocus><br>
+				</div><!--end col-md-4-->	
+			</div><!--end row 1-->			
+			<div class="row justify-content-md-center"><!--row dates-->
+				<div class="col-md-2"><!--col date 1-->
+					<label>Data Base</label>
+					<input type="date" class="form-control form-control-sm" id="dtBase"></input>
+				</div><!--end row date 1-->	
+				<div class="col-md-2"><!--col date 2-->	
+					<label>Data Vencimento</label>			
+					<input type="date" class="form-control form-control-sm" id="dtVenc"></input> <br>
+				</div><!--end row date 2-->	
+			</div><!--end row dates-->
+			<div class="row justify-content-md-center">
+				<div class="col-md-4">
+					<label>Valor da Taxa</label>
+					<input type="number" class="form-control form-control-sm" step="0.01" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)"> 		
+					<input type="submit" value="Calcular" onclick="calcular()"></input>
+					<input type="submit" value="Limpar" onclick="limpar()"></input>
+				</div><!--end col-md-4-->
 			</div>
 
 			<div class="linha">
@@ -97,7 +107,6 @@
 				<label class="col col3" id="totJuros">.</label>
 				<label class="col col4" id="totLiqui">.</label>
 			</div>
-		</div>
 	</div><!--end container-->
 </body>
 
