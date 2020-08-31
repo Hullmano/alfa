@@ -10,6 +10,12 @@
  </head>
   <body>
  	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		</nav>
+		<div class="p-5 text-center">
+			<h2 class="h2">Login</h2>
+		</div>			 	
+
 	 	<form action="/" method="post">
 		 	<div class="row justify-content-md-center">
 		 		<div class="col-md-auto">

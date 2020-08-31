@@ -13,7 +13,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/client">Clientes</a>
-			<a class="navbar-brand" href="/calculation">Cálculo</a>
+			<a class="navbar-brand" href="/calculation">Cálculos</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
 		<div class="p-5 text-center">
@@ -25,7 +25,7 @@
 	 			
 	 			<div class="col pr-lg-0"><!--col select-->
 					<label for="selectBox">Cliente</label>
-					<select  class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
+					<select class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
 						<option value="">Selecione</option>
 						<?php $counter1=-1;  if( isset($Users) && ( is_array($Users) || $Users instanceof Traversable ) && sizeof($Users) ) foreach( $Users as $key1 => $value1 ){ $counter1++; ?>
 						<option id="options" value="<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
@@ -141,10 +141,9 @@
 						<td><?php echo htmlspecialchars( $value1["checkLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php if( $value1["checkReturned"] == 1 ){ ?>Sim<?php }else{ ?>Não<?php } ?></td>
 						<td>
-							<!--<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/edit" onclick="update()">Editar</a>-->
 							<a class="badge badge-success badge-pill" href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
 							
-							<a href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="badge badge-danger badge-pill"><i class="fa fa-trash"></i> Excluir</a>
+							<a class="badge badge-danger badge-pill" href="bank_check/<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')"><i class="fa fa-trash"></i> Excluir</a>
 						</td>
 					</tr>
 					<?php } ?>
