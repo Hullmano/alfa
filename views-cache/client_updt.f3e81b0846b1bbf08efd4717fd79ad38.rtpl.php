@@ -120,7 +120,7 @@
 				</div><!--end col credit-->
 			 	<div class="col-md"><!--col chkvalues-->
 				 	<?php $counter1=-1;  if( isset($ChkTots) && ( is_array($ChkTots) || $ChkTots instanceof Traversable ) && sizeof($ChkTots) ) foreach( $ChkTots as $key1 => $value1 ){ $counter1++; ?>
-					<label for="chkvalues">Total de Cheques </label>
+					<label for="chkvalues">Total de Cheques</label>
 				 	<input type="text" class="form-control form-control-sm" name="chkvalues" id="chkvalues" value="<?php echo htmlspecialchars( $value1["totVals"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				</div><!--end col chkvalues-->
 			 	<div class="col-md"><!--col chkreceived-->

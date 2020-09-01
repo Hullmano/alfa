@@ -129,15 +129,13 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
+						<th>Fantasia</th>
 						<th>Cpf/Cnpj</th>
 						<th>Fone 1</th>
-						<th>Limite</th>	
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
+						<th>Fone 2</th>	
+						<th>Cidade</th>
+						<th>Email</th>
+						<th>Limite</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -145,17 +143,15 @@
 					<tr>
 						<td>{$value.clientId}</td>
 						<td id="tdName" style="text-transform: capitalize">{$value.clientName}</td>
+						<td style="min-width: 17px">{$value.clientFantasy}</td>
 						<td id="tdCpf" style="font-size: 15px">{$value.clientCpf}</td>
 						<td>{$value.clientPhone1}</td>
+						<td>{$value.clientPhone2}</td>
+						<td>{$value.clientCity}</td>
+						<td>{$value.clientEmail}</td>
 						<td>{$value.clientLimit}</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
 						<td id="tdLinks">
-							<a class="badge badge-success badge-pill" href="client/{$value.clientId}/update">Editar</a>
+							<a class="badge badge-success badge-pill" href="client/{$value.clientId}/update">Edit/Info</a>
 							<a class="badge badge-danger badge-pill" href="client/{$value.clientId}/delete" onclick="return confirm('Deseja realmente excluir este registro? Só é possível excluir clientes que não tenham registros de cheques!')"><i class="fa fa-trash"></i>Excluir</a>
 						</td>
 					</tr>

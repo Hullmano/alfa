@@ -129,15 +129,13 @@
 					<tr>
 						<th>Id</th>
 						<th>Nome</th>
+						<th>Fantasia</th>
 						<th>Cpf/Cnpj</th>
 						<th>Fone 1</th>
-						<th>Limite</th>	
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
-						<th>Cheques à Vencer</th>
+						<th>Fone 2</th>	
+						<th>Cidade</th>
+						<th>Email</th>
+						<th>Limite</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -145,17 +143,15 @@
 					<tr>
 						<td><?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td id="tdName" style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td style="min-width: 17px"><?php echo htmlspecialchars( $value1["clientFantasy"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td id="tdCpf" style="font-size: 15px"><?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientPhone1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["clientPhone2"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["clientCity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["clientEmail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientLimit"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
-						<td>1000.00</td>
 						<td id="tdLinks">
-							<a class="badge badge-success badge-pill" href="client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Editar</a>
+							<a class="badge badge-success badge-pill" href="client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/update">Edit/Info</a>
 							<a class="badge badge-danger badge-pill" href="client/<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return confirm('Deseja realmente excluir este registro? Só é possível excluir clientes que não tenham registros de cheques!')"><i class="fa fa-trash"></i>Excluir</a>
 						</td>
 					</tr>
