@@ -16,10 +16,30 @@
 			<a class="navbar-brand" href="/calculation">Cálculos</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
+		
+		<div class="d-flex">	   
+		    <!-- Sidebar -->
+		    <div class="bg-light border-right" id="sidebar-wrapper">
+		      <div class="list-group list-group-flush">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
+				<!--<a href="#" class="list-group-item list-group-item-action bg-light">Relatórios</a>-->
+		        <!--<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>-->
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="#">Cheques À Vencer</a>
+		          <a class="dropdown-item" href="#">Cheques Compensados</a>
+		          <a class="dropdown-item" href="#">Cheques Devolvidos</a>
+		          <!--<div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="#">Algo mais aqui</a>-->
+		        </div>
+		      </div>
+		    </div>
+	  	</div>
+	    <!-- /#sidebar-wrapper -->
+
 		<div class="p-5 text-center">
 			<h2 class="h2">Cadastro de Cheques</h2>
-		</div>
-		
+		</div>    
+
  		<form action="" method="post">
 	 		<div class="row"><!--row 1-->
 	 			
