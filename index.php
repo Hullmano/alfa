@@ -174,12 +174,12 @@ $app->get('/client/:clientId/delete', function($clientId) { //aqui são definida
 	exit;
 });
 
-$app->get('/client/search', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+$app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
 	User::verifyLogin();
-
-	$results = Client::listClients();
-	echo json_encode($results);
+	
+	$page = new Page("views/bank_check/reports/");
+	$page->setDraw("paid_check_rp");
 });
 /*------------------------------------------------------------------------------------------*/
 $app->run();                  //aqui chama as rotas.

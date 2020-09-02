@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">
+ 	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
+ 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
+</head>
+<body onload="Today()">
+	<div class="container">
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="/client">Clientes</a>
+			<a class="navbar-brand" href="/calculation">Cálculos</a>
+			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
+		</nav>
+		
+		<div class="p-5 text-center">
+			<h2 class="h2">Relatório de Cheques Compensados</h2>
+		</div>    
+
+		<div class="table-responsive-sm table-striped text-capitalize">
+			<table border="1px" cellpadding="5px" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Cód.</th>
+						<th>Cliente</th>
+						<th>Banco</th>
+						<th>Agência</th>
+						<th>C/Corrente</th>
+						<th>NºCheque</th>
+						<th>Valor</th>
+						<th>Dt.Base</th>
+						<th>Emitente</th>
+						<th>Vencim.</th>
+						<th>Dias</th>
+						<th>Taxa</th>
+						<th>Juros</th>
+						<th>Líquido</th>
+						<th>Devol</th>
+					</tr>	
+				</thead>
+				<tbody>
+					{loop="$Data"}
+					<tr>
+						<td id="tdId">{$value.checkId}</td>
+						<td id="tdClient" style="font-size: 13px;">{$value.clientName}</td>
+						<td id="tdBank">{$value.checkBank}</td>
+						<td id="tdAgency">{$value.checkAgency}</td>
+						<td id="tdAccount">{$value.checkAccount}</td>
+						<td id="tdNumChk">{$value.checkNumChk}</td>
+						<td id="tdValue">{$value.checkValue}</td>
+						<td id="tdToday" style="font-size: 14px;">{$value.checkToday}</td>
+						<td id="tdIssuer" style="font-size: 14px;">{$value.checkIssuer}</td>
+						<td style="font-size: 14px;">{$value.checkDue}</td>
+						<td>{$value.checkDays}</td>
+						<td>{$value.checkTax}</td>
+						<td>{$value.checkIntrst}</td>
+						<td>{$value.checkLiquid}</td>
+						<td>{if="$value.checkReturned == 1"}Sim{else}Não{/if}</td>
+						<td>
+							<a class="badge badge-success badge-pill" href="bank_check/{$value.checkId}/update">Editar</a>
+							
+							<a class="badge badge-danger badge-pill" href="bank_check/{$value.checkId}/delete" onclick="return confirm('Deseja realmente excluir este registro?')"><i class="fa fa-trash"></i> Excluir</a>
+						</td>
+					</tr>
+					{/loop}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+<!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS --> 
+    <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/resource/bs_js/popper.min.js"></script>
+    <script src="/resource/bs_js/bootstrap.min.js"></script> 
+	<script src="/resource/bank_check.js"></script>
+</html>

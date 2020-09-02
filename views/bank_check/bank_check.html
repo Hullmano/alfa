@@ -6,7 +6,6 @@
  	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">
  	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
  	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
-	<title>Alfa</title>
 </head>
 <body onload="Today()">
 	<div class="container">
@@ -25,7 +24,7 @@
 				<!--<a href="#" class="list-group-item list-group-item-action bg-light">Relatórios</a>-->
 		        <!--<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Cheques À Vencer</a>
+		          <a class="dropdown-item" href="/bank_check/reports/paid_check_rp">Cheques À Vencer</a>
 		          <a class="dropdown-item" href="#">Cheques Compensados</a>
 		          <a class="dropdown-item" href="#">Cheques Devolvidos</a>
 		          <!--<div class="dropdown-divider"></div>
