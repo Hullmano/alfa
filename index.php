@@ -173,13 +173,48 @@ $app->get('/client/:clientId/delete', function($clientId) { //aqui são definida
 	header("Location: /client");
 	exit;
 });
+#------------------------------------------------------REPORTS-------------------------------------------------
+//Relatório de cheques à vencer!
+$app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
+	User::verifyLogin();
+
+	$data = bank_check::checksDue();
+	$count = bank_check::checksDueCount();
+	
+	$page = new Page("views/bank_check/reports/");
+	$page->setDraw("due_check_rp", array(
+		"Data"=>$data,
+		"Count"=>$count
+	));
+});
+//Relatório de cheques compensados!
 $app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
 	User::verifyLogin();
+
+	$data = bank_check::checksPaid();
+	$count = bank_check::checksPaidCount();
 	
 	$page = new Page("views/bank_check/reports/");
-	$page->setDraw("paid_check_rp");
+	$page->setDraw("paid_check_rp", array(
+		"Data"=>$data,
+		"Count"=>$count
+	));
+});
+//Relatório de cheques devolvidos!
+$app->get('/bank_check/reports/returned_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	User::verifyLogin();
+
+	$data = bank_check::checksReturned();
+	$count = bank_check::checksReturnedCount();
+	
+	$page = new Page("views/bank_check/reports/");
+	$page->setDraw("returned_check_rp", array(
+		"Data"=>$data,
+		"Count"=>$count
+	));
 });
 /*------------------------------------------------------------------------------------------*/
 $app->run();                  //aqui chama as rotas.

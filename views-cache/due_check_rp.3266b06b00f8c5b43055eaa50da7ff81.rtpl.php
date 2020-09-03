@@ -24,7 +24,7 @@
 				<!--<a href="#" class="list-group-item list-group-item-action bg-light">Relatórios</a>-->
 		        <!--<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="/bank_check/reports/due_check_rp">Cheques À Vencer</a>
+		          <a class="dropdown-item" href="/bank_check/reports/paid_check_rp">Cheques Compensados</a>
 		          <a class="dropdown-item" href="/bank_check/reports/returned_check_rp">Cheques Devolvidos</a>
 		          <!--<div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="#">Algo mais aqui</a>-->
@@ -32,10 +32,10 @@
 		      </div>
 		    </div>
 	  	</div>
-	    <!-- /#sidebar-wrapper -->			
+	    <!-- /#sidebar-wrapper -->		
 		
 		<div class="p-5 text-center">
-			<h2 class="h2">Relatório de Cheques Compensados</h2>
+			<h2 class="h2">Relatório de Cheques à Vencer</h2>
 		</div>    
 
 		<div class="table-responsive-sm table-striped text-capitalize">
@@ -94,7 +94,7 @@
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				<?php } ?>
 			</div>
-		</div><br>		
+		</div><br>
 		<div class="col"> <!--col Cancel--> 	
 		 	<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
 		</div><!--end col Cancel-->		

@@ -24,9 +24,9 @@
 				<!--<a href="#" class="list-group-item list-group-item-action bg-light">Relatórios</a>-->
 		        <!--<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>-->
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="/bank_check/reports/paid_check_rp">Cheques À Vencer</a>
-		          <a class="dropdown-item" href="#">Cheques Compensados</a>
-		          <a class="dropdown-item" href="#">Cheques Devolvidos</a>
+		          <a class="dropdown-item" href="/bank_check/reports/due_check_rp">Cheques À Vencer</a>
+		          <a class="dropdown-item" href="/bank_check/reports/paid_check_rp">Cheques Compensados</a>
+		          <a class="dropdown-item" href="/bank_check/reports/returned_check_rp">Cheques Devolvidos</a>
 		          <!--<div class="dropdown-divider"></div>
 		          <a class="dropdown-item" href="#">Algo mais aqui</a>-->
 		        </div>

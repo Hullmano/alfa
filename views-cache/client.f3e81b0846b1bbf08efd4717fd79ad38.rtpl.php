@@ -123,7 +123,7 @@
 			 	<!--<input type="submit" value="Salvar">-->
 		</form>
 
-		<div class="table-responsive-sm table-striped text-capitalize">
+		<div class="table-responsive-sm table-striped">
 			<table border="1px" cellpadding="5px" cellspacing="0">
 				<thead>
 					<tr>
@@ -143,11 +143,11 @@
 					<tr>
 						<td><?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td id="tdName" style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-						<td style="min-width: 17px"><?php echo htmlspecialchars( $value1["clientFantasy"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td style="min-width: 17px; text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientFantasy"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td id="tdCpf" style="font-size: 15px"><?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientPhone1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientPhone2"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-						<td><?php echo htmlspecialchars( $value1["clientCity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td style="text-transform: capitalize"><?php echo htmlspecialchars( $value1["clientCity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientEmail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["clientLimit"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td id="tdLinks">

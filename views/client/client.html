@@ -123,7 +123,7 @@
 			 	<!--<input type="submit" value="Salvar">-->
 		</form>
 
-		<div class="table-responsive-sm table-striped text-capitalize">
+		<div class="table-responsive-sm table-striped">
 			<table border="1px" cellpadding="5px" cellspacing="0">
 				<thead>
 					<tr>
@@ -143,11 +143,11 @@
 					<tr>
 						<td>{$value.clientId}</td>
 						<td id="tdName" style="text-transform: capitalize">{$value.clientName}</td>
-						<td style="min-width: 17px">{$value.clientFantasy}</td>
+						<td style="min-width: 17px; text-transform: capitalize">{$value.clientFantasy}</td>
 						<td id="tdCpf" style="font-size: 15px">{$value.clientCpf}</td>
 						<td>{$value.clientPhone1}</td>
 						<td>{$value.clientPhone2}</td>
-						<td>{$value.clientCity}</td>
+						<td style="text-transform: capitalize">{$value.clientCity}</td>
 						<td>{$value.clientEmail}</td>
 						<td>{$value.clientLimit}</td>
 						<td id="tdLinks">
