@@ -103,7 +103,7 @@ class Bank_Check extends Sql
 
 #------------------------------------------------------REPORTS-------------------------------------------------
 	//Relatório de cheques à vencer!
-	public static function checksDue($search = '%')
+	public static function checksDue($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);

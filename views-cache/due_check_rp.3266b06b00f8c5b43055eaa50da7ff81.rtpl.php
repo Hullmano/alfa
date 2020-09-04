@@ -92,8 +92,11 @@
 				<?php $counter1=-1;  if( isset($Count) && ( is_array($Count) || $Count instanceof Traversable ) && sizeof($Count) ) foreach( $Count as $key1 => $value1 ){ $counter1++; ?>
 				<label>Quantidade de Cheques</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
-				<label>Quantidade de Cheques</label>
-				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+				<form action="">
+					<label>Pesquisa por Cliente</label>
+					<input type="text" class="form-control form-control-sm" name="search" value="">
+					<button class="btn btn-success" type="submit"></button>
+				</form>
 				<?php } ?>
 			</div>
 		</div><br>

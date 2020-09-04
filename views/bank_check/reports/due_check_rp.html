@@ -92,8 +92,11 @@
 				{loop="$Count"}
 				<label>Quantidade de Cheques</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.Amount}" readonly>
-				<label>Quantidade de Cheques</label>
-				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.Amount}">
+				<form action="">
+					<label>Pesquisa por Cliente</label>
+					<input type="text" class="form-control form-control-sm" name="search" value="">
+					<button class="btn btn-success" type="submit"></button>
+				</form>
 				{/loop}
 			</div>
 		</div><br>
