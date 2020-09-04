@@ -179,7 +179,9 @@ $app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definid
 
 	User::verifyLogin();
 
-	$data = bank_check::checksDue($search = '%');
+	$search = $_GET['']
+
+	$data = bank_check::checksDue($search);
 	$count = bank_check::checksDueCount();
 	
 	$page = new Page("views/bank_check/reports/");
