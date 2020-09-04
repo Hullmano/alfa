@@ -103,15 +103,16 @@ class Bank_Check extends Sql
 
 #------------------------------------------------------REPORTS-------------------------------------------------
 	//Relatório de cheques à vencer!
-	public static function checksDue()
+	public static function checksDue($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue > current_date() ORDER BY ch.checkDue', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue > current_date() AND ch.checkId LIKE :SEARCH ORDER BY ch.checkDue', array(
+			"SESSIONID"=>$sessionId,
+			"SEARCH"=>$search
 		));		
 	}
 	//Quantidade.
