@@ -87,17 +87,35 @@
 				</tbody>
 			</table>
 		</div><br>
-		<div class="row">
+		
+		<div class="row"><!--labels row-->
 			<div class="col-md">
 				{loop="$Count"}
 				<label>Quantidade de Cheques</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.Amount}" readonly>
+			</div>	
+			<div class="col-md">
+				<label>Valor dos Cheques</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.tValue}" readonly>
 				{/loop}
 			</div>
-		</div><br>		
-		<div class="col"> <!--col Cancel--> 	
-		 	<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
-		</div><!--end col Cancel-->		
+		</div><!--end labels row--><br>
+		<form action=""> <!--search form-->
+			<div class="row">
+				<div class="col-md">
+					<label>Pesquisa por Cliente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" name="search" autofocus>
+				</div>
+				<div class="col-md">
+					{loop="$Search"}
+					<label>Resultado Pesquisa</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" value="{$value.val}" readonly><br>
+					{/loop}
+				</div>
+			</div>
+				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
+				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
+		</form><!--end search form-->
 	</div>
 </body>
 

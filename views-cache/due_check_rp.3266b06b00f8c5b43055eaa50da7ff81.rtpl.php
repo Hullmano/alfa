@@ -87,22 +87,35 @@
 				</tbody>
 			</table>
 		</div><br>
-		<div class="row">
+		
+		<div class="row"><!--labels row-->
 			<div class="col-md">
 				<?php $counter1=-1;  if( isset($Count) && ( is_array($Count) || $Count instanceof Traversable ) && sizeof($Count) ) foreach( $Count as $key1 => $value1 ){ $counter1++; ?>
 				<label>Quantidade de Cheques</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
-				<form action="">
-					<label>Pesquisa por Cliente</label>
-					<input type="text" class="form-control form-control-sm" name="search" value="">
-					<button class="btn btn-success" type="submit"></button>
-				</form>
+			</div>	
+			<div class="col-md">
+				<label>Valor dos Cheques</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				<?php } ?>
 			</div>
-		</div><br>
-		<div class="col"> <!--col Cancel--> 	
-		 	<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
-		</div><!--end col Cancel-->		
+		</div><!--end labels row--><br>
+		<form action=""> <!--search form-->
+			<div class="row">
+				<div class="col-md">
+					<label>Pesquisa por Cliente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" name="search" autofocus>
+				</div>
+				<div class="col-md">
+					<?php $counter1=-1;  if( isset($Search) && ( is_array($Search) || $Search instanceof Traversable ) && sizeof($Search) ) foreach( $Search as $key1 => $value1 ){ $counter1++; ?>
+					<label>Resultado Pesquisa</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" value="<?php echo htmlspecialchars( $value1["val"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly><br>
+					<?php } ?>
+				</div>
+			</div>
+				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
+				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
+		</form><!--end search form-->
 	</div>
 </body>
 

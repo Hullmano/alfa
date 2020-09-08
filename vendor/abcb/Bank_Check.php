@@ -110,74 +110,79 @@ class Bank_Check extends Sql
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue > current_date() AND ch.checkId LIKE :SEARCH ORDER BY ch.checkDue', array(
+		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue > current_date() AND cl.clientName LIKE :SEARCH ORDER BY ch.checkDue', array(
 			"SESSIONID"=>$sessionId,
-			"SEARCH"=>$search
+			"SEARCH"=>$search.'%'
 		));		
 	}
 	//Quantidade.
-	public static function checksDueCount()
+	public static function checksDueCount($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT COUNT(checkId) AS Amount FROM tb_checks WHERE chkSessionId = :SESSIONID AND checkDue > current_date()', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT COUNT(checkId) AS Amount, SUM(checkValue) AS tValue FROM tb_checks ch INNER JOIN tb_clients cl USING(clientId) WHERE chkSessionId = :SESSIONID AND checkDue > current_date() AND cl.clientName LIKE :SEARCH', array(
+			"SESSIONID"=>$sessionId,
+			"SEARCH"=>$search.'%'			
 		));		
 	}//Fim Relatório de cheques à vencer!
 	
 	//Relatório de cheques compensados!
-	public static function checksPaid()
+	public static function checksPaid($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue < current_date() ORDER BY ch.checkDue', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkDue < current_date() AND cl.clientName LIKE :SEARCH ORDER BY ch.checkDue', array(
+			"SESSIONID"=>$sessionId,
+			"SEARCH"=>$search.'%'
 		));		
 
 	}	
 	//Quantidade.
-	public static function checksPaidCount()
+	public static function checksPaidCount($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT COUNT(checkId) AS Amount FROM tb_checks WHERE chkSessionId = :SESSIONID AND checkDue < current_date()', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT COUNT(checkId) AS Amount, SUM(checkValue) AS tValue FROM tb_checks ch INNER JOIN tb_clients cl USING(clientId) WHERE chkSessionId = :SESSIONID AND checkDue < current_date() AND cl.clientName LIKE :SEARCH', array(
+			"SESSIONID"=>$sessionId,
+			"SEARCH"=>$search.'%'
 		));		
 	}//Fim Relatório de cheques à vencer!	
 
 	//Relatório de cheques Devolvidos!
-	public static function checksReturned()
+	public static function checksReturned($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkReturned = :RETURNED ORDER BY ch.checkDue', array(
+		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND checkReturned = :RETURNED AND cl.clientName LIKE :SEARCH ORDER BY ch.checkDue', array(
 			"SESSIONID"=>$sessionId,
-			"RETURNED"=>'1'
+			"RETURNED"=>'1',
+			"SEARCH"=>$search.'%'
 		));		
 	}
 	//Quantidade.	
-	public static function checksReturnedCount()
+	public static function checksReturnedCount($search)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT COUNT(checkId) AS Amount FROM tb_checks WHERE chkSessionId = :SESSIONID AND checkReturned = :RETURNED', array(
+		return $results = $sql->select('SELECT COUNT(checkId) AS Amount, SUM(checkValue) AS tValue FROM tb_checks ch INNER JOIN tb_clients cl USING(clientId) WHERE chkSessionId = :SESSIONID AND checkReturned = :RETURNED AND cl.clientName LIKE :SEARCH', array(
 			"SESSIONID"=>$sessionId,
-			"RETURNED"=>'1'
+			"RETURNED"=>'1',
+			"SEARCH"=>$search.'%'
 		));		
 	}//Fim Relatório de cheques à vencer!		
 

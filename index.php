@@ -176,46 +176,62 @@ $app->get('/client/:clientId/delete', function($clientId) { //aqui são definida
 #------------------------------------------------------REPORTS-------------------------------------------------
 //Relatório de cheques à vencer!
 $app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
-
 	User::verifyLogin();
 
-	$search = (isset($_GET["search"])) ? $_GET["search"] : '%';
+	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
+	array_push($varArray, array(
+		'val'=>$search
+	));
 
 	$data = bank_check::checksDue($search);
-	$count = bank_check::checksDueCount();
+	$count = bank_check::checksDueCount($search);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("due_check_rp", array(
 		"Data"=>$data,
-		"Count"=>$count
+		"Count"=>$count,
+		"Search"=>$varArray
 	));
 });
 //Relatório de cheques compensados!
 $app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
-
 	User::verifyLogin();
 
-	$data = bank_check::checksPaid();
-	$count = bank_check::checksPaidCount();
+	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
+	array_push($varArray, array(
+		'val'=>$search
+	));
+
+	$data = bank_check::checksPaid($search);
+	$count = bank_check::checksPaidCount($search);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("paid_check_rp", array(
 		"Data"=>$data,
-		"Count"=>$count
+		"Count"=>$count,
+		"Search"=>$varArray
 	));
 });
 //Relatório de cheques devolvidos!
 $app->get('/bank_check/reports/returned_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
-
 	User::verifyLogin();
 
-	$data = bank_check::checksReturned();
-	$count = bank_check::checksReturnedCount();
+	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
+	array_push($varArray, array(
+		'val'=>$search
+	));
+
+	$data = bank_check::checksReturned($search);
+	$count = bank_check::checksReturnedCount($search);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("returned_check_rp", array(
 		"Data"=>$data,
-		"Count"=>$count
+		"Count"=>$count,
+		"Search"=>$varArray
 	));
 });
 /*------------------------------------------------------------------------------------------*/
