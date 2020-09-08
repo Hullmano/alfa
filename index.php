@@ -214,7 +214,7 @@ $app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são defini
 		"Search"=>$varArray
 	));
 });
-//Relatório de cheques devolvidos!
+//Relatório de cheques devolvidos
 $app->get('/bank_check/reports/returned_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	User::verifyLogin();
 
