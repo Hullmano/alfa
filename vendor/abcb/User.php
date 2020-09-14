@@ -29,7 +29,14 @@ class User extends Sql
 			throw new \Exception("Usuário ou Senha Inválido.");
 		}
 
-		$data = $results[0];                             //recebe a 1º posição do array $results.
+		$data = $results[0];                 //recebe a 1º posição do array $results.
+
+
+		if ($data["userActived"] !== '1'){   //testa se user está ativo.
+
+			throw new \Exception("Nenhum Usuário Ativo.");
+		}
+
 
 		if ($password === $data["userPassword"]) 
 		{

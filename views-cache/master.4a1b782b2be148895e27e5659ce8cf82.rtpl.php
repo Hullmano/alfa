@@ -37,7 +37,30 @@
 		</div>    
 
  		<form action="" method="post">
-	 		
+ 			<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
+ 			<div class="row"><!--row-->
+		 		<div class="col-md-1"><!--col id-->
+				 	<label for="fantasy"><STRONG>Id</STRONG></label>
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["userId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		 		</div><!--end col id-->
+		 		<div class="col-md-3"><!--col login-->
+				 	<label for="fantasy">Login</label>
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["userLogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		 		</div><!--end col login-->
+		 		<div class="col-md-3"><!--col senha-->
+				 	<label for="fantasy">Senha</label>
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["userPassword"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		 		</div><!--end col senha-->
+		 		<div class="col-md-3"><!--col registro-->
+				 	<label for="fantasy">Registro</label>
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["userRegister"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		 		</div><!--end col registro-->	
+		 		<div class="col-md-2"><!--col ativo-->
+				 	<label for="fantasy">Ativo</label>
+				 	<input type="text" class="form-control form-control-sm text-capitalize" name="fantasy" id="fantasy" maxlength="60" value="<?php echo htmlspecialchars( $value1["userActived"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+		 		</div><!--end col ativo-->		 	
+	 		</div><!--end row-->
+	 		<?php } ?>	
 		</form>
 
 		<div class="col-md table-responsive-sm table-striped text-capitalize">
@@ -59,6 +82,10 @@
 						<td><?php echo htmlspecialchars( $value1["userPassword"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["userRegister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 						<td><?php echo htmlspecialchars( $value1["userActived"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td>
+							<a class="badge badge-success badge-pill" href="">Edit/Info</a>
+							<a class="badge badge-danger badge-pill" href="" onclick="return confirm('Deseja realmente excluir este registro? Só é possível excluir clientes que não tenham registros de cheques!')"><i class="fa fa-trash"></i>Excluir</a>
+						</td>
 					</tr>
 					<?php } ?>
 				</tbody>
