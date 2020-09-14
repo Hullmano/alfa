@@ -115,9 +115,14 @@
 			</div>
 				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
 				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
-		</form><!--end search form-->
-	</div>
-</body>
+		</form><!--end search form--><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
+
+	</div><!--end container-->
+</body> 
 
 <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS --> 

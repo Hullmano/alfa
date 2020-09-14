@@ -20,7 +20,7 @@
 		 	<div class="row justify-content-md-center">
 		 		<div class="col-md-auto">
 				 	<label for="login">Usuário</label>
-				 	<input type="text" class="form-control form-control-sm" name="login" id="login" autofocus><br>
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="login" id="login" autofocus><br>
 				 	
 				 	<label for="psw">Senha</label>
 				 	<input type="password" class="form-control form-control-sm" name="password" id="psw"><br>
@@ -31,8 +31,12 @@
 				 	<a class="btn btn-primary" href="/new_user" id="right">Novo Usuário</a>
 			 	</div>
 			</div>
-		</form>
-	</div>
+		</form><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
+	</div><!--end container-->
  </body>
 
 <!-- JavaScript (Opcional) -->

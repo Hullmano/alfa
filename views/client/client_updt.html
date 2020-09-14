@@ -137,7 +137,11 @@
 				 	<!--<input type="submit" value="Salvar">-->
 					<a class="btn btn-primary" href="/client">Cancelar</a>
 				 	<!--<a href="/alfa/new_user" id="right">Novo Usuário</a>-->
-		</form>
+		</form><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
 	</div><!--end container-->
 </body>	
 <!-- JavaScript (Opcional) -->

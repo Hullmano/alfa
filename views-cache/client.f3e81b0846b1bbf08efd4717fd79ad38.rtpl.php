@@ -158,7 +158,11 @@
 					<?php } ?>
 				</tbody>
 			</table>
-		</div>
+		</div><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
 	</div><!--end container-->
 </body>
 

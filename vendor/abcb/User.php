@@ -95,7 +95,7 @@ class User extends Sql
 	{
 		$sql = new Sql();
 
-		return $results = $sql->select("SELECT * FROM tb_clients"); 
+		return $results = $sql->select("SELECT * FROM tb_users"); 
 
 	}
 	

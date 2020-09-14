@@ -22,7 +22,13 @@ $app->get('/', function() {   //aqui são definidas as rotas. Neste caso "/" é 
 $app->post('/', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 
 	User::login($_POST["login"], $_POST["password"]);
-	//print_r($_SESSION);
+
+	if ($_POST["login"] === "admin") 
+	{
+		header("Location: /master");
+		exit;	
+	}
+
 	header("Location: /calculation");
 	exit;
 });
@@ -173,6 +179,21 @@ $app->get('/client/:clientId/delete', function($clientId) { //aqui são definida
 	header("Location: /client");
 	exit;
 });
+
+/*------------------------------------------------------------------------------------------*/
+$app->get('/master', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+
+	User::verifyLogin();
+
+	$data = User::listUsers();
+
+	$page = new Page("views/master/");
+	$page->setDraw("master", array(
+		"Data"=>$data
+	));
+
+});
+
 #------------------------------------------------------REPORTS-------------------------------------------------
 //Relatório de cheques à vencer!
 $app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.

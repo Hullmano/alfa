@@ -110,7 +110,12 @@
 					</div> <!--end col 4-->
 				</div><!--end row 1-->
 			</div><!--end col-dm-10-->
-		</div><!--end row 2-->
+		</div><!--end row 2--><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
+		
 	</div><!--end container-->
 </body>
 
