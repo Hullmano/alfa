@@ -107,12 +107,16 @@
 				 	<!--<input type="submit" value="Alterar" onclick="return calc()">-->
 				 	<button type="submit" class="btn btn-success mb-lg-1" onclick="return calc()">Alterar</button>
 				</div><!--end col submit-->
-				<div class="col"> <!--col submit--> 	
+				<div class="col"> <!--col Cancel--> 	
 				 	<a class="btn btn-primary" href="/bank_check">Cancelar</a>
-				</div><!--end col submit-->
+				</div><!--end col Cancel-->
 			</div><!--end row 3-->				 	
-		</form>
-	</div>		
+		</form><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
+	</div><!--end container-->		
 </body>
 
 <!-- JavaScript (Opcional) -->

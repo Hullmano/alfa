@@ -31,13 +31,6 @@ class User extends Sql
 
 		$data = $results[0];                 //recebe a 1º posição do array $results.
 
-
-		if ($data["userActived"] !== '1'){   //testa se user está ativo.
-
-			throw new \Exception("Nenhum Usuário Ativo.");
-		}
-
-
 		if ($password === $data["userPassword"]) 
 		{
 			//echo "Ok";
@@ -46,8 +39,14 @@ class User extends Sql
 
 		} else {
 			throw new \Exception("Usuário ou Senha Inválido..");
-			
 		}
+
+
+		if ($data["userActived"] !== '1'){   //testa se user está ativo.
+
+			throw new \Exception("Nenhum Usuário Ativo.");
+		}
+
 
 	/*	if (password_verify($senha, $data["userPassword"]) === true)
 		{

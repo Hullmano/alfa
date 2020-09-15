@@ -9,6 +9,7 @@ use \Abcb\Page;
 use \Abcb\User;
 use \Abcb\Client;
 use \Abcb\Bank_Check;
+use \Abcb\Master;
 
 $app = new Slim();
 
@@ -185,13 +186,30 @@ $app->get('/master', function() {   //aqui são definidas as rotas. Neste caso "
 
 	User::verifyLogin();
 
+	/* verifica se o user logado é master. Se sim redireciona para /master, se não redirec. para /calculation. */
+	$session = $_SESSION['User'][0];
+
+	if ($session["userLogin"] === "admin") 
+	{
+		header("Location: /master");
+	} else {
+		header("Location: /calculation");
+		exit;	
+	}		
+	/*---------------------------------end verifica----------------------------------------*/
 	$data = User::listUsers();
 
 	$page = new Page("views/master/");
 	$page->setDraw("master", array(
 		"Data"=>$data
 	));
+});
+$app->post('/master', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+	
+	Master::updateUser($_POST["id"], $_POST["login"], $_POST["password"], $_POST["register"], $_POST["actived"]);
 
+	header("Location: /master");
+	exit;
 });
 
 #------------------------------------------------------REPORTS-------------------------------------------------
