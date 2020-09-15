@@ -89,7 +89,7 @@ class User extends Sql
 
 			$sql = new Sql();
 
-			$results = $sql->query("INSERT INTO tb_users VALUES (default, :LOGIN, :PSW, default)", array(
+			$results = $sql->query("INSERT INTO tb_users VALUES (default, :LOGIN, :PSW, default, default)", array(
 				":LOGIN"=>$newUser,
 				":PSW"  =>$newPsw
 			));

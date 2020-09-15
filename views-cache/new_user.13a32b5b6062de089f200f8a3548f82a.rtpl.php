@@ -10,26 +10,30 @@
 </head>
 <body>
 	<div class="container">
- 	<form action="/new_user" method="post">
- 		<div class="row justify-content-md-center">
- 			<div class="col-md-auto">
-			 	<label for="login">Novo Usuário</label>
-			 	<input type="text" class="form-control form-control-sm" name="newUser" id="login"><br>
-			 	
-			 	<label for="psw">Nova Senha</label>
-			 	<input type="password" class="form-control form-control-sm" name="newPsw" id="psw"><br>
-			 	
-			 	<label for="cpsw">Conf. Senha</label>		 	
-			 	<input type="password" class="form-control form-control-sm" name="confPsw" id="cpsw"><br>
-			 	
-			 	<!--<input type="submit" value="Ok">-->
-			 	<button class="btn btn-success" type="submit">Confirmar</button>
+	 	<form action="/new_user" method="post">
+	 		<div class="row justify-content-md-center">
+	 			<div class="col-md-auto">
+				 	<label for="login">Novo Usuário</label>
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="newUser" id="login"><br>
+				 	
+				 	<label for="psw">Nova Senha</label>
+				 	<input type="password" class="form-control form-control-sm" name="newPsw" id="psw"><br>
+				 	
+				 	<label for="cpsw">Conf. Senha</label>		 	
+				 	<input type="password" class="form-control form-control-sm" name="confPsw" id="cpsw"><br>
+				 	
+				 	<!--<input type="submit" value="Ok">-->
+				 	<button class="btn btn-success" type="submit">Confirmar</button>
 
-			 	<a class="btn btn-primary" href="/" id="right">Login</a>
-			</div>
-	 	</div>
-	</form>
-</div>
+				 	<a class="btn btn-primary" href="/" id="right">Login</a>
+				</div>
+		 	</div>
+		</form><br><br>
+
+		<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#"></a>
+		</nav>
+	</div><!--end container-->
 </body>
 
 <!-- JavaScript (Opcional) -->

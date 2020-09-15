@@ -36,34 +36,54 @@
 			<h2 class="h2">Master</h2>
 		</div>    
 
+		<div class="col-md table-responsive-sm table-striped text-lowercase">
+			<table border="1px" cellpadding="5px" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Login</th>
+						<th>Password</th>
+						<th>Register</th>
+						<th>Actived</th>
+					</tr>	
+				</thead>
+				<tbody>
+					<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
+					<tr>
+						<td><?php echo htmlspecialchars( $value1["userId"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["userLogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["userPassword"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["userRegister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+						<td><?php echo htmlspecialchars( $value1["userActived"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div><br><br>
+
  		<form action="" method="post">
- 			<?php $counter1=-1;  if( isset($Data) && ( is_array($Data) || $Data instanceof Traversable ) && sizeof($Data) ) foreach( $Data as $key1 => $value1 ){ $counter1++; ?>
  			<div class="row"><!--row-->
 		 		<div class="col-md-1"><!--col id-->
 				 	<label for="id"><STRONG>Id</STRONG></label>
-				 	<input type="text" class="form-control form-control-sm text-lowercase" name="id" id="id" value="<?php echo htmlspecialchars( $value1["userId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="id" id="id">
 		 		</div><!--end col id-->
 		 		<div class="col-md-3"><!--col login-->
 				 	<label for="login">Login</label>
-				 	<input type="text" class="form-control form-control-sm text-lowercase" name="login" id="login" maxlength="30" value="<?php echo htmlspecialchars( $value1["userLogin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="login" id="login" maxlength="30">
 		 		</div><!--end col login-->
 		 		<div class="col-md-3"><!--col senha-->
 				 	<label for="password">Senha</label>
-				 	<input type="text" class="form-control form-control-sm text-lowercase" name="password" id="password" maxlength="30" value="<?php echo htmlspecialchars( $value1["userPassword"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="password" id="password" maxlength="30">
 		 		</div><!--end col senha-->
-		 		<div class="col-md-3"><!--col registro-->
-				 	<label for="register">Registro</label>
-				 	<input type="text" class="form-control form-control-sm text-lowercase" name="register" id="register" value="<?php echo htmlspecialchars( $value1["userRegister"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
-		 		</div><!--end col registro-->	
 		 		<div class="col-md-2"><!--col ativo-->
 				 	<label for="actived">Ativo</label>
-				 	<input type="text" class="form-control form-control-sm text-lowercase" name="actived" id="actived" maxlength="1" value="<?php echo htmlspecialchars( $value1["userActived"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><br>
-		 		</div><!--end col ativo-->		 	
+				 	<input type="text" class="form-control form-control-sm text-lowercase" name="actived" id="actived" maxlength="1"><br>
+		 		</div><!--end col ativo-->		 
 	 		</div><!--end row-->
-	 		<?php } ?>	
 	 		<button type="submit" class="btn btn-success">Salvar</button>
 	 		<a class="btn btn-primary" href="/master">Cancelar</a>
-		</form><br><br>		
+		</form><br><br>			
+
 
 		<nav class="navbar fixed-bottom navbar-dark bg-dark">
 		  <a class="navbar-brand" href="#"></a>

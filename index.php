@@ -206,7 +206,7 @@ $app->get('/master', function() {   //aqui são definidas as rotas. Neste caso "
 });
 $app->post('/master', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	
-	Master::updateUser($_POST["id"], $_POST["login"], $_POST["password"], $_POST["register"], $_POST["actived"]);
+	Master::updateUser($_POST["id"], $_POST["login"], $_POST["password"], $_POST["actived"]);
 
 	header("Location: /master");
 	exit;
