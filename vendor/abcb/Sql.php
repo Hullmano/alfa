@@ -10,6 +10,7 @@ class Sql
 	{
 		$errors = array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION);
 		$this->conn = new \PDO("mysql:dbname=cheques;hostname=localhost", "root", "Strong...999", $errors);
+		//$this->conn = new \PDO("mysql:dbname=cheques;host=167.172.138.228", "abcb", "Strong...999", $errors);
 	}	
 
 	public function query($rowQuery, $parameters = array())
