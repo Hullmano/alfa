@@ -121,7 +121,7 @@
 			</div><!--end row 3-->
 				<button type="submit" class="btn btn-success mb-lg-5">Salvar</button>
 			 	<!--<input type="submit" value="Salvar">-->
-		</form>
+		</form><br>
 
 		<div class="table-responsive-sm table-striped">
 			<table border="1px" cellpadding="5px" cellspacing="0">

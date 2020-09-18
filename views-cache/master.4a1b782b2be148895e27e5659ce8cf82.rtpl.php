@@ -84,7 +84,6 @@
 	 		<a class="btn btn-primary" href="/master">Cancelar</a>
 		</form><br><br>			
 
-
 		<nav class="navbar fixed-bottom navbar-dark bg-dark">
 		  <a class="navbar-brand" href="#"></a>
 		</nav>

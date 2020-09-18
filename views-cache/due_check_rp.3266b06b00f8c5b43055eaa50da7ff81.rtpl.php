@@ -95,10 +95,18 @@
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 			</div>	
 			<div class="col-md">
-				<label>Valor dos Cheques</label>
+				<label>Total dos Cheques</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+			</div>
+			<div class="col-md">
+				<label>Total de Juros</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+			</div>	
+			<div class="col-md">
+				<label>Total Líquido</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				<?php } ?>
-			</div>
+			</div>			
 		</div><!--end labels row--><br>
 		<form action=""> <!--search form-->
 			<div class="row">

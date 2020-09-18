@@ -112,13 +112,13 @@
 			<div class="row pt-lg-4"><!--row 3-->
 				<div class="col-2"> <!--col cod-->
 				 	<label for="cod">Cód.Cheque</label>
-				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" tabindex="-1" readonly>
+				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" tabindex="-1" readonly><br>
 				</div> <!--end col cod-->
 				<div class="col-md-2"> <!--col submit-->
 				 	<button type="submit" class="btn btn-success my-lg-4" onclick="return calc()">Salvar</button>
 				</div><!--end col submit-->
 			</div><!--end row 3-->
-		</form>
+		</form><br>
 
 		<div class="table-responsive-sm table-striped text-capitalize">
 			<table border="1px" cellpadding="5px" cellspacing="0">
