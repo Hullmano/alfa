@@ -100,14 +100,13 @@
 				<div class="col-md-2 pl-lg-4 ml-lg-3"><!--col checkbox-->
 					<input class="form-check-input" type="checkBox" id="returned" name="returned" <?php if( $value1["checkReturned"] == 1 ){ ?>checked<?php } ?>></input>
 					<label class="form-check-label" for="returned">Devolvido</label>
-					<!--<label for="returned">Devolvido</label>-->
 				</div><!--end col checkbox-->
 				<?php } ?>
 				<div class="col-md-1"> <!--col submit-->
 				 	<!--<input type="submit" value="Alterar" onclick="return calc()">-->
 				 	<button type="submit" class="btn btn-success mb-lg-1" onclick="return calc()">Alterar</button>
 				</div><!--end col submit-->
-				<div class="col"> <!--col Cancel--> 	
+				<div class="col-md"> <!--col Cancel--> 	
 				 	<a class="btn btn-primary" href="/bank_check">Cancelar</a>
 				</div><!--end col Cancel-->
 			</div><!--end row 3-->				 	
