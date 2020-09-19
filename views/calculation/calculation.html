@@ -23,7 +23,7 @@
 		<div class="row justify-content-md-center">
 			<div class="col-md-4"><!--end row-->
 				<label for="valChq">Informe o Valor do Cheque:</label> 
-				<input type="number" class="form-control form-control-sm" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required autofocus><br>
+				<input type="number" class="form-control form-control-sm" step="0.01" id="valChq" placeholder="Valor do Cheque!" onblur="formatMoeda(this)" required autofocus>
 			</div><!--end col-md-4-->	
 		</div><!--end row 1-->			
 		<div class="row justify-content-md-center"><!--row dates-->
@@ -33,17 +33,17 @@
 			</div><!--end row date 1-->	
 			<div class="col-md-2"><!--col date 2-->	
 				<label>Data Vencimento</label>			
-				<input type="date" class="form-control form-control-sm" id="dtVenc"></input> <br>
+				<input type="date" class="form-control form-control-sm" id="dtVenc"></input> 
 			</div><!--end row date 2-->	
 		</div><!--end row dates-->
 		<div class="row justify-content-md-center">
 			<div class="col-md-4">
 				<label>Valor da Taxa</label>
-				<input type="number" class="form-control form-control-sm" step="0.01" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)"> 		
+				<input type="number" class="form-control form-control-sm" step="0.01" id="valTx" placeholder="Valor da Taxa!" onblur="formatMoeda(this)"><br> 		
 				<button type="submit" class="btn btn-success my-lg-4" onclick="calcular()">Calcular</button>
 				<button type="submit" class="btn btn-secondary my-lg-4" onclick="limpar()">Limpar</button>
 			</div><!--end col-md-4-->
-		</div>
+		</div><br>
 
 		<div class="row justify-content-md-center">
 			<div class="col-md-8 mx-auto">

@@ -115,7 +115,7 @@
 				 	<?php } ?>
 				</div><!--end col chkreturned-->
 			 	<div class="col-md"><!--col credit-->				 	
-				 	<label for="credit">Créd. Atual</label>
+				 	<label for="credit">Crédito Atual</label>
 				 	<input type="text" class="form-control form-control-sm" name="credit" id="credit" readonly>	 
 				</div><!--end col credit-->
 			 	<div class="col-md"><!--col chkvalues-->
@@ -128,7 +128,7 @@
 				 	<input type="text" class="form-control form-control-sm" name="chkreceived" id="chkreceived" value="<?php echo htmlspecialchars( $value1["totLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				</div><!--end col chkreceived-->
 			 	<div class="col-md"><!--col profit-->
-				 	<label for="profit" id="labProfit">Lucro</label>
+				 	<label for="profit" id="labProfit">Total Lucro</label>
 				 	<input type="text" class="form-control form-control-sm" name="profit" id="profit" value="<?php echo htmlspecialchars( $value1["totIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly><br>		 		 	
 				 	<?php } ?>
 				</div><!--end col profit-->

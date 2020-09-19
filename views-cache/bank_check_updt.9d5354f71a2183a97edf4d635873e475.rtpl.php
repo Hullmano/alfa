@@ -23,7 +23,7 @@
  		<form action="" method="post">
  			<div class="row"><!--row 1-->
 
-				<div class="col pr-lg-0"><!--col select-->	
+				<div class="col-md pr-lg-0"><!--col select-->	
 					<label for="selectBox">Cliente</label>
 					<select class="form-control form-control-sm" id="selectBox" onchange="selectClient(this.value)" onclick="setIndex()" onblur="setIndex()">
 						<option value="">Selecione</option>
@@ -47,22 +47,22 @@
 				 	<label for="agency">Agência</label>
 				 	<input type="tel" class="form-control form-control-sm" name="agency" id="agency" value="<?php echo htmlspecialchars( $value1["checkAgency"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				</div> <!--end col agency--> 	
-				<div class="col"> <!--col account-->	
+				<div class="col-md"> <!--col account-->	
 				 	<label for="account">Conta</label>
 				 	<input type="tel" class="form-control form-control-sm" name="account" id="account" value="<?php echo htmlspecialchars( $value1["checkAccount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>	 	
 				</div> <!--end col account-->
-				<div class="col"> <!--col numchk--> 			 	
+				<div class="col-md"> <!--col numchk--> 			 	
 				 	<label for="numchk">Nº Cheque</label>
 				 	<input type="tel" class="form-control form-control-sm" name="numchk" id="numchk" value="<?php echo htmlspecialchars( $value1["checkNumChk"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				</div> <!--end col numchk-->
-			 	<div class="col"> <!--col value--> 	
+			 	<div class="col-md"> <!--col value--> 	
 				 	<label for="value">Valor</label>
 				 	<input type="number" class="form-control form-control-sm" step="0.01" name="value" id="value" value="<?php echo htmlspecialchars( $value1["checkValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="formatMoeda(this)" maxlength="15" required><br>
 				</div> <!--end col value-->
 			</div><!--end row 1-->
 
 			<div class="row"><!--row 2-->
-				<div class="col"> <!--col dtToday-->
+				<div class="col-md"> <!--col dtToday-->
 				 	<label for="dtToday">Data</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtToday" id="dtToday" value="<?php echo htmlspecialchars( $value1["checkToday"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				</div> <!--end col dtToday-->
@@ -70,23 +70,23 @@
 				 	<label for="issuer">Emitente</label>
 				 	<input type="text" class="form-control form-control-sm text-capitalize" name="issuer" id="issuer" value="<?php echo htmlspecialchars( $value1["checkIssuer"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>	
 				</div> <!--end col issuer-->
-				<div class="col"> <!--col dtDue-->
+				<div class="col-md"> <!--col dtDue-->
 				 	<label for="dtDue">Venc.</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" value="<?php echo htmlspecialchars( $value1["checkDue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="difDates()" required>
 				</div> <!--end col dtDue-->
-				 <div class="col"> <!--col tax-->
+				 <div class="col-md"> <!--col tax-->
 				 	<label for="tax">Taxa</label>
 				 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" value="<?php echo htmlspecialchars( $value1["checkTax"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="formatMoeda(this)" required>
 				</div> <!--end col tax-->
-				<div class="col"> <!--col days-->
+				<div class="col-md"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
 				 	<input type="text" class="form-control form-control-sm" name="days" id="days" value="<?php echo htmlspecialchars( $value1["checkDays"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="calcJuros()" readonly required>
 				</div> <!--end col days-->
-				<div class="col"> <!--col interest-->
+				<div class="col-md"> <!--col interest-->
 				 	<label for="interest">Juros</label>
 				 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" value="<?php echo htmlspecialchars( $value1["checkIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="formatMoeda(this)" readonly required>
 				</div> <!--end col interest-->
-				<div class="col"> <!--col liquid-->
+				<div class="col-md"> <!--col liquid-->
 				 	<label for="liquid">Líquido</label>
 				 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" value="<?php echo htmlspecialchars( $value1["checkLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onblur="formatMoeda(this)" readonly required>
 				</div> <!--end col liquid-->
@@ -94,10 +94,10 @@
 				 	<label for="cod">Cód.Cheque</label>
 				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" value="<?php echo htmlspecialchars( $value1["checkId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				</div> <!--end col cod-->				 	
-			</div><!--end row 2-->	
+			</div><!--end row 2--><br>
 			
-			<div class="row pt-lg-4"><!--row 3-->
-				<div class="col-md-2 pl-lg-4 ml-lg-3"><!--col checkbox-->
+			<div class="row"><!--row 3-->
+				<div class="col-md-2 ml-lg-4"><!--col checkbox-->
 					<input class="form-check-input" type="checkBox" id="returned" name="returned" <?php if( $value1["checkReturned"] == 1 ){ ?>checked<?php } ?>></input>
 					<label class="form-check-label" for="returned">Devolvido</label>
 				</div><!--end col checkbox-->
