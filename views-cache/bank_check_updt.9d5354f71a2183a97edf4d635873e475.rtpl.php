@@ -97,9 +97,11 @@
 			</div><!--end row 2--><br>
 			
 			<div class="row"><!--row 3-->
-				<div class="col-md-2 ml-lg-4"><!--col checkbox-->
-					<input class="form-check-input" type="checkBox" id="returned" name="returned" <?php if( $value1["checkReturned"] == 1 ){ ?>checked<?php } ?>></input>
-					<label class="form-check-label" for="returned">Devolvido</label>
+				<div class="checkox mb-3 ml-lg-3"><!--col checkbox-->
+					<label for="returned">
+						<input type="checkBox" id="returned" name="returned" <?php if( $value1["checkReturned"] == 1 ){ ?>checked<?php } ?>></input>
+						Devolvido
+					</label>
 				</div><!--end col checkbox-->
 				<?php } ?>
 				<div class="col-md-1"> <!--col submit-->

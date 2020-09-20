@@ -95,23 +95,57 @@
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["Amount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 			</div>	
 			<div class="col-md">
-				<label>Valor dos Cheques</label>
+				<label>Total dos Cheques</label>
 				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
-				<?php } ?>
 			</div>
+			<div class="col-md">
+				<label>Total de Juros</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+			</div>	
+			<div class="col-md">
+				<label>Total Líquido</label>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="<?php echo htmlspecialchars( $value1["tLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
+				<?php } ?>
+			</div>			
 		</div><!--end labels row--><br>
+		
 		<form action=""> <!--search form-->
 			<div class="row">
+				<?php $counter1=-1;  if( isset($Search) && ( is_array($Search) || $Search instanceof Traversable ) && sizeof($Search) ) foreach( $Search as $key1 => $value1 ){ $counter1++; ?>
 				<div class="col-md">
-					<label>Pesquisa por Cliente</label>
-					<input type="text" class="form-control form-control-sm text-capitalize" name="search" autofocus>
+					<label>Por Cliente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchClient" name="searchClient" autofocus>
+					<label class="text-capitalize"><?php echo htmlspecialchars( $value1["sClient"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
 				</div>
 				<div class="col-md">
-					<?php $counter1=-1;  if( isset($Search) && ( is_array($Search) || $Search instanceof Traversable ) && sizeof($Search) ) foreach( $Search as $key1 => $value1 ){ $counter1++; ?>
-					<label>Resultado Pesquisa</label>
-					<input type="text" class="form-control form-control-sm text-capitalize" value="<?php echo htmlspecialchars( $value1["val"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly><br>
-					<?php } ?>
+					<label>Por Emitente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchIssuer" name="searchIssuer">
+					<label class="text-capitalize"><?php echo htmlspecialchars( $value1["sIssuer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
+				</div>		
+				<div class="col-md">
+					<label>Por Nº Cheque</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchNumChk" name="searchNumChk">
+					<label><?php echo htmlspecialchars( $value1["sNumChk"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
 				</div>
+				<div class="col-md">
+					<label>Por Valor</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchValue" name="searchValue" onblur="formatMoeda(this)">
+					<label><?php echo htmlspecialchars( $value1["sValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
+				</div>
+				<div class="col-md"> <!--col dtDue-->
+					<label for="returned">
+						<input type="checkBox" id="period" name="period"></input>
+						Por Período De
+					</label>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtInitial" id="sdtInitial" onchange=" DateCheck()" required>
+				 	<label>De: <?php echo htmlspecialchars( $value1["sInitial"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
+				</div> <!--end col dtDue-->
+				<div class="col-md"> <!--col dtDue-->
+				 	<label for="searchDtDue">Até</label>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtFinal" id="sdtFinal"  onchange="DateCheck()" required>
+				 	<label>Até: <?php echo htmlspecialchars( $value1["sFinal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label><br>
+				</div> <!--end col dtDue-->		
+				<?php } ?>		
 			</div>
 				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
 				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
@@ -129,5 +163,5 @@
     <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
     <script src="/resource/bs_js/popper.min.js"></script>
     <script src="/resource/bs_js/bootstrap.min.js"></script> 
-	<script src="/resource/bank_check.js"></script>
+	<script src="/resource/reports.js"></script>
 </html>

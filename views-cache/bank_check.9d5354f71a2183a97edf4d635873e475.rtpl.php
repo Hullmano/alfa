@@ -78,7 +78,7 @@
 			</div><!--end row 1-->
 			
 			<div class="row"><!--row 2-->
-				<div class="col"> <!--col dtToday-->
+				<div class="col-md"> <!--col dtToday-->
 				 	<label for="dtToday">Data</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtToday" id="dtToday" required>
 				</div> <!--end col dtToday-->
@@ -86,31 +86,31 @@
 				 	<label for="issuer">Emitente</label>
 				 	<input type="text" class="form-control form-control-sm text-capitalize" name="issuer" id="issuer" maxlength="60" required>	
 				</div> <!--end col issuer-->
-				<div class="col"> <!--col dtDue-->
+				<div class="col-md"> <!--col dtDue-->
 				 	<label for="dtDue">Venc.</label>
 				 	<input type="date" class="form-control form-control-sm" name="dtDue" id="dtDue" onblur="difDates()" required>
 				</div> <!--end col dtDue-->
-				 <div class="col"> <!--col tax-->
+				 <div class="col-md"> <!--col tax-->
 				 	<label for="tax">Taxa</label>
 				 	<input type="number" class="form-control form-control-sm" step="0.01" name="tax" id="tax" onblur="formatMoeda(this)" required>
 				</div> <!--end col tax-->
-				<div class="col"> <!--col days-->
+				<div class="col-md"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
 				 	<input type="text" class="form-control form-control-sm" name="days" id="days" onblur="cJuros()" onkeypress="return false" required>
 				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	--> 	
 				</div> <!--end col days-->
-				<div class="col"> <!--col interest-->
+				<div class="col-md"> <!--col interest-->
 				 	<label for="interest">Juros</label>
 				 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" onblur="formatMoeda(this)" onkeypress="return false" required>
 				</div> <!--end col interest-->
-				<div class="col"> <!--col liquid-->
+				<div class="col-md"> <!--col liquid-->
 				 	<label for="liquid">Líquido</label>
 				 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" onblur="formatMoeda(this)" onkeypress="return false" required>		 	
 				</div> <!--end col liquid-->
 			</div><!--end row 2-->	
 
 			<div class="row pt-lg-4"><!--row 3-->
-				<div class="col-2"> <!--col cod-->
+				<div class="col-md-2"> <!--col cod-->
 				 	<label for="cod">Cód.Cheque</label>
 				 	<input type="text" class="form-control form-control-sm" name="cod" id="cod" tabindex="-1" readonly><br>
 				</div> <!--end col cod-->

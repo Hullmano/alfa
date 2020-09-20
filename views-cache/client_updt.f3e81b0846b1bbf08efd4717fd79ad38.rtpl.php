@@ -55,7 +55,7 @@
 				 		<option>Cnpj</option>
 				 	</select>
 				</div><!--end col selectCpf-->
-				<div class="col-md-2 pl-lg-0 pt-lg-4 mt-lg-2"><!--col cpf-->				 	
+				<div class="col-md-2 pl-lg-0 pt-lg-4 mt-lg-2 mb-3"><!--col cpf-->				 	
 				 	<input type="text" class="form-control form-control-sm" name="cpf" id="cpfnj" maxlength="14" onkeypress="return event.charCode>=48 && event.charCode<=57" placeholder="Cpf 11/Cnpj 14 Dig." onblur="cpfCnpj(this.value)" value="<?php echo htmlspecialchars( $value1["clientCpf"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
 				</div><!--end col cpf--> 
 			 	<div class="col-md-3"><!--col city-->	
@@ -128,7 +128,7 @@
 				 	<input type="text" class="form-control form-control-sm" name="chkreceived" id="chkreceived" value="<?php echo htmlspecialchars( $value1["totLiquid"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly>
 				</div><!--end col chkreceived-->
 			 	<div class="col-md"><!--col profit-->
-				 	<label for="profit" id="labProfit">Total Lucro</label>
+				 	<label for="profit" id="labProfit">Val. Total Lucro</label>
 				 	<input type="text" class="form-control form-control-sm" name="profit" id="profit" value="<?php echo htmlspecialchars( $value1["totIntrst"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" readonly><br>		 		 	
 				 	<?php } ?>
 				</div><!--end col profit-->

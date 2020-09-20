@@ -97,9 +97,11 @@
 			</div><!--end row 2--><br>
 			
 			<div class="row"><!--row 3-->
-				<div class="col-md-2 ml-lg-4"><!--col checkbox-->
-					<input class="form-check-input" type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}></input>
-					<label class="form-check-label" for="returned">Devolvido</label>
+				<div class="checkox mb-3 ml-lg-3"><!--col checkbox-->
+					<label for="returned">
+						<input type="checkBox" id="returned" name="returned" {if="$value.checkReturned == 1"}checked{/if}></input>
+						Devolvido
+					</label>
 				</div><!--end col checkbox-->
 				{/loop}
 				<div class="col-md-1"> <!--col submit-->

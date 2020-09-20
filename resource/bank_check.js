@@ -1,12 +1,3 @@
-	function formatMoeda(btn){                  //Formata o valor para Moeda.
-		if (!btn.value){						//Verifica se value está vazio.
-		} else {
-			var valor = btn.value.replace(',','.'); //o parseFloat só considera decimal com ponto e nao com virgula
-			var novoValor = parseFloat(valor).toFixed(2);
-			btn.value = novoValor; 
-		}	
-	}
-	
 	function Today(dBase = new Date()){
 		var dia = dBase.getDate();
 		var mes = dBase.getMonth()+1;

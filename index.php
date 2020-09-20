@@ -215,16 +215,28 @@ $app->post('/master', function() {   //aqui são definidas as rotas. Neste caso 
 #------------------------------------------------------REPORTS-------------------------------------------------
 //Relatório de cheques à vencer!
 $app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
+	
 	User::verifyLogin();
 
-	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$sClient = (isset($_GET["searchClient"])) ? $_GET["searchClient"] : '';
+	$sIssuer = (isset($_GET["searchIssuer"])) ? $_GET["searchIssuer"] : '';	
+	$sNumChk = (isset($_GET["searchNumChk"])) ? $_GET["searchNumChk"] : '';
+	$sValue  = (isset($_GET["searchValue"])) ? $_GET["searchValue"] : '';
+	$sInitial= (isset($_GET["period"])) ? $_GET["searchDtInitial"] : '1901-01-01';
+	$sFinal  = (isset($_GET["period"])) ? $_GET["searchDtFinal"] : '2099-12-31';
+
 	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
 	array_push($varArray, array(
-		'val'=>$search
+		'sClient' =>$sClient,
+		'sIssuer' =>$sIssuer,
+		'sNumChk' =>$sNumChk,
+		'sValue'  =>$sValue,
+		'sInitial'=>$sInitial,
+		'sFinal' =>$sFinal		
 	));
 
-	$data = bank_check::checksDue($search);
-	$count = bank_check::checksDueCount($search);
+	$data = bank_check::checksDue($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
+	$count = bank_check::checksDueCount($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("due_check_rp", array(
@@ -237,14 +249,25 @@ $app->get('/bank_check/reports/due_check_rp', function() {   //aqui são definid
 $app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	User::verifyLogin();
 
-	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$sClient = (isset($_GET["searchClient"])) ? $_GET["searchClient"] : '';
+	$sIssuer = (isset($_GET["searchIssuer"])) ? $_GET["searchIssuer"] : '';	
+	$sNumChk = (isset($_GET["searchNumChk"])) ? $_GET["searchNumChk"] : '';
+	$sValue  = (isset($_GET["searchValue"])) ? $_GET["searchValue"] : '';
+	$sInitial= (isset($_GET["period"])) ? $_GET["searchDtInitial"] : '1901-01-01';
+	$sFinal  = (isset($_GET["period"])) ? $_GET["searchDtFinal"] : '2099-12-31';
+
 	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
 	array_push($varArray, array(
-		'val'=>$search
+		'sClient' =>$sClient,
+		'sIssuer' =>$sIssuer,
+		'sNumChk' =>$sNumChk,
+		'sValue'  =>$sValue,
+		'sInitial'=>$sInitial,
+		'sFinal' =>$sFinal		
 	));
 
-	$data = bank_check::checksPaid($search);
-	$count = bank_check::checksPaidCount($search);
+	$data = bank_check::checksPaid($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
+	$count = bank_check::checksPaidCount($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("paid_check_rp", array(
@@ -257,14 +280,25 @@ $app->get('/bank_check/reports/paid_check_rp', function() {   //aqui são defini
 $app->get('/bank_check/reports/returned_check_rp', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.
 	User::verifyLogin();
 
-	$search = (isset($_GET["search"])) ? $_GET["search"] : '';
+	$sClient = (isset($_GET["searchClient"])) ? $_GET["searchClient"] : '';
+	$sIssuer = (isset($_GET["searchIssuer"])) ? $_GET["searchIssuer"] : '';	
+	$sNumChk = (isset($_GET["searchNumChk"])) ? $_GET["searchNumChk"] : '';
+	$sValue  = (isset($_GET["searchValue"])) ? $_GET["searchValue"] : '';
+	$sInitial= (isset($_GET["period"])) ? $_GET["searchDtInitial"] : '1901-01-01';
+	$sFinal  = (isset($_GET["period"])) ? $_GET["searchDtFinal"] : '2099-12-31';
+
 	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
 	array_push($varArray, array(
-		'val'=>$search
+		'sClient' =>$sClient,
+		'sIssuer' =>$sIssuer,
+		'sNumChk' =>$sNumChk,
+		'sValue'  =>$sValue,
+		'sInitial'=>$sInitial,
+		'sFinal' =>$sFinal		
 	));
 
-	$data = bank_check::checksReturned($search);
-	$count = bank_check::checksReturnedCount($search);
+	$data = bank_check::checksReturned($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
+	$count = bank_check::checksReturnedCount($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
 	
 	$page = new Page("views/bank_check/reports/");
 	$page->setDraw("returned_check_rp", array(

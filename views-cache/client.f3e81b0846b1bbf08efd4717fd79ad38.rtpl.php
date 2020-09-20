@@ -119,7 +119,7 @@
 				 	<textarea class="form-control form-control-sm text-capitalize" name="others" id="others" maxlength="250"></textarea><br>
 				</div><!--end col phone1-->
 			</div><!--end row 3-->
-				<button type="submit" class="btn btn-success mb-lg-5">Salvar</button>
+				<button type="submit" class="btn btn-success">Salvar</button>
 			 	<!--<input type="submit" value="Salvar">-->
 		</form><br>
 

@@ -100,26 +100,52 @@
 			</div>
 			<div class="col-md">
 				<label>Total de Juros</label>
-				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.tValue}" readonly>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.tIntrst}" readonly>
 			</div>	
 			<div class="col-md">
 				<label>Total Líquido</label>
-				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.tValue}" readonly>
+				<input type="text" class="form-control form-control-sm" name="chkdue" value="{$value.tLiquid}" readonly>
 				{/loop}
 			</div>			
 		</div><!--end labels row--><br>
+
 		<form action=""> <!--search form-->
 			<div class="row">
+				{loop="$Search"}
 				<div class="col-md">
-					<label>Pesquisa por Cliente</label>
-					<input type="text" class="form-control form-control-sm text-capitalize" name="search" autofocus>
+					<label>Por Cliente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchClient" name="searchClient" autofocus>
+					<label class="text-capitalize">{$value.sClient}</label>
 				</div>
 				<div class="col-md">
-					{loop="$Search"}
-					<label>Resultado Pesquisa</label>
-					<input type="text" class="form-control form-control-sm text-capitalize" value="{$value.val}" readonly><br>
-					{/loop}
+					<label>Por Emitente</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchIssuer" name="searchIssuer">
+					<label class="text-capitalize">{$value.sIssuer}</label>
+				</div>		
+				<div class="col-md">
+					<label>Por Nº Cheque</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchNumChk" name="searchNumChk">
+					<label>{$value.sNumChk}</label>
 				</div>
+				<div class="col-md">
+					<label>Por Valor</label>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchValue" name="searchValue" onblur="formatMoeda(this)">
+					<label>{$value.sValue}</label>
+				</div>
+				<div class="col-md"> <!--col dtDue-->
+					<label for="returned">
+						<input type="checkBox" id="period" name="period"></input>
+						Por Período De
+					</label>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtInitial" id="sdtInitial" onchange="DateCheck()" required>
+				 	<label>De: {$value.sInitial}</label>
+				</div> <!--end col dtDue-->
+				<div class="col-md"> <!--col dtDue-->
+				 	<label for="searchDtDue">Até</label>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtFinal" id="sdtFinal" onchange="DateCheck()" required>
+				 	<label fmt:formatDate value="{$value.sInitial}" pattern="dd/MM/yyyy"/>{$value.sInitial}</label><br>
+				</div> <!--end col dtDue-->		
+				{/loop}		
 			</div>
 				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
 				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
@@ -137,5 +163,5 @@
     <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
     <script src="/resource/bs_js/popper.min.js"></script>
     <script src="/resource/bs_js/bootstrap.min.js"></script> 
-	<script src="/resource/bank_check.js"></script>
+    <script src="/resource/reports.js"></script>
 </html>
