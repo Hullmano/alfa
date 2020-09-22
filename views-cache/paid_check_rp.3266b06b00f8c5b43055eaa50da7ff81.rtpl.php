@@ -132,19 +132,6 @@
 					<input type="text" class="form-control form-control-sm text-capitalize" id="searchValue" name="searchValue" onblur="formatMoeda(this)">
 					<label><?php echo htmlspecialchars( $value1["sValue"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
 				</div>
-				<div class="col-md"> <!--col dtDue-->
-					<label for="returned">
-						<input type="checkBox" id="period" name="period"></input>
-						Por Período De
-					</label>
-				 	<input type="date" class="form-control form-control-sm" name="searchDtInitial" id="sdtInitial" onchange="DateCheck()" required>
-				 	<label>De: <?php echo htmlspecialchars( $value1["sInitial"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
-				</div> <!--end col dtDue-->
-				<div class="col-md"> <!--col dtDue-->
-				 	<label for="searchDtDue">Até</label>
-				 	<input type="date" class="form-control form-control-sm" name="searchDtFinal" id="sdtFinal" onchange="DateCheck()" required>
-				 	<label>Até: <?php echo htmlspecialchars( $value1["sFinal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label><br>
-				</div> <!--end col dtDue-->		
 				<?php } ?>		
 			</div>
 				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
