@@ -14,7 +14,6 @@
 			<a class="navbar-brand" href="/client">Clientes</a>
 			<a class="navbar-brand" href="/bank_check">Cheques</a>			
 			<a class="navbar-brand" href="/calculation">Cálculos</a>
-			<a class="navbar-brand ml-auto disabled">Ver.2209</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
 		

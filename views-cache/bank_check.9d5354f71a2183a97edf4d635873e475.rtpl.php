@@ -11,7 +11,6 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/client">Clientes</a>
 			<a class="navbar-brand" href="/calculation">Cálculos</a>
-			<a class="navbar-brand ml-auto disabled">Ver.2209</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
 		
@@ -43,7 +42,7 @@
 	 			
 	 			<div class="col pr-lg-0"><!--col select-->
 					<label for="selectBox">Cliente</label>
-					<select class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()">
+					<select class="form-control form-control-sm" id="selectBox" onchange="selectClient(this)" onclick="setIndex()" onblur="setIndex()" autofocus>
 						<option value="">Selecione</option>
 						<?php $counter1=-1;  if( isset($Users) && ( is_array($Users) || $Users instanceof Traversable ) && sizeof($Users) ) foreach( $Users as $key1 => $value1 ){ $counter1++; ?>
 						<option id="options" value="<?php echo htmlspecialchars( $value1["clientId"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["clientName"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
@@ -52,7 +51,7 @@
 				</div> <!--end col select-->
 				<div class="col-md-3 pl-lg-0 pt-lg-4 mt-lg-2"><!--col client-->
 					<input type="hidden" id="idClient" name="idClient">	
-					<input type="text" class="form-control form-control-sm text-capitalize" name="client" id="client" readonly required autofocus><br>
+					<input type="text" class="form-control form-control-sm text-capitalize" name="client" id="client" readonly required><br>
 				</div> <!--col client-->
 				<div class="col-md-1"> <!--col bank-->
 				 	<label for="bank">Banco</label>
