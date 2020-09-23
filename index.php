@@ -79,16 +79,33 @@ $app->get('/bank_check', function() {   //aqui são definidas as rotas. Neste ca
 
 	User::verifyLogin();
 
+	$sClient = (isset($_GET["searchClient"])) ? $_GET["searchClient"] : '';
+	$sIssuer = (isset($_GET["searchIssuer"])) ? $_GET["searchIssuer"] : '';	
+	$sNumChk = (isset($_GET["searchNumChk"])) ? $_GET["searchNumChk"] : '';
+	$sValue  = (isset($_GET["searchValue"])) ? $_GET["searchValue"] : '';
+	$sInitial= (isset($_GET["period"])) ? $_GET["searchDtInitial"] : '1901-01-01';
+	$sFinal  = (isset($_GET["period"])) ? $_GET["searchDtFinal"] : '2099-12-31';
+
+	$varArray = array(); //Criando um array e colocando o valor $search, que vai ser usado no html.
+	array_push($varArray, array(
+		'sClient' =>$sClient,
+		'sIssuer' =>$sIssuer,
+		'sNumChk' =>$sNumChk,
+		'sValue'  =>$sValue,
+		'sInitial'=>$sInitial,
+		'sFinal' =>$sFinal
+	));
+
 	$clients = Client::listClients();
-	$data    = Bank_Check::listChecks();
+	$data    = Bank_Check::listChecks($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
+	$count   = Bank_Check::listChecksCount($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal);
 	
-	//print_r($data);
-	//print_r($_SESSION["User"][0]["userId"]);
-	//$page = new Page("views/bank_check/", "bank_check"); 
 	$page = new Page("views/bank_check/");
 	$page->setDraw("bank_check", array(
 		"Users"=>$clients,
-		"Data"=>$data
+		"Data"=>$data,
+		"Count"=>$count,
+		"Search"=>$varArray
 	));
 });
 $app->post('/bank_check', function() {   //aqui são definidas as rotas. Neste caso "/" é a raiz.

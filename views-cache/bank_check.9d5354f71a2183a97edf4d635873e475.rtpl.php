@@ -4,8 +4,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  	<link rel="stylesheet" href="/resource/bs_css/bootstrap.min.css">
- 	<!--<link rel="stylesheet" type="text/css" href="/resource/bank_check.css">-->
- 	<!--<link rel="stylesheet" type="text/css" href="resource/normalize.css">-->
 </head>
 <body onload="Today()">
 	<div class="container">
@@ -170,6 +168,7 @@
 			</table>
 		</div><br><br>
 
+		<!------------------------------------------------------Labels------------------------------------------------->
 		<div class="row"><!--labels row-->
 			<div class="col-md">
 				<?php $counter1=-1;  if( isset($Count) && ( is_array($Count) || $Count instanceof Traversable ) && sizeof($Count) ) foreach( $Count as $key1 => $value1 ){ $counter1++; ?>
@@ -192,7 +191,7 @@
 		</div><!--end labels row--><br>
 
 		<form action=""> <!--search form-->
-			<div class="row">
+			<div class="row"><!--row totals-->
 				<?php $counter1=-1;  if( isset($Search) && ( is_array($Search) || $Search instanceof Traversable ) && sizeof($Search) ) foreach( $Search as $key1 => $value1 ){ $counter1++; ?>
 				<div class="col-md">
 					<label>Por Cliente</label>
@@ -219,18 +218,19 @@
 						<input type="checkBox" id="period" name="period"></input>
 						Por Período De
 					</label>
-				 	<input type="date" class="form-control form-control-sm" name="searchDtInitial" id="sdtInitial" onchange="DateCheck()" required>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtInitial" id="sInitial" onchange="DateCheck()" required>
 				 	<label>De: <?php echo htmlspecialchars( $value1["sInitial"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label>
 				</div> <!--end col dtDue-->
 				<div class="col-md"> <!--col dtDue-->
 				 	<label for="searchDtDue">Até</label>
-				 	<input type="date" class="form-control form-control-sm" name="searchDtFinal" id="sdtFinal" onchange="DateCheck()" required>
-				 	<label fmt:formatDate value="<?php echo htmlspecialchars( $value1["sInitial"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" pattern="dd/MM/yyyy"/><?php echo htmlspecialchars( $value1["sInitial"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label><br>
+				 	<input type="date" class="form-control form-control-sm" name="searchDtFinal" id="sFinal" onchange="DateCheck()"	required>
+				 	<label>Até: <?php echo htmlspecialchars( $value1["sFinal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></label><br>
 				</div> <!--end col dtDue-->		
-				<?php } ?>		
-			</div>
+				<?php } ?>	
+			</div><!--end row totals-->
+
 				<button class="btn btn-success" type="submit">Pesquisar/Total</button>
-				<a class="btn btn-primary" href="/bank_check">Retornar/Cheques</a>
+				
 		</form><!--end search form--><br><br>
 
 		<nav class="navbar fixed-bottom navbar-dark bg-dark">
@@ -240,9 +240,9 @@
 </body>
 
 <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS --> 
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS--> 
     <script src="/resource/bs_js/jquery-3.3.1.slim.min.js"></script>
     <script src="/resource/bs_js/popper.min.js"></script>
-    <script src="/resource/bs_js/bootstrap.min.js"></script> 
+    <script src="/resource/bs_js/bootstrap.min.js"></script>
 	<script src="/resource/bank_check.js"></script>
 </html>

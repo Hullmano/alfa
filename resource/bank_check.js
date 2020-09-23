@@ -14,6 +14,8 @@
 
 		document.getElementById('dtToday').value = diaAtual;
 		document.getElementById('dtDue').value = diaAtual;
+		document.getElementById('sInitial').value = diaAtual;
+		document.getElementById('sFinal').value = diaAtual;		
 	}
 
 	function selectClient($value){
@@ -79,4 +81,8 @@
 			var novoValor = parseFloat(valor).toFixed(2);
 			btn.value = novoValor; 
 		}	
+	}
+
+	function DateCheck(){
+		document.getElementById('period').checked = true;
 	}

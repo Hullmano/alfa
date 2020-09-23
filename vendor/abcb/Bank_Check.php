@@ -7,27 +7,39 @@ use \Abcb\Sql;
 class Bank_Check extends Sql
 {
 
-	public static function listChecks()
+	public static function listChecks($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID ORDER BY ch.checkDue', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID AND cl.clientName LIKE :SCLI AND ch.checkIssuer LIKE :SISS AND ch.checkNumChk LIKE :SNUM AND ch.checkValue LIKE :SVAL AND ch.checkDue >= :SINIT AND ch.checkDue <= :SFINAL ORDER BY ch.checkDue', array(
+			"SESSIONID"=>$sessionId,
+			"SCLI"  =>$sClient.'%',
+			"SISS"  =>$sIssuer.'%',			
+			"SNUM"  =>$sNumChk.'%',
+			"SVAL"  =>$sValue.'%',
+			"SINIT" =>$sInitial,
+			"SFINAL"=>$sFinal			
 		));		
 	}
 
-	public static function listChecks()
+	public static function listChecksCount($sClient, $sIssuer, $sNumChk, $sValue, $sInitial, $sFinal)
 	{
 		$sessionId = $_SESSION['User'][0]['userId'];
 		//print_r($varId);
 
 		$sql = new Sql();
 
-		return $results = $sql->select('SELECT ch.checkId, ch.checkBank, ch.checkAgency, ch.checkAccount, ch.checkNumChk, ch.checkValue, ch.checkIssuer, ch.checkDays, ch.checkTax, ch.checkIntrst, ch.checkLiquid, ch.checkReturned, ch.clientId, DATE_FORMAT(ch.checkToday,"%d-%m-%y") AS checkToday, DATE_FORMAT(ch.checkDue,"%d-%m-%y") AS checkDue, cl.clientName AS clientName FROM tb_checks AS ch INNER JOIN tb_clients AS cl USING(clientId) WHERE ch.chkSessionId = :SESSIONID ORDER BY ch.checkDue', array(
-			"SESSIONID"=>$sessionId
+		return $results = $sql->select('SELECT COUNT(checkId) AS Amount, SUM(checkValue) AS tValue, SUM(checkIntrst) AS tIntrst, SUM(checkLiquid) AS tLiquid FROM tb_checks ch INNER JOIN tb_clients cl USING(clientId) WHERE chkSessionId = :SESSIONID AND cl.clientName LIKE :SCLI AND ch.checkIssuer LIKE :SISS AND ch.checkNumChk LIKE :SNUM AND ch.checkValue LIKE :SVAL AND ch.checkDue >= :SINIT AND ch.checkDue <= :SFINAL ORDER BY ch.checkDue', array(
+			"SESSIONID"=>$sessionId,
+			"SCLI"  =>$sClient.'%',
+			"SISS"  =>$sIssuer.'%',			
+			"SNUM"  =>$sNumChk.'%',
+			"SVAL"  =>$sValue.'%',
+			"SINIT" =>$sInitial,
+			"SFINAL"=>$sFinal			
 		));		
 	}
 
