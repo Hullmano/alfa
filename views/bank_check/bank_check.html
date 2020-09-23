@@ -11,6 +11,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="/client">Clientes</a>
 			<a class="navbar-brand" href="/calculation">Cálculos</a>
+			<a class="navbar-brand ml-auto disabled">Ver.2209</a>
 			<a class="navbar-brand ml-auto" href="/logout">Logout</a>
 		</nav>
 		
@@ -51,7 +52,7 @@
 				</div> <!--end col select-->
 				<div class="col-md-3 pl-lg-0 pt-lg-4 mt-lg-2"><!--col client-->
 					<input type="hidden" id="idClient" name="idClient">	
-					<input type="text" class="form-control form-control-sm text-capitalize" name="client" id="client" onkeypress="return false" required><br>
+					<input type="text" class="form-control form-control-sm text-capitalize" name="client" id="client" readonly required autofocus><br>
 				</div> <!--col client-->
 				<div class="col-md-1"> <!--col bank-->
 				 	<label for="bank">Banco</label>
@@ -94,16 +95,15 @@
 				</div> <!--end col tax-->
 				<div class="col-md"> <!--col days-->
 				 	<label for="days">Tot.Dias</label>
-				 	<input type="text" class="form-control form-control-sm" name="days" id="days" onblur="cJuros()" onkeypress="return false" required>
-				 	<!--<input type="text" class="form-control form-control-sm" name="days" id="days" readonly required>	--> 	
+				 	<input type="text" class="form-control form-control-sm" name="days" id="days" onblur="cJuros()" readonly required>
 				</div> <!--end col days-->
 				<div class="col-md"> <!--col interest-->
 				 	<label for="interest">Juros</label>
-				 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" onblur="formatMoeda(this)" onkeypress="return false" required>
+				 	<input type="text" class="form-control form-control-sm" name="interest" id="interest" onblur="formatMoeda(this)" readonly required>
 				</div> <!--end col interest-->
 				<div class="col-md"> <!--col liquid-->
 				 	<label for="liquid">Líquido</label>
-				 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" onblur="formatMoeda(this)" onkeypress="return false" required>		 	
+				 	<input type="text" class="form-control form-control-sm" name="liquid" id="liquid" onblur="formatMoeda(this)" readonly required>		 	
 				</div> <!--end col liquid-->
 			</div><!--end row 2-->	
 
@@ -195,7 +195,7 @@
 				{loop="$Search"}
 				<div class="col-md">
 					<label>Por Cliente</label>
-					<input type="text" class="form-control form-control-sm text-capitalize" id="searchClient" name="searchClient" autofocus>
+					<input type="text" class="form-control form-control-sm text-capitalize" id="searchClient" name="searchClient">
 					<label class="text-capitalize">{$value.sClient}</label>
 				</div>
 				<div class="col-md">

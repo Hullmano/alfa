@@ -11,6 +11,7 @@
   <body>
  	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand ml-auto disabled">Ver.2209</a>
 		</nav>
 		<div class="p-5 text-center">
 			<h2 class="h2">Login</h2>
